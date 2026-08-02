@@ -1,7 +1,7 @@
 {
   "id": "mkortex-store",
   "name": "MKortex Store",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "minAppVersion": "1.0.0",
   "description": "Магазин плагинов экосистемы MKortex: установка и обновления",
   "author": "MKRobotsAI",

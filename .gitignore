@@ -1,5 +1,5 @@
-# Local workspace — only release/ is published to git.
+# Local workspace — only plugins/ is published to git.
 *
 !.gitignore
-!release/
-!release/**
+!plugins/
+!plugins/**
