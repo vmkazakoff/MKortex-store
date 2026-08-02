@@ -77,3 +77,19 @@
   flex-shrink: 0;
   padding-top: 2px;
 }
+
+.mkortex-updater-settings .mkortex-btn-ghost {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.mkortex-updater-settings .mkortex-btn-ghost:hover {
+  color: var(--text-normal);
+  background: transparent;
+  box-shadow: none;
+}
