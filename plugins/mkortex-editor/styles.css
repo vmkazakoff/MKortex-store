@@ -1,7 +1,7 @@
-/* Notion-like Editor Styles */
+/* MKortex Editor Styles */
 
 /* Хост внутри .cm-sizer: бар едет со скроллом нативно (как bubble-menu) */
-.notion-like-editor-menu-host {
+.mkortex-editor-menu-host {
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   z-index: 50;
 }
 
-.notion-like-editor-floating-menu {
+.mkortex-editor-floating-menu {
   position: absolute;
   display: flex;
   align-items: center;
@@ -30,13 +30,13 @@
   overflow: visible;
 }
 
-.notion-like-editor-floating-menu.visible {
+.mkortex-editor-floating-menu.visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-.notion-like-editor-floating-menu > button,
-.notion-like-editor-floating-menu .menu-dropdown > button {
+.mkortex-editor-floating-menu > button,
+.mkortex-editor-floating-menu .menu-dropdown > button {
   padding: 4px 6px;
   border: none;
   background: transparent;
@@ -54,24 +54,24 @@
   transition: background-color 0.15s ease;
 }
 
-.notion-like-editor-floating-menu > button.active,
-.notion-like-editor-floating-menu .menu-dropdown > button.active {
+.mkortex-editor-floating-menu > button.active,
+.mkortex-editor-floating-menu .menu-dropdown > button.active {
   background: var(--background-modifier-active-hover);
   color: var(--text-accent);
 }
 
-.notion-like-editor-floating-menu button svg {
+.mkortex-editor-floating-menu button svg {
   width: 16px;
   height: 16px;
 }
 
-.notion-like-editor-floating-menu > button:hover,
-.notion-like-editor-floating-menu .menu-dropdown > button:hover {
+.mkortex-editor-floating-menu > button:hover,
+.mkortex-editor-floating-menu .menu-dropdown > button:hover {
   background: var(--background-modifier-hover);
 }
 
 /* Разделитель */
-.notion-like-editor-floating-menu .menu-separator {
+.mkortex-editor-floating-menu .menu-separator {
   width: 1px;
   height: 20px;
   background: var(--background-modifier-border);

@@ -12,7 +12,7 @@
     {
       "id": "mkortex-editor",
       "name": "MKortex Editor",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "path": "plugins/mkortex-editor",
       "minAppVersion": "1.0.0",
       "description": "Блочный редактор экосистемы MKortex"
