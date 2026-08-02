@@ -2,5 +2,5 @@
 *
 !.gitignore
 !ecosystem.json
-!mkortex-updater/
-!mkortex-updater/**
+!release/
+!release/**
