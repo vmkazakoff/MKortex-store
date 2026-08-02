@@ -1,6 +1,5 @@
-# Local workspace — only release artifacts are published to git.
+# Local workspace — only release/ is published to git.
 *
 !.gitignore
-!ecosystem.json
 !release/
 !release/**
