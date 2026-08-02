@@ -4,7 +4,7 @@
     {
       "id": "mkortex-store",
       "name": "MKortex Store",
-      "version": "0.3.2",
+      "version": "0.3.3",
       "path": "plugins/mkortex-store",
       "minAppVersion": "1.0.0",
       "description": "Магазин плагинов экосистемы MKortex: установка и обновления"
