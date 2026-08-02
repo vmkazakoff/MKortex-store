@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "plugins": [
     {
-      "id": "mkortex-updater",
-      "name": "MKortex Updater",
-      "version": "0.2.7",
-      "path": "release/mkortex-updater",
+      "id": "mkortex-store",
+      "name": "MKortex Store",
+      "version": "0.3.0",
+      "path": "release/mkortex-store",
       "minAppVersion": "1.0.0",
-      "description": "Установка и обновление плагинов экосистемы MKortex"
+      "description": "Магазин плагинов экосистемы MKortex: установка и обновления"
     }
   ]
 }

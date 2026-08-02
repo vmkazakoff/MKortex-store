@@ -1,9 +1,0 @@
-{
-  "id": "mkortex-updater",
-  "name": "MKortex Updater",
-  "version": "0.2.7",
-  "minAppVersion": "1.0.0",
-  "description": "Установка и обновление плагинов экосистемы MKortex",
-  "author": "MKRobotsAI",
-  "isDesktopOnly": true
-}

@@ -1,6 +1,6 @@
-/* MKortex Updater */
+/* MKortex Store */
 
-.mkortex-updater-settings .mkortex-plugin-row {
+.mkortex-store-settings .mkortex-plugin-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-updater-settings .mkortex-plugin-meta {
+.mkortex-store-settings .mkortex-plugin-meta {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -17,18 +17,18 @@
   flex: 1;
 }
 
-.mkortex-updater-settings .mkortex-plugin-title-line {
+.mkortex-store-settings .mkortex-plugin-title-line {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
 
-.mkortex-updater-settings .mkortex-plugin-name {
+.mkortex-store-settings .mkortex-plugin-name {
   font-weight: 600;
 }
 
-.mkortex-updater-settings .mkortex-badge {
+.mkortex-store-settings .mkortex-badge {
   display: inline-flex;
   align-items: center;
   padding: 1px 8px;
@@ -39,38 +39,38 @@
   white-space: nowrap;
 }
 
-.mkortex-updater-settings .mkortex-badge-ok {
+.mkortex-store-settings .mkortex-badge-ok {
   color: var(--text-success);
   background-color: rgba(var(--color-green-rgb, 68, 207, 110), 0.15);
 }
 
-.mkortex-updater-settings .mkortex-badge-update {
+.mkortex-store-settings .mkortex-badge-update {
   color: var(--text-warning);
   background-color: rgba(var(--color-orange-rgb, 233, 151, 63), 0.18);
 }
 
-.mkortex-updater-settings .mkortex-badge-missing {
+.mkortex-store-settings .mkortex-badge-missing {
   color: var(--text-muted);
   background-color: var(--background-modifier-hover);
 }
 
-.mkortex-updater-settings .mkortex-badge-local {
+.mkortex-store-settings .mkortex-badge-local {
   color: var(--text-accent);
   background-color: rgba(var(--color-accent-rgb, 120, 120, 255), 0.15);
 }
 
-.mkortex-updater-settings .mkortex-plugin-version {
+.mkortex-store-settings .mkortex-plugin-version {
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
   font-variant-numeric: tabular-nums;
 }
 
-.mkortex-updater-settings .mkortex-plugin-desc {
+.mkortex-store-settings .mkortex-plugin-desc {
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
 }
 
-.mkortex-updater-settings .mkortex-plugin-actions {
+.mkortex-store-settings .mkortex-plugin-actions {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -80,11 +80,11 @@
   min-width: 140px;
 }
 
-.mkortex-updater-settings .mkortex-plugin-actions button {
+.mkortex-store-settings .mkortex-plugin-actions button {
   width: 100%;
 }
 
-.mkortex-updater-settings .mkortex-btn-ghost {
+.mkortex-store-settings .mkortex-btn-ghost {
   background: transparent;
   box-shadow: none;
   border: none;
@@ -94,7 +94,7 @@
   cursor: pointer;
 }
 
-.mkortex-updater-settings .mkortex-btn-ghost:hover {
+.mkortex-store-settings .mkortex-btn-ghost:hover {
   color: var(--text-normal);
   background: transparent;
   box-shadow: none;
