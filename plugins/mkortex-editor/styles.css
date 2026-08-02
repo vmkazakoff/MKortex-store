@@ -1,0 +1,182 @@
+/* Notion-like Editor Styles */
+
+/* Хост внутри .cm-sizer: бар едет со скроллом нативно (как bubble-menu) */
+.notion-like-editor-menu-host {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.notion-like-editor-floating-menu {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.notion-like-editor-floating-menu.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.notion-like-editor-floating-menu > button,
+.notion-like-editor-floating-menu .menu-dropdown > button {
+  padding: 4px 6px;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--text-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  outline: none;
+  user-select: none;
+  box-shadow: none;
+  transition: background-color 0.15s ease;
+}
+
+.notion-like-editor-floating-menu > button.active,
+.notion-like-editor-floating-menu .menu-dropdown > button.active {
+  background: var(--background-modifier-active-hover);
+  color: var(--text-accent);
+}
+
+.notion-like-editor-floating-menu button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.notion-like-editor-floating-menu > button:hover,
+.notion-like-editor-floating-menu .menu-dropdown > button:hover {
+  background: var(--background-modifier-hover);
+}
+
+/* Разделитель */
+.notion-like-editor-floating-menu .menu-separator {
+  width: 1px;
+  height: 20px;
+  background: var(--background-modifier-border);
+  margin: 0 4px;
+}
+
+/* Выпадающий список */
+.menu-dropdown {
+  position: relative;
+  overflow: visible;
+}
+
+.menu-dropdown > button {
+  outline: none;
+  user-select: none;
+}
+
+.menu-dropdown-content {
+  position: absolute;
+  top: 100%;
+  bottom: auto;
+  left: 0;
+  margin-top: 4px;
+  margin-bottom: 0;
+  min-width: 200px;
+  padding: 4px;
+  background: var(--background-primary);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: none;
+  text-align: left;
+  z-index: 10001;
+}
+
+.menu-dropdown-content.drop-up {
+  top: auto;
+  bottom: 100%;
+  margin-top: 0;
+  margin-bottom: 4px;
+  transform: translateY(8px);
+}
+
+.menu-dropdown-content.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+/* Сброс дефолтных стилей Obsidian для button */
+.menu-dropdown-content button.menu-dropdown-item {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px !important;
+  width: 100%;
+  min-width: 0;
+  min-height: 28px !important;
+  height: auto !important;
+  font-size: 13px;
+  color: var(--text-normal) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 4px;
+  box-shadow: none !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  outline: none;
+  user-select: none;
+  cursor: pointer;
+  opacity: 1 !important;
+}
+
+.menu-dropdown-content button.menu-dropdown-item.active {
+  background: var(--background-modifier-active-hover) !important;
+  background-color: var(--background-modifier-active-hover) !important;
+  color: var(--text-accent) !important;
+}
+
+.menu-dropdown-content button.menu-dropdown-item:hover {
+  background: var(--background-modifier-hover) !important;
+  background-color: var(--background-modifier-hover) !important;
+}
+
+.menu-dropdown-content button.menu-dropdown-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.dropdown-icon {
+  display: inline-flex;
+  min-width: 20px;
+  text-align: center;
+}
+
+.dropdown-label {
+  text-align: left;
+  white-space: nowrap;
+}
