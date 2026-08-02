@@ -2,22 +2,67 @@
 
 .mkortex-updater-settings .mkortex-plugin-row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 0;
+  padding: 12px 0;
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
 .mkortex-updater-settings .mkortex-plugin-meta {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   min-width: 0;
+  flex: 1;
+}
+
+.mkortex-updater-settings .mkortex-plugin-title-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
 
 .mkortex-updater-settings .mkortex-plugin-name {
   font-weight: 600;
+}
+
+.mkortex-updater-settings .mkortex-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: var(--font-ui-smaller);
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.mkortex-updater-settings .mkortex-badge-ok {
+  color: var(--text-success);
+  background-color: rgba(var(--color-green-rgb, 68, 207, 110), 0.15);
+}
+
+.mkortex-updater-settings .mkortex-badge-update {
+  color: var(--text-warning);
+  background-color: rgba(var(--color-orange-rgb, 233, 151, 63), 0.18);
+}
+
+.mkortex-updater-settings .mkortex-badge-missing {
+  color: var(--text-muted);
+  background-color: var(--background-modifier-hover);
+}
+
+.mkortex-updater-settings .mkortex-badge-local {
+  color: var(--text-accent);
+  background-color: rgba(var(--color-accent-rgb, 120, 120, 255), 0.15);
+}
+
+.mkortex-updater-settings .mkortex-plugin-version {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+  font-variant-numeric: tabular-nums;
 }
 
 .mkortex-updater-settings .mkortex-plugin-desc {
@@ -25,15 +70,10 @@
   font-size: var(--font-ui-smaller);
 }
 
-.mkortex-updater-settings .mkortex-plugin-status {
-  color: var(--text-muted);
-  font-size: var(--font-ui-smaller);
-  white-space: nowrap;
-}
-
 .mkortex-updater-settings .mkortex-plugin-actions {
   display: flex;
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  padding-top: 2px;
 }
