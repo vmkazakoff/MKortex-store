@@ -5,7 +5,7 @@
       "id": "mkortex-updater",
       "name": "MKortex Updater",
       "version": "0.1.0",
-      "path": "dist/mkortex-updater",
+      "path": "mkortex-updater",
       "minAppVersion": "1.0.0",
       "description": "Установка и обновление плагинов экосистемы MKortex"
     }

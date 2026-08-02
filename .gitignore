@@ -1,4 +1,6 @@
-node_modules/
-/main.js
-/main.js.map
-.DS_Store
+# Local workspace — only release artifacts are published to git.
+*
+!.gitignore
+!ecosystem.json
+!mkortex-updater/
+!mkortex-updater/**
