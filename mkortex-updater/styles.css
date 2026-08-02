@@ -72,10 +72,16 @@
 
 .mkortex-updater-settings .mkortex-plugin-actions {
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
   flex-shrink: 0;
   padding-top: 2px;
+  min-width: 140px;
+}
+
+.mkortex-updater-settings .mkortex-plugin-actions button {
+  width: 100%;
 }
 
 .mkortex-updater-settings .mkortex-btn-ghost {
@@ -84,7 +90,7 @@
   border: none;
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
-  padding: 4px 8px;
+  padding: 2px 8px;
   cursor: pointer;
 }
 
