@@ -47,7 +47,7 @@ var __privateWrapper = (obj, member, setter, getter) => ({
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
-  default: () => MKortexPlugin
+  default: () => MesaPlugin
 });
 module.exports = __toCommonJS(main_exports);
 
@@ -21273,7 +21273,7 @@ var path4 = __toESM(require("path"));
 var isWindows = process.platform === "win32";
 var PATH_SEPARATOR = isWindows ? ";" : ":";
 var NODE_EXECUTABLE = isWindows ? "node.exe" : "node";
-var DEVICE_SETTINGS_STORAGE_KEY = "mkortex.deviceSettingsKey";
+var DEVICE_SETTINGS_STORAGE_KEY = "mesa.deviceSettingsKey";
 var cachedDeviceSettingsKey = null;
 function getHomeDir() {
   return process.env.HOME || process.env.USERPROFILE || "";
@@ -21918,7 +21918,7 @@ var PluginManager = class {
         if (!entries || entries.length === 0) continue;
         const entriesArray = Array.isArray(entries) ? entries : [entries];
         if (!Array.isArray(entries)) {
-          new import_obsidian2.Notice(`MKortex: plugin "${pluginId}" has malformed entry in installed_plugins.json (expected array, got ${typeof entries})`);
+          new import_obsidian2.Notice(`Mesa: plugin "${pluginId}" has malformed entry in installed_plugins.json (expected array, got ${typeof entries})`);
         }
         const entry = selectInstalledPluginEntry(entriesArray, normalizedVaultPath);
         if (!entry) continue;
@@ -23212,7 +23212,7 @@ var ru2 = {
     "unexpectedApproval": '\u041D\u0435\u043E\u0436\u0438\u0434\u0430\u043D\u043D\u044B\u0439 \u0432\u044B\u0431\u043E\u0440 \u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u044F: "{value}"'
   },
   "commands": {
-    "openMkortex": "\u041E\u0442\u043A\u0440\u044B\u0442\u044C MKortex",
+    "openMesa": "\u041E\u0442\u043A\u0440\u044B\u0442\u044C Mesa",
     "openChatView": "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u0447\u0430\u0442",
     "inlineEdit": "\u0418\u043D\u043B\u0430\u0439\u043D-\u0440\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435",
     "newSession": "\u041D\u043E\u0432\u044B\u0439 \u0447\u0430\u0442",
@@ -23403,7 +23403,7 @@ var ru2 = {
     ],
     "timeMorning": [
       "\u0414\u043E\u0431\u0440\u043E\u0435 \u0443\u0442\u0440\u043E{name}",
-      "\u041A\u043E\u0444\u0435 \u0438 MKortex?"
+      "\u041A\u043E\u0444\u0435 \u0438 Mesa?"
     ],
     "timeAfternoon": [
       "\u0414\u043E\u0431\u0440\u044B\u0439 \u0434\u0435\u043D\u044C{name}",
@@ -23467,8 +23467,8 @@ function tArray(key) {
 
 // src/providers/opencode/modes.ts
 var OPENCODE_BUILD_MODE_ID = "build";
-var OPENCODE_YOLO_MODE_ID = "mkortex-yolo";
-var OPENCODE_SAFE_MODE_ID = "mkortex-safe";
+var OPENCODE_YOLO_MODE_ID = "mesa-yolo";
+var OPENCODE_SAFE_MODE_ID = "mesa-safe";
 var OPENCODE_PLAN_MODE_ID = "plan";
 function getOpencodeFallbackModes() {
   return Object.freeze([
@@ -23998,7 +23998,7 @@ function getBuiltInProviderDefaultConfigs() {
 }
 
 // src/app/settings/defaultSettings.ts
-var DEFAULT_MKORTEX_SETTINGS = {
+var DEFAULT_MESA_SETTINGS = {
   userName: "",
   permissionMode: "yolo",
   model: "haiku",
@@ -24017,8 +24017,8 @@ var DEFAULT_MKORTEX_SETTINGS = {
   hiddenProviderCommands: getDefaultHiddenProviderCommands()
 };
 
-// src/app/settings/MKortexSettingsStorage.ts
-var PERSISTED_SETTING_KEYS = Object.keys(DEFAULT_MKORTEX_SETTINGS);
+// src/app/settings/MesaSettingsStorage.ts
+var PERSISTED_SETTING_KEYS = Object.keys(DEFAULT_MESA_SETTINGS);
 var IMPORT_ONLY_SETTING_KEYS = ["hiddenSlashCommands"];
 var PROVIDER_SCOPED_MAP_KEYS = [
   "savedProviderModel",
@@ -24140,7 +24140,7 @@ function stripPersistedOpencodeDiscovery(settings) {
   }
   return changed;
 }
-var MKortexSettingsStorage = class {
+var MesaSettingsStorage = class {
   constructor(backend) {
     this.backend = backend;
   }
@@ -24229,7 +24229,7 @@ var MKortexSettingsStorage = class {
     await this.save(current);
   }
   getDefaults() {
-    return DEFAULT_MKORTEX_SETTINGS;
+    return DEFAULT_MESA_SETTINGS;
   }
 };
 
@@ -24732,7 +24732,7 @@ var CCSettingsStorage = class {
 };
 
 // src/core/types/chat.ts
-var VIEW_TYPE_MKORTEX = "mkortex-view";
+var VIEW_TYPE_MESA_ACP = "mesa-acp-view";
 
 // src/core/types/mcp.ts
 function isValidMcpServerConfig(obj) {
@@ -24764,13 +24764,13 @@ var McpStorage = class {
       if (!file.mcpServers || typeof file.mcpServers !== "object") {
         return [];
       }
-      const mkortexMeta = (_b3 = (_a3 = file._mkortex) == null ? void 0 : _a3.servers) != null ? _b3 : {};
+      const mesaMeta = (_b3 = (_a3 = file._mesa) == null ? void 0 : _a3.servers) != null ? _b3 : {};
       const servers = [];
       for (const [name, config] of Object.entries(file.mcpServers)) {
         if (!isValidMcpServerConfig(config)) {
           continue;
         }
-        const meta = (_c2 = mkortexMeta[name]) != null ? _c2 : {};
+        const meta = (_c2 = mesaMeta[name]) != null ? _c2 : {};
         const disabledTools = Array.isArray(meta.disabledTools) ? meta.disabledTools.filter((tool) => typeof tool === "string") : void 0;
         const normalizedDisabledTools = disabledTools && disabledTools.length > 0 ? disabledTools : void 0;
         servers.push({
@@ -24790,7 +24790,7 @@ var McpStorage = class {
   async save(servers) {
     var _a3;
     const mcpServers = {};
-    const mkortexServers = {};
+    const mesaServers = {};
     for (const server of servers) {
       mcpServers[server.name] = server.config;
       const meta = {};
@@ -24808,7 +24808,7 @@ var McpStorage = class {
         meta.description = server.description;
       }
       if (Object.keys(meta).length > 0) {
-        mkortexServers[server.name] = meta;
+        mesaServers[server.name] = meta;
       }
     }
     let existing = null;
@@ -24825,19 +24825,19 @@ var McpStorage = class {
     }
     const file = existing ? { ...existing } : {};
     file.mcpServers = mcpServers;
-    const existingMkortex = existing && typeof existing._mkortex === "object" ? existing._mkortex : null;
-    if (Object.keys(mkortexServers).length > 0) {
-      file._mkortex = { ...existingMkortex != null ? existingMkortex : {}, servers: mkortexServers };
-    } else if (existingMkortex) {
-      const rest = { ...existingMkortex };
+    const existingMesa = existing && typeof existing._mesa === "object" ? existing._mesa : null;
+    if (Object.keys(mesaServers).length > 0) {
+      file._mesa = { ...existingMesa != null ? existingMesa : {}, servers: mesaServers };
+    } else if (existingMesa) {
+      const rest = { ...existingMesa };
       delete rest.servers;
       if (Object.keys(rest).length > 0) {
-        file._mkortex = rest;
+        file._mesa = rest;
       } else {
-        delete file._mkortex;
+        delete file._mesa;
       }
     } else {
-      delete file._mkortex;
+      delete file._mesa;
     }
     const content = JSON.stringify(file, null, 2);
     await this.adapter.write(MCP_CONFIG_PATH, content);
@@ -24975,7 +24975,7 @@ var StorageService = class {
     this.adapter = adapter != null ? adapter : new VaultFileAdapter(this.app);
     this.dataBackend = dataBackend != null ? dataBackend : new PluginDataBackend(plugin);
     this.ccSettings = new CCSettingsStorage(this.adapter);
-    this.mkortexSettings = new MKortexSettingsStorage(this.dataBackend);
+    this.mesaSettings = new MesaSettingsStorage(this.dataBackend);
     this.commands = new SlashCommandStorage(this.adapter);
     this.skills = new SkillStorage(this.adapter);
     this.sessions = new SessionStorage(this.dataBackend);
@@ -24985,8 +24985,8 @@ var StorageService = class {
   async initialize() {
     await this.ensureDirectories();
     const cc2 = await this.ccSettings.load();
-    const mkortex = await this.mkortexSettings.load();
-    return { cc: cc2, mkortex };
+    const mesa = await this.mesaSettings.load();
+    return { cc: cc2, mesa };
   }
   async ensureDirectories() {
     await this.adapter.ensureFolder(CLAUDE_PATH);
@@ -25017,14 +25017,14 @@ var StorageService = class {
   async removePermissionRule(rule) {
     return this.ccSettings.removeRule(createPermissionRule(rule));
   }
-  async updateMKortexSettings(updates) {
-    return this.mkortexSettings.update(updates);
+  async updateMesaSettings(updates) {
+    return this.mesaSettings.update(updates);
   }
-  async saveMKortexSettings(settings) {
-    return this.mkortexSettings.save(settings);
+  async saveMesaSettings(settings) {
+    return this.mesaSettings.save(settings);
   }
-  async loadMKortexSettings() {
-    return this.mkortexSettings.load();
+  async loadMesaSettings() {
+    return this.mesaSettings.load();
   }
   async getChatSessionState() {
     try {
@@ -26514,7 +26514,7 @@ var OPENCODE_PROVIDER_ICON = {
     {
       tag: "g",
       attributes: {
-        class: "mkortex-provider-icon-variant mkortex-provider-icon-variant--light",
+        class: "mesa-provider-icon-variant mesa-provider-icon-variant--light",
         transform: "translate(30 0)"
       },
       children: [
@@ -26525,7 +26525,7 @@ var OPENCODE_PROVIDER_ICON = {
     {
       tag: "g",
       attributes: {
-        class: "mkortex-provider-icon-variant mkortex-provider-icon-variant--dark",
+        class: "mesa-provider-icon-variant mesa-provider-icon-variant--dark",
         transform: "translate(30 0)"
       },
       children: [
@@ -26542,7 +26542,7 @@ function createProviderIconSvg(icon, options = {}) {
   svg.setAttribute("viewBox", icon.viewBox);
   svg.setAttribute("fill", "none");
   svg.setAttribute("aria-hidden", "true");
-  svg.classList.add("mkortex-provider-icon");
+  svg.classList.add("mesa-provider-icon");
   if (options.width !== void 0) {
     svg.setAttribute("width", String(options.width));
   }
@@ -29933,7 +29933,7 @@ var MessageChannel = class {
 
 // src/core/prompt/runtimeInstructions.ts
 var RUNTIME_INSTRUCTIONS_VERSION = "3";
-var RUNTIME_INSTRUCTIONS_BODY = `You are an AI assistant in the MKortex Obsidian plugin chat. You have no agent name or persona unless \`AGENTS.md\` in the vault defines one \u2014 do not invent a name and do not use the user's name as your own.
+var RUNTIME_INSTRUCTIONS_BODY = `You are an AI assistant in the Mesa Obsidian plugin chat. You have no agent name or persona unless \`AGENTS.md\` in the vault defines one \u2014 do not invent a name and do not use the user's name as your own.
 
 The current working directory is the user's vault root. Vault-specific agent identity, role, and team rules come from \`AGENTS.md\` when present.
 
@@ -30033,7 +30033,7 @@ function buildUserContextSection(userName) {
 }
 function buildRuntimeInstructions(settings = {}) {
   const prompt = [
-    "## MKortex runtime",
+    "## Mesa runtime",
     "",
     buildUserContextSection(settings.userName),
     RUNTIME_INSTRUCTIONS_BODY.trimEnd(),
@@ -30255,7 +30255,7 @@ async function createClaudeRewindBackup(filesChanged, vaultPath) {
   if (!filesChanged || filesChanged.length === 0) {
     return null;
   }
-  const backupRoot = await fs10.mkdtemp(path9.join(os7.tmpdir(), "mkortex-rewind-"));
+  const backupRoot = await fs10.mkdtemp(path9.join(os7.tmpdir(), "mesa-rewind-"));
   const entries = [];
   const backupPathForIndex = (index) => path9.join(backupRoot, String(index));
   for (let i = 0; i < filesChanged.length; i++) {
@@ -32263,7 +32263,7 @@ function buildCodexLaunchSpec(options) {
 
 // src/providers/codex/runtime/codexAppServerSupport.ts
 var CODEX_APP_SERVER_CLIENT_INFO = Object.freeze({
-  name: "mkortex",
+  name: "mesa",
   version: "1.0.0"
 });
 function getCodexAppServerWorkingDirectory(plugin) {
@@ -34422,7 +34422,7 @@ var CodexAuxQueryRunner = class {
     this.transport = new CodexRpcTransport(this.process);
     this.transport.start();
     const initializeResult = await this.transport.request("initialize", {
-      clientInfo: { name: "mkortex-aux", version: "1.0.0" },
+      clientInfo: { name: "mesa-aux", version: "1.0.0" },
       capabilities: { experimentalApi: true }
     });
     createCodexRuntimeContext(this.launchSpec, initializeResult);
@@ -37836,7 +37836,7 @@ var CodexChatRuntime = class {
     };
     try {
       if (images && images.length > 0) {
-        tempDir = fs14.mkdtempSync(path16.join(os10.tmpdir(), "mkortex-codex-images-"));
+        tempDir = fs14.mkdtempSync(path16.join(os10.tmpdir(), "mesa-codex-images-"));
         for (let i = 0; i < images.length; i++) {
           const img = images[i];
           if (!img.mediaType.startsWith("image/")) continue;
@@ -38042,10 +38042,10 @@ var OpencodeCommandCatalog = class {
     return [];
   }
   async saveVaultEntry(_entry) {
-    throw new Error("OpenCode runtime commands are not editable from MKortex.");
+    throw new Error("OpenCode runtime commands are not editable from Mesa.");
   }
   async deleteVaultEntry(_entry) {
-    throw new Error("OpenCode runtime commands are not deletable from MKortex.");
+    throw new Error("OpenCode runtime commands are not deletable from Mesa.");
   }
   getDropdownConfig() {
     return {
@@ -40608,7 +40608,7 @@ var OpencodeChatRuntime = class {
     });
     this.connection = new AcpClientConnection({
       clientInfo: {
-        name: "mkortex",
+        name: "mesa",
         version: (_b3 = (_a3 = this.plugin.manifest) == null ? void 0 : _a3.version) != null ? _b3 : "0.0.0"
       },
       delegate: {
@@ -41679,8 +41679,8 @@ function pushOption(target, seenValues, value, option) {
 
 // src/providers/opencode/runtime/OpencodeAuxQueryRunner.ts
 var OPENCODE_AUX_AGENT_IDS = {
-  passive: "mkortex-aux-passive",
-  readonly: "mkortex-aux-readonly"
+  passive: "mesa-aux-passive",
+  readonly: "mesa-aux-readonly"
 };
 var OPENCODE_AUX_READ_PERMISSION = Object.freeze({
   "*": "allow",
@@ -41887,7 +41887,7 @@ ${stderr}` : message,
     });
     this.connection = new AcpClientConnection({
       clientInfo: {
-        name: "mkortex-aux",
+        name: "mesa-aux",
         version: (_b3 = (_a3 = this.plugin.manifest) == null ? void 0 : _a3.version) != null ? _b3 : "0.0.0"
       },
       delegate: {
@@ -41967,7 +41967,7 @@ function buildOpencodeAuxAgentConfig(profile) {
   if (profile === "readonly") {
     return {
       definition: {
-        description: "Internal MKortex read-only agent for OpenCode auxiliary tasks.",
+        description: "Internal Mesa read-only agent for OpenCode auxiliary tasks.",
         mode: "primary",
         permission: {
           "*": "deny",
@@ -41986,7 +41986,7 @@ function buildOpencodeAuxAgentConfig(profile) {
   }
   return {
     definition: {
-      description: "Internal MKortex no-tool agent for OpenCode auxiliary tasks.",
+      description: "Internal Mesa no-tool agent for OpenCode auxiliary tasks.",
       mode: "primary",
       permission: {
         "*": "deny",
@@ -42800,15 +42800,15 @@ var SharedStorageService = class {
     this.plugin = plugin;
     this.dataBackend = new PluginDataBackend(plugin);
     this.adapter = new VaultFileAdapter(plugin.app);
-    this.mkortexSettings = new MKortexSettingsStorage(this.dataBackend);
+    this.mesaSettings = new MesaSettingsStorage(this.dataBackend);
     this.sessions = new SessionStorage(this.dataBackend);
   }
   async initialize() {
-    const mkortex = await this.mkortexSettings.load();
-    return { mkortex };
+    const mesa = await this.mesaSettings.load();
+    return { mesa };
   }
-  async saveMKortexSettings(settings) {
-    await this.mkortexSettings.save(settings);
+  async saveMesaSettings(settings) {
+    await this.mesaSettings.save(settings);
   }
   getDataBackend() {
     return this.dataBackend;
@@ -42853,7 +42853,7 @@ var SharedStorageService = class {
   }
 };
 
-// src/features/chat/MKortexView.ts
+// src/features/chat/MesaView.ts
 var import_obsidian27 = require("obsidian");
 
 // src/features/chat/session/ChatSession.ts
@@ -43191,23 +43191,23 @@ var SlashCommandDropdown = class {
     }
     this.dropdownEl.empty();
     if (this.filteredItems.length === 0) {
-      const emptyEl = this.dropdownEl.createDiv({ cls: "mkortex-slash-empty" });
+      const emptyEl = this.dropdownEl.createDiv({ cls: "mesa-slash-empty" });
       emptyEl.setText(t10("ui.noMatchingCommands"));
     } else {
       for (let i = 0; i < this.filteredItems.length; i++) {
         const item = this.filteredItems[i];
-        const itemEl = this.dropdownEl.createDiv({ cls: "mkortex-slash-item" });
+        const itemEl = this.dropdownEl.createDiv({ cls: "mesa-slash-item" });
         if (i === this.selectedIndex) {
           itemEl.addClass("selected");
         }
-        const nameEl = itemEl.createSpan({ cls: "mkortex-slash-name" });
+        const nameEl = itemEl.createSpan({ cls: "mesa-slash-name" });
         nameEl.setText(`${item.displayPrefix}${item.name}`);
         if (item.argumentHint) {
-          const hintEl = itemEl.createSpan({ cls: "mkortex-slash-hint" });
+          const hintEl = itemEl.createSpan({ cls: "mesa-slash-hint" });
           hintEl.setText(normalizeArgumentHint(item.argumentHint));
         }
         if (item.description) {
-          const descEl = itemEl.createDiv({ cls: "mkortex-slash-desc" });
+          const descEl = itemEl.createDiv({ cls: "mesa-slash-desc" });
           descEl.setText(item.description);
         }
         itemEl.addEventListener("click", () => {
@@ -43228,19 +43228,19 @@ var SlashCommandDropdown = class {
   createDropdownElement() {
     if (this.isFixed) {
       return this.containerEl.createDiv({
-        cls: "mkortex-slash-dropdown mkortex-slash-dropdown-fixed"
+        cls: "mesa-slash-dropdown mesa-slash-dropdown-fixed"
       });
     } else {
-      return this.containerEl.createDiv({ cls: "mkortex-slash-dropdown" });
+      return this.containerEl.createDiv({ cls: "mesa-slash-dropdown" });
     }
   }
   positionFixed() {
     if (!this.dropdownEl || !this.isFixed) return;
     const inputRect = this.inputEl.getBoundingClientRect();
     this.dropdownEl.setCssProps({
-      "--mkortex-fixed-dropdown-bottom": `${window.innerHeight - inputRect.top + 4}px`,
-      "--mkortex-fixed-dropdown-left": `${inputRect.left}px`,
-      "--mkortex-fixed-dropdown-width": `${Math.max(inputRect.width, 280)}px`
+      "--mesa-fixed-dropdown-bottom": `${window.innerHeight - inputRect.top + 4}px`,
+      "--mesa-fixed-dropdown-left": `${inputRect.left}px`,
+      "--mesa-fixed-dropdown-width": `${Math.max(inputRect.width, 280)}px`
     });
   }
   navigate(direction) {
@@ -43250,7 +43250,7 @@ var SlashCommandDropdown = class {
   }
   updateSelection() {
     var _a3;
-    const items = (_a3 = this.dropdownEl) == null ? void 0 : _a3.querySelectorAll(".mkortex-slash-item");
+    const items = (_a3 = this.dropdownEl) == null ? void 0 : _a3.querySelectorAll(".mesa-slash-item");
     items == null ? void 0 : items.forEach((item, index) => {
       if (index === this.selectedIndex) {
         item.addClass("selected");
@@ -43280,16 +43280,16 @@ var SlashCommandDropdown = class {
 
 // src/features/chat/controllers/contextRowVisibility.ts
 function updateContextRowHasContent(contextRowEl) {
-  const editorIndicator = contextRowEl.querySelector(".mkortex-selection-indicator");
-  const browserIndicator = contextRowEl.querySelector(".mkortex-browser-selection-indicator");
-  const canvasIndicator = contextRowEl.querySelector(".mkortex-canvas-indicator");
-  const fileIndicator = contextRowEl.querySelector(".mkortex-file-indicator");
-  const imagePreview = contextRowEl.querySelector(".mkortex-image-preview");
-  const hasEditorSelection = !!editorIndicator && !editorIndicator.hasClass("mkortex-hidden");
-  const hasBrowserSelection = !!browserIndicator && !browserIndicator.hasClass("mkortex-hidden");
-  const hasCanvasSelection = !!canvasIndicator && !canvasIndicator.hasClass("mkortex-hidden");
-  const hasFileChips = !!fileIndicator && fileIndicator.hasClass("mkortex-visible-flex");
-  const hasImageChips = !!imagePreview && imagePreview.hasClass("mkortex-visible-flex");
+  const editorIndicator = contextRowEl.querySelector(".mesa-selection-indicator");
+  const browserIndicator = contextRowEl.querySelector(".mesa-browser-selection-indicator");
+  const canvasIndicator = contextRowEl.querySelector(".mesa-canvas-indicator");
+  const fileIndicator = contextRowEl.querySelector(".mesa-file-indicator");
+  const imagePreview = contextRowEl.querySelector(".mesa-image-preview");
+  const hasEditorSelection = !!editorIndicator && !editorIndicator.hasClass("mesa-hidden");
+  const hasBrowserSelection = !!browserIndicator && !browserIndicator.hasClass("mesa-hidden");
+  const hasCanvasSelection = !!canvasIndicator && !canvasIndicator.hasClass("mesa-hidden");
+  const hasFileChips = !!fileIndicator && fileIndicator.hasClass("mesa-visible-flex");
+  const hasImageChips = !!imagePreview && imagePreview.hasClass("mesa-visible-flex");
   contextRowEl.classList.toggle(
     "has-content",
     hasEditorSelection || hasBrowserSelection || hasCanvasSelection || hasFileChips || hasImageChips
@@ -43480,9 +43480,9 @@ var BrowserSelectionController = class {
       const lineLabel = lineCount === 1 ? "line" : "lines";
       this.indicatorEl.textContent = `${lineCount} ${lineLabel} selected`;
       this.indicatorEl.setAttribute("title", this.buildIndicatorTitle());
-      this.indicatorEl.removeClass("mkortex-hidden");
+      this.indicatorEl.removeClass("mesa-hidden");
     } else {
-      this.indicatorEl.addClass("mkortex-hidden");
+      this.indicatorEl.addClass("mesa-hidden");
       this.indicatorEl.textContent = "";
       this.indicatorEl.removeAttribute("title");
     }
@@ -43586,9 +43586,9 @@ var CanvasSelectionController = class {
     if (this.storedSelection) {
       const { nodeIds } = this.storedSelection;
       this.indicatorEl.textContent = nodeIds.length === 1 ? `node "${nodeIds[0]}" selected` : `${nodeIds.length} nodes selected`;
-      this.indicatorEl.removeClass("mkortex-hidden");
+      this.indicatorEl.removeClass("mesa-hidden");
     } else {
-      this.indicatorEl.addClass("mkortex-hidden");
+      this.indicatorEl.addClass("mesa-hidden");
     }
     this.updateContextRowVisibility();
   }
@@ -43634,7 +43634,7 @@ var ConfirmModal = class extends import_obsidian6.Modal {
   }
   onOpen() {
     this.setTitle(t10("common.confirm"));
-    this.modalEl.addClass("mkortex-confirm-modal");
+    this.modalEl.addClass("mesa-confirm-modal");
     this.contentEl.createEl("p", { text: this.message });
     new import_obsidian6.Setting(this.contentEl).addButton(
       (btn) => btn.setButtonText(t10("common.cancel")).onClick(() => this.close())
@@ -43666,10 +43666,10 @@ function setupCollapsible(wrapperEl, headerEl, contentEl, state, options = {}) {
   state.isExpanded = initiallyExpanded;
   if (initiallyExpanded) {
     wrapperEl.addClass("expanded");
-    contentEl.removeClass("mkortex-hidden");
+    contentEl.removeClass("mesa-hidden");
     headerEl.setAttribute("aria-expanded", "true");
   } else {
-    contentEl.addClass("mkortex-hidden");
+    contentEl.addClass("mesa-hidden");
     headerEl.setAttribute("aria-expanded", "false");
   }
   updateAriaLabel(initiallyExpanded);
@@ -43677,11 +43677,11 @@ function setupCollapsible(wrapperEl, headerEl, contentEl, state, options = {}) {
     state.isExpanded = !state.isExpanded;
     if (state.isExpanded) {
       wrapperEl.addClass("expanded");
-      contentEl.removeClass("mkortex-hidden");
+      contentEl.removeClass("mesa-hidden");
       headerEl.setAttribute("aria-expanded", "true");
     } else {
       wrapperEl.removeClass("expanded");
-      contentEl.addClass("mkortex-hidden");
+      contentEl.addClass("mesa-hidden");
       headerEl.setAttribute("aria-expanded", "false");
     }
     updateAriaLabel(state.isExpanded);
@@ -43698,7 +43698,7 @@ function setupCollapsible(wrapperEl, headerEl, contentEl, state, options = {}) {
 function collapseElement(wrapperEl, headerEl, contentEl, state) {
   state.isExpanded = false;
   wrapperEl.removeClass("expanded");
-  contentEl.addClass("mkortex-hidden");
+  contentEl.addClass("mesa-hidden");
   headerEl.setAttribute("aria-expanded", "false");
 }
 
@@ -43709,20 +43709,20 @@ function formatThinkingLabel(kind, seconds) {
   return kind === "active" ? t10("thinking.active", { duration }) : t10("thinking.done", { duration });
 }
 function createThinkingBlock(parentEl, renderContent) {
-  const wrapperEl = parentEl.createDiv({ cls: "mkortex-thinking-block" });
-  const header = wrapperEl.createDiv({ cls: "mkortex-thinking-header" });
+  const wrapperEl = parentEl.createDiv({ cls: "mesa-thinking-block" });
+  const header = wrapperEl.createDiv({ cls: "mesa-thinking-header" });
   header.setAttribute("tabindex", "0");
   header.setAttribute("role", "button");
   header.setAttribute("aria-expanded", "false");
   header.setAttribute("aria-label", t10("thinking.ariaLabel"));
-  const labelEl = header.createSpan({ cls: "mkortex-thinking-label" });
+  const labelEl = header.createSpan({ cls: "mesa-thinking-label" });
   const startTime = Date.now();
   labelEl.setText(formatThinkingLabel("active", 0));
   const timerInterval = window.setInterval(() => {
     const elapsed = (Date.now() - startTime) / 1e3;
     labelEl.setText(formatThinkingLabel("active", elapsed));
   }, THINKING_TIMER_MS);
-  const contentEl = wrapperEl.createDiv({ cls: "mkortex-thinking-content" });
+  const contentEl = wrapperEl.createDiv({ cls: "mesa-thinking-content" });
   const state = {
     wrapperEl,
     contentEl,
@@ -43741,9 +43741,9 @@ function finalizeThinkingBlock(state) {
     state.timerInterval = null;
   }
   const durationSeconds = (Date.now() - state.startTime) / 1e3;
-  state.wrapperEl.addClass("mkortex-thinking-block--done");
+  state.wrapperEl.addClass("mesa-thinking-block--done");
   state.labelEl.setText(formatThinkingLabel("done", durationSeconds));
-  const header = state.wrapperEl.querySelector(".mkortex-thinking-header");
+  const header = state.wrapperEl.querySelector(".mesa-thinking-header");
   if (header) {
     collapseElement(state.wrapperEl, header, state.contentEl, state);
   }
@@ -43756,16 +43756,16 @@ function cleanupThinkingBlock(state) {
 }
 function renderStoredThinkingBlock(parentEl, content, durationSeconds, renderContent) {
   const wrapperEl = parentEl.createDiv({
-    cls: "mkortex-thinking-block mkortex-thinking-block--done"
+    cls: "mesa-thinking-block mesa-thinking-block--done"
   });
-  const header = wrapperEl.createDiv({ cls: "mkortex-thinking-header" });
+  const header = wrapperEl.createDiv({ cls: "mesa-thinking-header" });
   header.setAttribute("tabindex", "0");
   header.setAttribute("role", "button");
   header.setAttribute("aria-label", t10("thinking.ariaLabel"));
-  const labelEl = header.createSpan({ cls: "mkortex-thinking-label" });
+  const labelEl = header.createSpan({ cls: "mesa-thinking-label" });
   const labelText = durationSeconds !== void 0 ? formatThinkingLabel("done", durationSeconds) : t10("thinking.doneShort");
   labelEl.setText(labelText);
-  const contentEl = wrapperEl.createDiv({ cls: "mkortex-thinking-content" });
+  const contentEl = wrapperEl.createDiv({ cls: "mesa-thinking-content" });
   void renderContent(contentEl, content).catch(() => {
     contentEl.setText(content);
   });
@@ -43861,8 +43861,8 @@ var ConversationController = class {
       );
       const messagesEl = this.deps.getMessagesEl();
       messagesEl.empty();
-      const welcomeEl = messagesEl.createDiv({ cls: "mkortex-welcome" });
-      welcomeEl.createDiv({ cls: "mkortex-welcome-greeting", text: this.getGreeting() });
+      const welcomeEl = messagesEl.createDiv({ cls: "mesa-welcome" });
+      welcomeEl.createDiv({ cls: "mesa-welcome-greeting", text: this.getGreeting() });
       this.deps.setWelcomeEl(welcomeEl);
       (_e2 = this.deps.getStatusPanel()) == null ? void 0 : _e2.remount();
       this.deps.getInputEl().value = "";
@@ -44176,12 +44176,12 @@ var ConversationController = class {
     var _a3, _b3;
     const { plugin, state } = this.deps;
     container.empty();
-    const dropdownHeader = container.createDiv({ cls: "mkortex-history-header" });
+    const dropdownHeader = container.createDiv({ cls: "mesa-history-header" });
     dropdownHeader.createSpan({ text: t10("chat.history.title") });
-    const list = container.createDiv({ cls: "mkortex-history-list" });
+    const list = container.createDiv({ cls: "mesa-history-list" });
     const allConversations = plugin.getConversationList();
     if (allConversations.length === 0) {
-      list.createDiv({ cls: "mkortex-history-empty", text: t10("chat.history.empty") });
+      list.createDiv({ cls: "mesa-history-empty", text: t10("chat.history.empty") });
       return;
     }
     const conversations = [...allConversations].sort((a, b2) => {
@@ -44196,7 +44196,7 @@ var ConversationController = class {
       const isOpen = openState === "open";
       const item = list.createDiv({
         cls: [
-          "mkortex-history-item",
+          "mesa-history-item",
           isCurrent ? "active" : "",
           isOpen ? "open" : "",
           isRunning ? "running" : ""
@@ -44205,13 +44205,13 @@ var ConversationController = class {
       item.setAttribute("data-open-state", openState);
       item.setAttribute("data-running", isRunning ? "true" : "false");
       item.setAttribute("data-chat-location", (_a3 = conversationStatus.location) != null ? _a3 : "current-view");
-      const iconEl = item.createDiv({ cls: "mkortex-history-item-icon" });
+      const iconEl = item.createDiv({ cls: "mesa-history-item-icon" });
       (0, import_obsidian7.setIcon)(iconEl, this.getHistoryItemIcon(openState, isRunning));
-      const content = item.createDiv({ cls: "mkortex-history-item-content" });
-      const titleEl = content.createDiv({ cls: "mkortex-history-item-title", text: conv.title });
+      const content = item.createDiv({ cls: "mesa-history-item-content" });
+      const titleEl = content.createDiv({ cls: "mesa-history-item-title", text: conv.title });
       titleEl.setAttribute("title", conv.title);
       content.createDiv({
-        cls: "mkortex-history-item-date",
+        cls: "mesa-history-item-date",
         text: this.getHistoryItemStatusText(conversationStatus, (_b3 = conv.lastResponseAt) != null ? _b3 : conv.createdAt)
       });
       if (!isCurrent) {
@@ -44231,15 +44231,15 @@ var ConversationController = class {
         e2.stopPropagation();
         this.showHistoryContextMenu(item, conv.id, conv.title, isCurrent, options, e2);
       });
-      const actions = item.createDiv({ cls: "mkortex-history-item-actions" });
-      const renameBtn = actions.createEl("button", { cls: "mkortex-action-btn" });
+      const actions = item.createDiv({ cls: "mesa-history-item-actions" });
+      const renameBtn = actions.createEl("button", { cls: "mesa-action-btn" });
       (0, import_obsidian7.setIcon)(renameBtn, "pencil");
       renameBtn.setAttribute("aria-label", t10("chat.history.rename"));
       renameBtn.addEventListener("click", (e2) => {
         e2.stopPropagation();
         this.showRenameInput(item, conv.id, conv.title);
       });
-      const deleteBtn = actions.createEl("button", { cls: "mkortex-action-btn mkortex-delete-btn" });
+      const deleteBtn = actions.createEl("button", { cls: "mesa-action-btn mesa-delete-btn" });
       (0, import_obsidian7.setIcon)(deleteBtn, "trash-2");
       deleteBtn.setAttribute("aria-label", t10("chat.history.delete"));
       deleteBtn.addEventListener("click", (e2) => {
@@ -44330,11 +44330,11 @@ var ConversationController = class {
   /** Shows inline rename input for a conversation. */
   showRenameInput(item, convId, currentTitle) {
     var _a3;
-    const titleEl = item.querySelector(".mkortex-history-item-title");
+    const titleEl = item.querySelector(".mesa-history-item-title");
     if (!titleEl) return;
     const input = ((_a3 = item.ownerDocument) != null ? _a3 : window.document).createElement("input");
     input.type = "text";
-    input.className = "mkortex-rename-input";
+    input.className = "mesa-rename-input";
     input.value = currentTitle;
     titleEl.replaceWith(input);
     input.focus();
@@ -44404,9 +44404,9 @@ var ConversationController = class {
     const welcomeEl = this.deps.getWelcomeEl();
     if (!welcomeEl) return;
     if (this.deps.state.messages.length === 0) {
-      welcomeEl.removeClass("mkortex-hidden");
+      welcomeEl.removeClass("mesa-hidden");
     } else {
-      welcomeEl.addClass("mkortex-hidden");
+      welcomeEl.addClass("mesa-hidden");
     }
   }
   /**
@@ -44419,8 +44419,8 @@ var ConversationController = class {
     const fileCtx = this.deps.getFileContextManager();
     fileCtx == null ? void 0 : fileCtx.resetForNewConversation();
     fileCtx == null ? void 0 : fileCtx.autoAttachActiveFile();
-    if (!welcomeEl.querySelector(".mkortex-welcome-greeting")) {
-      welcomeEl.createDiv({ cls: "mkortex-welcome-greeting", text: this.getGreeting() });
+    if (!welcomeEl.querySelector(".mesa-welcome-greeting")) {
+      welcomeEl.createDiv({ cls: "mesa-welcome-greeting", text: this.getGreeting() });
     }
     this.updateWelcomeVisibility();
   }
@@ -44443,11 +44443,11 @@ var ConversationController = class {
     return date.toLocaleDateString(void 0, { month: "short", day: "numeric" });
   }
   // ============================================
-  // History Dropdown Rendering (for MKortexView)
+  // History Dropdown Rendering (for MesaView)
   // ============================================
   /**
    * Renders the history dropdown content to a provided container.
-   * Used by MKortexView to render the dropdown with custom selection callback.
+   * Used by MesaView to render the dropdown with custom selection callback.
    */
   renderHistoryDropdown(container, options) {
     this.renderHistoryItems(container, {
@@ -44529,7 +44529,7 @@ var ResumeSessionDropdown = class {
     this.conversations = this.sortConversations(conversations);
     this.currentConversationId = currentConversationId;
     this.callbacks = callbacks;
-    this.dropdownEl = this.containerEl.createDiv({ cls: "mkortex-resume-dropdown" });
+    this.dropdownEl = this.containerEl.createDiv({ cls: "mesa-resume-dropdown" });
     this.render();
     this.dropdownEl.addClass("visible");
     this.onInput = () => this.dismiss();
@@ -44590,7 +44590,7 @@ var ResumeSessionDropdown = class {
     this.updateSelection();
   }
   updateSelection() {
-    const items = this.dropdownEl.querySelectorAll(".mkortex-resume-item");
+    const items = this.dropdownEl.querySelectorAll(".mesa-resume-item");
     items == null ? void 0 : items.forEach((item, index) => {
       if (index === this.selectedIndex) {
         item.addClass("selected");
@@ -44609,26 +44609,26 @@ var ResumeSessionDropdown = class {
   render() {
     var _a3;
     this.dropdownEl.empty();
-    const header = this.dropdownEl.createDiv({ cls: "mkortex-resume-header" });
+    const header = this.dropdownEl.createDiv({ cls: "mesa-resume-header" });
     header.createSpan({ text: t10("resume.title") });
     if (this.conversations.length === 0) {
-      this.dropdownEl.createDiv({ cls: "mkortex-resume-empty", text: t10("resume.empty") });
+      this.dropdownEl.createDiv({ cls: "mesa-resume-empty", text: t10("resume.empty") });
       return;
     }
-    const list = this.dropdownEl.createDiv({ cls: "mkortex-resume-list" });
+    const list = this.dropdownEl.createDiv({ cls: "mesa-resume-list" });
     for (let i = 0; i < this.conversations.length; i++) {
       const conv = this.conversations[i];
       const isCurrent = conv.id === this.currentConversationId;
-      const item = list.createDiv({ cls: "mkortex-resume-item" });
+      const item = list.createDiv({ cls: "mesa-resume-item" });
       if (isCurrent) item.addClass("current");
       if (i === this.selectedIndex) item.addClass("selected");
-      const iconEl = item.createDiv({ cls: "mkortex-resume-item-icon" });
+      const iconEl = item.createDiv({ cls: "mesa-resume-item-icon" });
       (0, import_obsidian8.setIcon)(iconEl, isCurrent ? "message-square-dot" : "message-square");
-      const content = item.createDiv({ cls: "mkortex-resume-item-content" });
-      const titleEl = content.createDiv({ cls: "mkortex-resume-item-title", text: conv.title });
+      const content = item.createDiv({ cls: "mesa-resume-item-content" });
+      const titleEl = content.createDiv({ cls: "mesa-resume-item-title", text: conv.title });
       titleEl.setAttribute("title", conv.title);
       content.createDiv({
-        cls: "mkortex-resume-item-date",
+        cls: "mesa-resume-item-date",
         text: isCurrent ? t10("resume.currentSession") : this.formatDate((_a3 = conv.lastResponseAt) != null ? _a3 : conv.createdAt)
       });
       item.addEventListener("click", () => {
@@ -44683,25 +44683,25 @@ var InstructionModal = class extends import_obsidian9.Modal {
   }
   onOpen() {
     const { contentEl } = this;
-    contentEl.addClass("mkortex-instruction-modal");
+    contentEl.addClass("mesa-instruction-modal");
     this.setTitle(t10("instructionModal.title"));
-    const inputSection = contentEl.createDiv({ cls: "mkortex-instruction-section" });
-    const inputLabel = inputSection.createDiv({ cls: "mkortex-instruction-label" });
+    const inputSection = contentEl.createDiv({ cls: "mesa-instruction-section" });
+    const inputLabel = inputSection.createDiv({ cls: "mesa-instruction-label" });
     inputLabel.setText(t10("instructionModal.yourInput"));
-    const inputText = inputSection.createDiv({ cls: "mkortex-instruction-original" });
+    const inputText = inputSection.createDiv({ cls: "mesa-instruction-original" });
     inputText.setText(this.rawInstruction);
-    this.contentSectionEl = contentEl.createDiv({ cls: "mkortex-instruction-content-section" });
-    this.loadingEl = this.contentSectionEl.createDiv({ cls: "mkortex-instruction-loading" });
-    this.loadingEl.createDiv({ cls: "mkortex-instruction-spinner" });
+    this.contentSectionEl = contentEl.createDiv({ cls: "mesa-instruction-content-section" });
+    this.loadingEl = this.contentSectionEl.createDiv({ cls: "mesa-instruction-loading" });
+    this.loadingEl.createDiv({ cls: "mesa-instruction-spinner" });
     this.loadingEl.createSpan({ text: t10("instructionModal.processing") });
-    this.clarificationEl = this.contentSectionEl.createDiv({ cls: "mkortex-instruction-clarification-section" });
-    this.clarificationEl.addClass("mkortex-hidden");
-    this.clarificationTextEl = this.clarificationEl.createDiv({ cls: "mkortex-instruction-clarification" });
-    const responseSection = this.clarificationEl.createDiv({ cls: "mkortex-instruction-section" });
-    const responseLabel = responseSection.createDiv({ cls: "mkortex-instruction-label" });
+    this.clarificationEl = this.contentSectionEl.createDiv({ cls: "mesa-instruction-clarification-section" });
+    this.clarificationEl.addClass("mesa-hidden");
+    this.clarificationTextEl = this.clarificationEl.createDiv({ cls: "mesa-instruction-clarification" });
+    const responseSection = this.clarificationEl.createDiv({ cls: "mesa-instruction-section" });
+    const responseLabel = responseSection.createDiv({ cls: "mesa-instruction-label" });
     responseLabel.setText(t10("instructionModal.yourResponse"));
     this.responseTextarea = new import_obsidian9.TextAreaComponent(responseSection);
-    this.responseTextarea.inputEl.addClass("mkortex-instruction-response-textarea");
+    this.responseTextarea.inputEl.addClass("mesa-instruction-response-textarea");
     this.responseTextarea.inputEl.rows = 3;
     this.responseTextarea.inputEl.placeholder = t10("instructionModal.responsePlaceholder");
     this.responseTextarea.inputEl.addEventListener("keydown", (e2) => {
@@ -44710,18 +44710,18 @@ var InstructionModal = class extends import_obsidian9.Modal {
         void this.submitClarification();
       }
     });
-    this.confirmationEl = this.contentSectionEl.createDiv({ cls: "mkortex-instruction-confirmation-section" });
-    this.confirmationEl.addClass("mkortex-hidden");
-    const refinedSection = this.confirmationEl.createDiv({ cls: "mkortex-instruction-section" });
-    const refinedLabel = refinedSection.createDiv({ cls: "mkortex-instruction-label" });
+    this.confirmationEl = this.contentSectionEl.createDiv({ cls: "mesa-instruction-confirmation-section" });
+    this.confirmationEl.addClass("mesa-hidden");
+    const refinedSection = this.confirmationEl.createDiv({ cls: "mesa-instruction-section" });
+    const refinedLabel = refinedSection.createDiv({ cls: "mesa-instruction-label" });
     refinedLabel.setText(t10("instructionModal.refinedSnippet"));
-    this.refinedDisplayEl = refinedSection.createDiv({ cls: "mkortex-instruction-refined" });
-    this.editContainerEl = refinedSection.createDiv({ cls: "mkortex-instruction-edit-container" });
-    this.editContainerEl.addClass("mkortex-hidden");
+    this.refinedDisplayEl = refinedSection.createDiv({ cls: "mesa-instruction-refined" });
+    this.editContainerEl = refinedSection.createDiv({ cls: "mesa-instruction-edit-container" });
+    this.editContainerEl.addClass("mesa-hidden");
     this.editTextarea = new import_obsidian9.TextAreaComponent(this.editContainerEl);
-    this.editTextarea.inputEl.addClass("mkortex-instruction-edit-textarea");
+    this.editTextarea.inputEl.addClass("mesa-instruction-edit-textarea");
     this.editTextarea.inputEl.rows = 4;
-    this.buttonsEl = contentEl.createDiv({ cls: "mkortex-instruction-buttons" });
+    this.buttonsEl = contentEl.createDiv({ cls: "mesa-instruction-buttons" });
     this.updateButtons();
     this.showState("loading");
   }
@@ -44754,7 +44754,7 @@ var InstructionModal = class extends import_obsidian9.Modal {
   showClarificationLoading() {
     this.isSubmitting = true;
     if (this.loadingEl) {
-      this.loadingEl.querySelector(".mkortex-instruction-spinner");
+      this.loadingEl.querySelector(".mesa-instruction-spinner");
       const text = this.loadingEl.querySelector("span");
       if (text) text.textContent = t10("instructionModal.processingShort");
     }
@@ -44763,13 +44763,13 @@ var InstructionModal = class extends import_obsidian9.Modal {
   showState(state) {
     this.state = state;
     if (this.loadingEl) {
-      this.loadingEl.toggleClass("mkortex-hidden", state !== "loading");
+      this.loadingEl.toggleClass("mesa-hidden", state !== "loading");
     }
     if (this.clarificationEl) {
-      this.clarificationEl.toggleClass("mkortex-hidden", state !== "clarification");
+      this.clarificationEl.toggleClass("mesa-hidden", state !== "clarification");
     }
     if (this.confirmationEl) {
-      this.confirmationEl.toggleClass("mkortex-hidden", state !== "confirmation");
+      this.confirmationEl.toggleClass("mesa-hidden", state !== "confirmation");
     }
     this.updateButtons();
   }
@@ -44778,14 +44778,14 @@ var InstructionModal = class extends import_obsidian9.Modal {
     this.buttonsEl.empty();
     const cancelBtn = this.buttonsEl.createEl("button", {
       text: t10("common.cancel"),
-      cls: "mkortex-instruction-btn mkortex-instruction-reject-btn",
+      cls: "mesa-instruction-btn mesa-instruction-reject-btn",
       attr: { "aria-label": t10("common.cancel") }
     });
     cancelBtn.addEventListener("click", () => this.handleReject());
     if (this.state === "clarification") {
       const submitBtn = this.buttonsEl.createEl("button", {
         text: t10("instructionModal.submit"),
-        cls: "mkortex-instruction-btn mkortex-instruction-accept-btn",
+        cls: "mesa-instruction-btn mesa-instruction-accept-btn",
         attr: { "aria-label": t10("instructionModal.submitResponse") }
       });
       submitBtn.addEventListener("click", () => {
@@ -44794,13 +44794,13 @@ var InstructionModal = class extends import_obsidian9.Modal {
     } else if (this.state === "confirmation") {
       this.editBtnEl = this.buttonsEl.createEl("button", {
         text: t10("instructionModal.edit"),
-        cls: "mkortex-instruction-btn mkortex-instruction-edit-btn",
+        cls: "mesa-instruction-btn mesa-instruction-edit-btn",
         attr: { "aria-label": t10("instructionModal.editInstruction") }
       });
       this.editBtnEl.addEventListener("click", () => this.toggleEdit());
       const acceptBtn = this.buttonsEl.createEl("button", {
         text: t10("instructionModal.accept"),
-        cls: "mkortex-instruction-btn mkortex-instruction-accept-btn",
+        cls: "mesa-instruction-btn mesa-instruction-accept-btn",
         attr: { "aria-label": t10("instructionModal.acceptInstruction") }
       });
       acceptBtn.addEventListener("click", () => this.handleAccept());
@@ -44823,8 +44823,8 @@ var InstructionModal = class extends import_obsidian9.Modal {
     var _a3, _b3, _c2, _d, _e2;
     this.isEditing = !this.isEditing;
     if (this.isEditing) {
-      (_a3 = this.refinedDisplayEl) == null ? void 0 : _a3.addClass("mkortex-hidden");
-      (_b3 = this.editContainerEl) == null ? void 0 : _b3.removeClass("mkortex-hidden");
+      (_a3 = this.refinedDisplayEl) == null ? void 0 : _a3.addClass("mesa-hidden");
+      (_b3 = this.editContainerEl) == null ? void 0 : _b3.removeClass("mesa-hidden");
       if (this.editBtnEl) this.editBtnEl.setText(t10("instructionModal.preview"));
       (_c2 = this.editTextarea) == null ? void 0 : _c2.inputEl.focus();
     } else {
@@ -44832,9 +44832,9 @@ var InstructionModal = class extends import_obsidian9.Modal {
       this.refinedInstruction = edited;
       if (this.refinedDisplayEl) {
         this.refinedDisplayEl.setText(edited);
-        this.refinedDisplayEl.removeClass("mkortex-hidden");
+        this.refinedDisplayEl.removeClass("mesa-hidden");
       }
-      (_e2 = this.editContainerEl) == null ? void 0 : _e2.addClass("mkortex-hidden");
+      (_e2 = this.editContainerEl) == null ? void 0 : _e2.addClass("mesa-hidden");
       if (this.editBtnEl) this.editBtnEl.setText(t10("instructionModal.edit"));
     }
   }
@@ -44894,8 +44894,8 @@ var InlineAskUserQuestion = class {
     this.boundKeyDown = (event) => this.handleKeyDown(event);
   }
   render() {
-    this.rootEl = this.containerEl.createDiv({ cls: "mkortex-ask-question-inline" });
-    const titleEl = this.rootEl.createDiv({ cls: "mkortex-ask-inline-title" });
+    this.rootEl = this.containerEl.createDiv({ cls: "mesa-ask-question-inline" });
+    const titleEl = this.rootEl.createDiv({ cls: "mesa-ask-inline-title" });
     titleEl.setText(this.config.title);
     if (this.config.headerEl) {
       this.rootEl.appendChild(this.config.headerEl);
@@ -44913,10 +44913,10 @@ var InlineAskUserQuestion = class {
       this.customInputs.set(i, "");
     }
     if (!this.config.immediateSelect) {
-      this.tabBar = this.rootEl.createDiv({ cls: "mkortex-ask-tab-bar" });
+      this.tabBar = this.rootEl.createDiv({ cls: "mesa-ask-tab-bar" });
       this.renderTabBar();
     }
-    this.contentArea = this.rootEl.createDiv({ cls: "mkortex-ask-content" });
+    this.contentArea = this.rootEl.createDiv({ cls: "mesa-ask-content" });
     this.renderTabContent();
     this.rootEl.setAttribute("tabindex", "0");
     this.rootEl.addEventListener("keydown", this.boundKeyDown);
@@ -44998,9 +44998,9 @@ var InlineAskUserQuestion = class {
     this.tabElements = [];
     for (let idx = 0; idx < this.questions.length; idx++) {
       const answered = this.isQuestionAnswered(idx);
-      const tab = this.tabBar.createSpan({ cls: "mkortex-ask-tab" });
-      tab.createSpan({ text: this.questions[idx].header, cls: "mkortex-ask-tab-label" });
-      tab.createSpan({ text: answered ? " \u2713" : "", cls: "mkortex-ask-tab-tick" });
+      const tab = this.tabBar.createSpan({ cls: "mesa-ask-tab" });
+      tab.createSpan({ text: this.questions[idx].header, cls: "mesa-ask-tab-label" });
+      tab.createSpan({ text: answered ? " \u2713" : "", cls: "mesa-ask-tab-tick" });
       tab.setAttribute("title", this.questions[idx].question);
       if (idx === this.activeTabIndex) tab.addClass("is-active");
       if (answered) tab.addClass("is-answered");
@@ -45008,9 +45008,9 @@ var InlineAskUserQuestion = class {
       this.tabElements.push(tab);
     }
     const allAnswered = this.questions.every((_2, i) => this.isQuestionAnswered(i));
-    const submitTab = this.tabBar.createSpan({ cls: "mkortex-ask-tab" });
-    submitTab.createSpan({ text: allAnswered ? "\u2713 " : "", cls: "mkortex-ask-tab-submit-check" });
-    submitTab.createSpan({ text: t10("chat.ask.submit"), cls: "mkortex-ask-tab-label" });
+    const submitTab = this.tabBar.createSpan({ cls: "mesa-ask-tab" });
+    submitTab.createSpan({ text: allAnswered ? "\u2713 " : "", cls: "mesa-ask-tab-submit-check" });
+    submitTab.createSpan({ text: t10("chat.ask.submit"), cls: "mesa-ask-tab-label" });
     if (this.activeTabIndex === this.questions.length) submitTab.addClass("is-active");
     submitTab.addEventListener("click", () => this.switchTab(this.questions.length));
     this.tabElements.push(submitTab);
@@ -45046,30 +45046,30 @@ var InlineAskUserQuestion = class {
     const selected = this.answers.get(idx);
     this.contentArea.createDiv({
       text: q.question,
-      cls: "mkortex-ask-question-text"
+      cls: "mesa-ask-question-text"
     });
-    const listEl = this.contentArea.createDiv({ cls: "mkortex-ask-list" });
+    const listEl = this.contentArea.createDiv({ cls: "mesa-ask-list" });
     for (let optIdx = 0; optIdx < q.options.length; optIdx++) {
       const option = q.options[optIdx];
       const isFocused = optIdx === this.focusedItemIndex;
       const optionValue = this.getOptionValue(option);
       const isSelected = selected.has(optionValue);
-      const row = listEl.createDiv({ cls: "mkortex-ask-item" });
+      const row = listEl.createDiv({ cls: "mesa-ask-item" });
       if (isFocused) row.addClass("is-focused");
       if (isSelected) row.addClass("is-selected");
-      row.createSpan({ text: isFocused ? "\u203A" : "\xA0", cls: "mkortex-ask-cursor" });
-      row.createSpan({ text: `${optIdx + 1}. `, cls: "mkortex-ask-item-num" });
+      row.createSpan({ text: isFocused ? "\u203A" : "\xA0", cls: "mesa-ask-cursor" });
+      row.createSpan({ text: `${optIdx + 1}. `, cls: "mesa-ask-item-num" });
       if (isMulti) {
         this.renderMultiSelectCheckbox(row, isSelected);
       }
-      const labelBlock = row.createDiv({ cls: "mkortex-ask-item-content" });
-      const labelRow = labelBlock.createDiv({ cls: "mkortex-ask-label-row" });
-      labelRow.createSpan({ text: option.label, cls: "mkortex-ask-item-label" });
+      const labelBlock = row.createDiv({ cls: "mesa-ask-item-content" });
+      const labelRow = labelBlock.createDiv({ cls: "mesa-ask-label-row" });
+      labelRow.createSpan({ text: option.label, cls: "mesa-ask-item-label" });
       if (!isMulti && isSelected) {
-        labelRow.createSpan({ text: " \u2713", cls: "mkortex-ask-check-mark" });
+        labelRow.createSpan({ text: " \u2713", cls: "mesa-ask-check-mark" });
       }
       if (option.description) {
-        labelBlock.createDiv({ text: option.description, cls: "mkortex-ask-item-desc" });
+        labelBlock.createDiv({ text: option.description, cls: "mesa-ask-item-desc" });
       }
       row.addEventListener("click", () => {
         this.focusedItemIndex = optIdx;
@@ -45083,15 +45083,15 @@ var InlineAskUserQuestion = class {
       const customFocused = customIdx === this.focusedItemIndex;
       const customText = (_a3 = this.customInputs.get(idx)) != null ? _a3 : "";
       const hasCustomText = customText.trim().length > 0;
-      const customRow = listEl.createDiv({ cls: "mkortex-ask-item mkortex-ask-custom-item" });
+      const customRow = listEl.createDiv({ cls: "mesa-ask-item mesa-ask-custom-item" });
       if (customFocused) customRow.addClass("is-focused");
-      customRow.createSpan({ text: customFocused ? "\u203A" : "\xA0", cls: "mkortex-ask-cursor" });
-      customRow.createSpan({ text: `${customIdx + 1}. `, cls: "mkortex-ask-item-num" });
+      customRow.createSpan({ text: customFocused ? "\u203A" : "\xA0", cls: "mesa-ask-cursor" });
+      customRow.createSpan({ text: `${customIdx + 1}. `, cls: "mesa-ask-item-num" });
       if (isMulti) {
         this.renderMultiSelectCheckbox(customRow, hasCustomText);
       }
       const inputEl = customRow.createEl("input", {
-        cls: "mkortex-ask-custom-text",
+        cls: "mesa-ask-custom-text",
         value: customText
       });
       inputEl.setAttribute("type", q.isSecret ? "password" : "text");
@@ -45119,51 +45119,51 @@ var InlineAskUserQuestion = class {
     }
     this.contentArea.createDiv({
       text: this.config.immediateSelect ? HINTS_TEXT_IMMEDIATE() : HINTS_TEXT(),
-      cls: "mkortex-ask-hints"
+      cls: "mesa-ask-hints"
     });
   }
   renderSubmitTab() {
     this.contentArea.createDiv({
       text: t10("chat.ask.reviewAnswers"),
-      cls: "mkortex-ask-review-title"
+      cls: "mesa-ask-review-title"
     });
-    const reviewEl = this.contentArea.createDiv({ cls: "mkortex-ask-review" });
+    const reviewEl = this.contentArea.createDiv({ cls: "mesa-ask-review" });
     for (let idx = 0; idx < this.questions.length; idx++) {
       const q = this.questions[idx];
       const answerText = this.getAnswerText(idx);
-      const pairEl = reviewEl.createDiv({ cls: "mkortex-ask-review-pair" });
-      pairEl.createDiv({ text: `${idx + 1}.`, cls: "mkortex-ask-review-num" });
-      const bodyEl = pairEl.createDiv({ cls: "mkortex-ask-review-body" });
-      bodyEl.createDiv({ text: q.question, cls: "mkortex-ask-review-q-text" });
+      const pairEl = reviewEl.createDiv({ cls: "mesa-ask-review-pair" });
+      pairEl.createDiv({ text: `${idx + 1}.`, cls: "mesa-ask-review-num" });
+      const bodyEl = pairEl.createDiv({ cls: "mesa-ask-review-body" });
+      bodyEl.createDiv({ text: q.question, cls: "mesa-ask-review-q-text" });
       bodyEl.createDiv({
         text: answerText || t10("chat.ask.notAnswered"),
-        cls: answerText ? "mkortex-ask-review-a-text" : "mkortex-ask-review-empty"
+        cls: answerText ? "mesa-ask-review-a-text" : "mesa-ask-review-empty"
       });
       pairEl.addEventListener("click", () => this.switchTab(idx));
     }
     this.contentArea.createDiv({
       text: t10("chat.ask.readyToSubmit"),
-      cls: "mkortex-ask-review-prompt"
+      cls: "mesa-ask-review-prompt"
     });
-    const actionsEl = this.contentArea.createDiv({ cls: "mkortex-ask-list" });
+    const actionsEl = this.contentArea.createDiv({ cls: "mesa-ask-list" });
     const allAnswered = this.questions.every((_2, i) => this.isQuestionAnswered(i));
-    const submitRow = actionsEl.createDiv({ cls: "mkortex-ask-item" });
+    const submitRow = actionsEl.createDiv({ cls: "mesa-ask-item" });
     if (this.focusedItemIndex === 0) submitRow.addClass("is-focused");
     if (!allAnswered) submitRow.addClass("is-disabled");
-    submitRow.createSpan({ text: this.focusedItemIndex === 0 ? "\u203A" : "\xA0", cls: "mkortex-ask-cursor" });
-    submitRow.createSpan({ text: "1. ", cls: "mkortex-ask-item-num" });
-    submitRow.createSpan({ text: t10("chat.ask.submitAnswers"), cls: "mkortex-ask-item-label" });
+    submitRow.createSpan({ text: this.focusedItemIndex === 0 ? "\u203A" : "\xA0", cls: "mesa-ask-cursor" });
+    submitRow.createSpan({ text: "1. ", cls: "mesa-ask-item-num" });
+    submitRow.createSpan({ text: t10("chat.ask.submitAnswers"), cls: "mesa-ask-item-label" });
     submitRow.addEventListener("click", () => {
       this.focusedItemIndex = 0;
       this.updateFocusIndicator();
       this.handleSubmit();
     });
     this.currentItems.push(submitRow);
-    const cancelRow = actionsEl.createDiv({ cls: "mkortex-ask-item" });
+    const cancelRow = actionsEl.createDiv({ cls: "mesa-ask-item" });
     if (this.focusedItemIndex === 1) cancelRow.addClass("is-focused");
-    cancelRow.createSpan({ text: this.focusedItemIndex === 1 ? "\u203A" : "\xA0", cls: "mkortex-ask-cursor" });
-    cancelRow.createSpan({ text: "2. ", cls: "mkortex-ask-item-num" });
-    cancelRow.createSpan({ text: t10("chat.ask.cancel"), cls: "mkortex-ask-item-label" });
+    cancelRow.createSpan({ text: this.focusedItemIndex === 1 ? "\u203A" : "\xA0", cls: "mesa-ask-cursor" });
+    cancelRow.createSpan({ text: "2. ", cls: "mesa-ask-item-num" });
+    cancelRow.createSpan({ text: t10("chat.ask.cancel"), cls: "mesa-ask-item-label" });
     cancelRow.addEventListener("click", () => {
       this.focusedItemIndex = 1;
       this.handleResolve(null);
@@ -45171,7 +45171,7 @@ var InlineAskUserQuestion = class {
     this.currentItems.push(cancelRow);
     this.contentArea.createDiv({
       text: HINTS_TEXT,
-      cls: "mkortex-ask-hints"
+      cls: "mesa-ask-hints"
     });
   }
   getAnswerText(idx) {
@@ -45215,7 +45215,7 @@ var InlineAskUserQuestion = class {
   renderMultiSelectCheckbox(parent, checked) {
     parent.createSpan({
       text: checked ? "[\u2713] " : "[ ] ",
-      cls: `mkortex-ask-check${checked ? " is-checked" : ""}`
+      cls: `mesa-ask-check${checked ? " is-checked" : ""}`
     });
   }
   updateOptionVisuals(qIdx) {
@@ -45227,16 +45227,16 @@ var InlineAskUserQuestion = class {
       const isSelected = selected.has(this.getOptionValue(q.options[i]));
       item.toggleClass("is-selected", isSelected);
       if (isMulti) {
-        const checkSpan = item.querySelector(".mkortex-ask-check");
+        const checkSpan = item.querySelector(".mesa-ask-check");
         if (checkSpan) {
           checkSpan.textContent = isSelected ? "[\u2713] " : "[ ] ";
           checkSpan.toggleClass("is-checked", isSelected);
         }
       } else {
-        const labelRow = item.querySelector(".mkortex-ask-label-row");
-        const existingMark = item.querySelector(".mkortex-ask-check-mark");
+        const labelRow = item.querySelector(".mesa-ask-label-row");
+        const existingMark = item.querySelector(".mesa-ask-check-mark");
         if (isSelected && !existingMark && labelRow) {
-          labelRow.createSpan({ text: " \u2713", cls: "mkortex-ask-check-mark" });
+          labelRow.createSpan({ text: " \u2713", cls: "mesa-ask-check-mark" });
         } else if (!isSelected && existingMark) {
           existingMark.remove();
         }
@@ -45246,7 +45246,7 @@ var InlineAskUserQuestion = class {
   updateFocusIndicator() {
     for (let i = 0; i < this.currentItems.length; i++) {
       const item = this.currentItems[i];
-      const cursor = item.querySelector(".mkortex-ask-cursor");
+      const cursor = item.querySelector(".mesa-ask-cursor");
       if (i === this.focusedItemIndex) {
         item.addClass("is-focused");
         if (cursor) cursor.textContent = "\u203A";
@@ -45260,14 +45260,14 @@ var InlineAskUserQuestion = class {
   updateTabIndicators() {
     for (let idx = 0; idx < this.questions.length; idx++) {
       const tab = this.tabElements[idx];
-      const tick = tab.querySelector(".mkortex-ask-tab-tick");
+      const tick = tab.querySelector(".mesa-ask-tab-tick");
       const answered = this.isQuestionAnswered(idx);
       tab.toggleClass("is-answered", answered);
       if (tick) tick.textContent = answered ? " \u2713" : "";
     }
     const submitTab = this.tabElements[this.questions.length];
     if (submitTab) {
-      const submitCheck = submitTab.querySelector(".mkortex-ask-tab-submit-check");
+      const submitCheck = submitTab.querySelector(".mesa-ask-tab-submit-check");
       const allAnswered = this.questions.every((_2, i) => this.isQuestionAnswered(i));
       if (submitCheck) submitCheck.textContent = allAnswered ? "\u2713 " : "";
     }
@@ -45392,7 +45392,7 @@ var InlineAskUserQuestion = class {
         } else if (this.canShowCustomInputForQuestion(q)) {
           this.isInputFocused = true;
           const customRow = this.currentItems[this.focusedItemIndex];
-          const input = customRow == null ? void 0 : customRow.querySelector(".mkortex-ask-custom-text");
+          const input = customRow == null ? void 0 : customRow.querySelector(".mesa-ask-custom-text");
           input == null ? void 0 : input.focus();
         }
         break;
@@ -45469,38 +45469,38 @@ var InlineExitPlanMode = class {
     this.boundKeyDown = (event) => this.handleKeyDown(event);
   }
   render() {
-    this.rootEl = this.containerEl.createDiv({ cls: "mkortex-plan-approval-inline" });
-    const titleEl = this.rootEl.createDiv({ cls: "mkortex-plan-inline-title" });
+    this.rootEl = this.containerEl.createDiv({ cls: "mesa-plan-approval-inline" });
+    const titleEl = this.rootEl.createDiv({ cls: "mesa-plan-inline-title" });
     titleEl.setText(t10("ui.planComplete"));
     this.planContent = this.readPlanContent();
     if (this.planContent) {
-      const contentEl = this.rootEl.createDiv({ cls: "mkortex-plan-content-preview" });
+      const contentEl = this.rootEl.createDiv({ cls: "mesa-plan-content-preview" });
       if (this.renderContent) {
         void this.renderContent(contentEl, this.planContent);
       } else {
-        contentEl.createDiv({ cls: "mkortex-plan-content-text", text: this.planContent });
+        contentEl.createDiv({ cls: "mesa-plan-content-text", text: this.planContent });
       }
     } else if (this.planReadError) {
       this.rootEl.createDiv({
-        cls: "mkortex-plan-content-preview mkortex-plan-read-error",
+        cls: "mesa-plan-content-preview mesa-plan-read-error",
         text: t10("chat.plan.planReadError", { error: this.planReadError })
       });
     }
     const allowedPrompts = this.input.allowedPrompts;
     if (allowedPrompts && Array.isArray(allowedPrompts) && allowedPrompts.length > 0) {
-      const permEl = this.rootEl.createDiv({ cls: "mkortex-plan-permissions" });
-      permEl.createDiv({ text: t10("chat.plan.requestedPermissions"), cls: "mkortex-plan-permissions-label" });
-      const listEl = permEl.createEl("ul", { cls: "mkortex-plan-permissions-list" });
+      const permEl = this.rootEl.createDiv({ cls: "mesa-plan-permissions" });
+      permEl.createDiv({ text: t10("chat.plan.requestedPermissions"), cls: "mesa-plan-permissions-label" });
+      const listEl = permEl.createEl("ul", { cls: "mesa-plan-permissions-list" });
       for (const perm of allowedPrompts) {
         listEl.createEl("li", { text: perm.prompt });
       }
     }
-    const actionsEl = this.rootEl.createDiv({ cls: "mkortex-ask-list" });
-    const newSessionRow = actionsEl.createDiv({ cls: "mkortex-ask-item" });
+    const actionsEl = this.rootEl.createDiv({ cls: "mesa-ask-list" });
+    const newSessionRow = actionsEl.createDiv({ cls: "mesa-ask-item" });
     newSessionRow.addClass("is-focused");
-    newSessionRow.createSpan({ text: "\u203A", cls: "mkortex-ask-cursor" });
-    newSessionRow.createSpan({ text: "1. ", cls: "mkortex-ask-item-num" });
-    newSessionRow.createSpan({ text: t10("chat.plan.approveNewSession"), cls: "mkortex-ask-item-label" });
+    newSessionRow.createSpan({ text: "\u203A", cls: "mesa-ask-cursor" });
+    newSessionRow.createSpan({ text: "1. ", cls: "mesa-ask-item-num" });
+    newSessionRow.createSpan({ text: t10("chat.plan.approveNewSession"), cls: "mesa-ask-item-label" });
     newSessionRow.addEventListener("click", () => {
       this.focusedIndex = 0;
       this.updateFocus();
@@ -45510,22 +45510,22 @@ var InlineExitPlanMode = class {
       });
     });
     this.items.push(newSessionRow);
-    const approveRow = actionsEl.createDiv({ cls: "mkortex-ask-item" });
-    approveRow.createSpan({ text: "\xA0", cls: "mkortex-ask-cursor" });
-    approveRow.createSpan({ text: "2. ", cls: "mkortex-ask-item-num" });
-    approveRow.createSpan({ text: t10("chat.plan.approveCurrentSession"), cls: "mkortex-ask-item-label" });
+    const approveRow = actionsEl.createDiv({ cls: "mesa-ask-item" });
+    approveRow.createSpan({ text: "\xA0", cls: "mesa-ask-cursor" });
+    approveRow.createSpan({ text: "2. ", cls: "mesa-ask-item-num" });
+    approveRow.createSpan({ text: t10("chat.plan.approveCurrentSession"), cls: "mesa-ask-item-label" });
     approveRow.addEventListener("click", () => {
       this.focusedIndex = 1;
       this.updateFocus();
       this.handleResolve({ type: "approve" });
     });
     this.items.push(approveRow);
-    const feedbackRow = actionsEl.createDiv({ cls: "mkortex-ask-item mkortex-ask-custom-item" });
-    feedbackRow.createSpan({ text: "\xA0", cls: "mkortex-ask-cursor" });
-    feedbackRow.createSpan({ text: "3. ", cls: "mkortex-ask-item-num" });
+    const feedbackRow = actionsEl.createDiv({ cls: "mesa-ask-item mesa-ask-custom-item" });
+    feedbackRow.createSpan({ text: "\xA0", cls: "mesa-ask-cursor" });
+    feedbackRow.createSpan({ text: "3. ", cls: "mesa-ask-item-num" });
     this.feedbackInput = feedbackRow.createEl("input", {
       type: "text",
-      cls: "mkortex-ask-custom-text",
+      cls: "mesa-ask-custom-text",
       placeholder: t10("chat.plan.feedbackContinue")
     });
     this.feedbackInput.addEventListener("focus", () => {
@@ -45539,7 +45539,7 @@ var InlineExitPlanMode = class {
       this.updateFocus();
     });
     this.items.push(feedbackRow);
-    this.rootEl.createDiv({ text: HINTS_TEXT2(), cls: "mkortex-ask-hints" });
+    this.rootEl.createDiv({ text: HINTS_TEXT2(), cls: "mesa-ask-hints" });
     this.rootEl.setAttribute("tabindex", "0");
     this.rootEl.addEventListener("keydown", this.boundKeyDown);
     window.requestAnimationFrame(() => {
@@ -45631,13 +45631,13 @@ var InlineExitPlanMode = class {
   updateFocus() {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
-      const cursor = item.querySelector(".mkortex-ask-cursor");
+      const cursor = item.querySelector(".mesa-ask-cursor");
       if (i === this.focusedIndex) {
         item.addClass("is-focused");
         if (cursor) cursor.textContent = "\u203A";
         item.scrollIntoView({ block: "nearest" });
-        if (item.hasClass("mkortex-ask-custom-item")) {
-          const input = item.querySelector(".mkortex-ask-custom-text");
+        if (item.hasClass("mesa-ask-custom-item")) {
+          const input = item.querySelector(".mesa-ask-custom-text");
           if (input) {
             input.focus();
             this.isInputFocused = true;
@@ -45646,8 +45646,8 @@ var InlineExitPlanMode = class {
       } else {
         item.removeClass("is-focused");
         if (cursor) cursor.textContent = "\xA0";
-        if (item.hasClass("mkortex-ask-custom-item")) {
-          const input = item.querySelector(".mkortex-ask-custom-text");
+        if (item.hasClass("mesa-ask-custom-item")) {
+          const input = item.querySelector(".mesa-ask-custom-text");
           if (input && this.rootEl.ownerDocument.activeElement === input) {
             input.blur();
             this.isInputFocused = false;
@@ -45684,26 +45684,26 @@ var InlinePlanApproval = class {
     this.boundKeyDown = (event) => this.handleKeyDown(event);
   }
   render() {
-    this.rootEl = this.containerEl.createDiv({ cls: "mkortex-plan-approval-inline" });
-    this.rootEl.createDiv({ cls: "mkortex-plan-inline-title", text: t10("chat.plan.complete") });
-    const actionsEl = this.rootEl.createDiv({ cls: "mkortex-ask-list" });
-    const implementRow = actionsEl.createDiv({ cls: "mkortex-ask-item" });
+    this.rootEl = this.containerEl.createDiv({ cls: "mesa-plan-approval-inline" });
+    this.rootEl.createDiv({ cls: "mesa-plan-inline-title", text: t10("chat.plan.complete") });
+    const actionsEl = this.rootEl.createDiv({ cls: "mesa-ask-list" });
+    const implementRow = actionsEl.createDiv({ cls: "mesa-ask-item" });
     implementRow.addClass("is-focused");
-    implementRow.createSpan({ text: "\u203A", cls: "mkortex-ask-cursor" });
-    implementRow.createSpan({ text: "1. ", cls: "mkortex-ask-item-num" });
-    implementRow.createSpan({ text: t10("chat.plan.implement"), cls: "mkortex-ask-item-label" });
+    implementRow.createSpan({ text: "\u203A", cls: "mesa-ask-cursor" });
+    implementRow.createSpan({ text: "1. ", cls: "mesa-ask-item-num" });
+    implementRow.createSpan({ text: t10("chat.plan.implement"), cls: "mesa-ask-item-label" });
     implementRow.addEventListener("click", () => {
       this.focusedIndex = 0;
       this.updateFocus();
       this.handleResolve({ type: "implement" });
     });
     this.items.push(implementRow);
-    const reviseRow = actionsEl.createDiv({ cls: "mkortex-ask-item mkortex-ask-custom-item" });
-    reviseRow.createSpan({ text: "\xA0", cls: "mkortex-ask-cursor" });
-    reviseRow.createSpan({ text: "2. ", cls: "mkortex-ask-item-num" });
+    const reviseRow = actionsEl.createDiv({ cls: "mesa-ask-item mesa-ask-custom-item" });
+    reviseRow.createSpan({ text: "\xA0", cls: "mesa-ask-cursor" });
+    reviseRow.createSpan({ text: "2. ", cls: "mesa-ask-item-num" });
     this.feedbackInput = reviseRow.createEl("input", {
       type: "text",
-      cls: "mkortex-ask-custom-text",
+      cls: "mesa-ask-custom-text",
       placeholder: t10("chat.plan.feedbackRevise")
     });
     this.feedbackInput.addEventListener("focus", () => {
@@ -45717,17 +45717,17 @@ var InlinePlanApproval = class {
       this.updateFocus();
     });
     this.items.push(reviseRow);
-    const cancelRow = actionsEl.createDiv({ cls: "mkortex-ask-item" });
-    cancelRow.createSpan({ text: "\xA0", cls: "mkortex-ask-cursor" });
-    cancelRow.createSpan({ text: "3. ", cls: "mkortex-ask-item-num" });
-    cancelRow.createSpan({ text: t10("chat.plan.cancel"), cls: "mkortex-ask-item-label" });
+    const cancelRow = actionsEl.createDiv({ cls: "mesa-ask-item" });
+    cancelRow.createSpan({ text: "\xA0", cls: "mesa-ask-cursor" });
+    cancelRow.createSpan({ text: "3. ", cls: "mesa-ask-item-num" });
+    cancelRow.createSpan({ text: t10("chat.plan.cancel"), cls: "mesa-ask-item-label" });
     cancelRow.addEventListener("click", () => {
       this.focusedIndex = 2;
       this.updateFocus();
       this.handleResolve({ type: "cancel" });
     });
     this.items.push(cancelRow);
-    this.rootEl.createDiv({ text: HINTS_TEXT3(), cls: "mkortex-ask-hints" });
+    this.rootEl.createDiv({ text: HINTS_TEXT3(), cls: "mesa-ask-hints" });
     this.rootEl.setAttribute("tabindex", "0");
     this.rootEl.addEventListener("keydown", this.boundKeyDown);
     window.requestAnimationFrame(() => {
@@ -45790,13 +45790,13 @@ var InlinePlanApproval = class {
   updateFocus() {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
-      const cursor = item.querySelector(".mkortex-ask-cursor");
+      const cursor = item.querySelector(".mesa-ask-cursor");
       if (i === this.focusedIndex) {
         item.addClass("is-focused");
         if (cursor) cursor.textContent = "\u203A";
         item.scrollIntoView({ block: "nearest" });
-        if (item.hasClass("mkortex-ask-custom-item")) {
-          const input = item.querySelector(".mkortex-ask-custom-text");
+        if (item.hasClass("mesa-ask-custom-item")) {
+          const input = item.querySelector(".mesa-ask-custom-text");
           if (input) {
             input.focus();
             this.isInputFocused = true;
@@ -45805,8 +45805,8 @@ var InlinePlanApproval = class {
       } else {
         item.removeClass("is-focused");
         if (cursor) cursor.textContent = "\xA0";
-        if (item.hasClass("mkortex-ask-custom-item") && this.isInputFocused) {
-          const input = item.querySelector(".mkortex-ask-custom-text");
+        if (item.hasClass("mesa-ask-custom-item") && this.isInputFocused) {
+          const input = item.querySelector(".mesa-ask-custom-text");
           if (input) {
             input.blur();
             this.isInputFocused = false;
@@ -45925,37 +45925,37 @@ function renderDiffContent(containerEl, diffLines, contextLines = 3) {
   containerEl.empty();
   const allInserts = diffLines.length > 0 && diffLines.every((l2) => l2.type === "insert");
   if (allInserts && diffLines.length > NEW_FILE_DISPLAY_CAP) {
-    const hunkEl = containerEl.createDiv({ cls: "mkortex-diff-hunk" });
+    const hunkEl = containerEl.createDiv({ cls: "mesa-diff-hunk" });
     for (const line of diffLines.slice(0, NEW_FILE_DISPLAY_CAP)) {
-      const lineEl = hunkEl.createDiv({ cls: "mkortex-diff-line mkortex-diff-insert" });
-      const prefixEl = lineEl.createSpan({ cls: "mkortex-diff-prefix" });
+      const lineEl = hunkEl.createDiv({ cls: "mesa-diff-line mesa-diff-insert" });
+      const prefixEl = lineEl.createSpan({ cls: "mesa-diff-prefix" });
       prefixEl.setText("+");
-      const contentEl = lineEl.createSpan({ cls: "mkortex-diff-text" });
+      const contentEl = lineEl.createSpan({ cls: "mesa-diff-text" });
       contentEl.setText(line.text || " ");
     }
     const remaining = diffLines.length - NEW_FILE_DISPLAY_CAP;
-    const separator = containerEl.createDiv({ cls: "mkortex-diff-separator" });
+    const separator = containerEl.createDiv({ cls: "mesa-diff-separator" });
     separator.setText(t10("ui.moreLines", { count: remaining }));
     return;
   }
   const hunks = splitIntoHunks(diffLines, contextLines);
   if (hunks.length === 0) {
-    const noChanges = containerEl.createDiv({ cls: "mkortex-diff-no-changes" });
+    const noChanges = containerEl.createDiv({ cls: "mesa-diff-no-changes" });
     noChanges.setText(t10("ui.noChanges"));
     return;
   }
   hunks.forEach((hunk, hunkIndex) => {
     if (hunkIndex > 0) {
-      const separator = containerEl.createDiv({ cls: "mkortex-diff-separator" });
+      const separator = containerEl.createDiv({ cls: "mesa-diff-separator" });
       separator.setText("...");
     }
-    const hunkEl = containerEl.createDiv({ cls: "mkortex-diff-hunk" });
+    const hunkEl = containerEl.createDiv({ cls: "mesa-diff-hunk" });
     for (const line of hunk.lines) {
-      const lineEl = hunkEl.createDiv({ cls: `mkortex-diff-line mkortex-diff-${line.type}` });
+      const lineEl = hunkEl.createDiv({ cls: `mesa-diff-line mesa-diff-${line.type}` });
       const prefix = line.type === "insert" ? "+" : line.type === "delete" ? "-" : " ";
-      const prefixEl = lineEl.createSpan({ cls: "mkortex-diff-prefix" });
+      const prefixEl = lineEl.createSpan({ cls: "mesa-diff-prefix" });
       prefixEl.setText(prefix);
-      const contentEl = lineEl.createSpan({ cls: "mkortex-diff-text" });
+      const contentEl = lineEl.createSpan({ cls: "mesa-diff-text" });
       contentEl.setText(line.text || " ");
     }
   });
@@ -45972,11 +45972,11 @@ function getTodoDisplayText(todo) {
 function renderTodoItems(container, todos) {
   container.empty();
   for (const todo of todos) {
-    const item = container.createDiv({ cls: `mkortex-todo-item mkortex-todo-${todo.status}` });
-    const icon = item.createSpan({ cls: "mkortex-todo-status-icon" });
+    const item = container.createDiv({ cls: `mesa-todo-item mesa-todo-${todo.status}` });
+    const icon = item.createSpan({ cls: "mesa-todo-status-icon" });
     icon.setAttribute("aria-hidden", "true");
     (0, import_obsidian10.setIcon)(icon, getTodoStatusIcon(todo.status));
-    const text = item.createSpan({ cls: "mkortex-todo-text" });
+    const text = item.createSpan({ cls: "mesa-todo-text" });
     text.setText(getTodoDisplayText(todo));
   }
 }
@@ -46273,13 +46273,13 @@ function getWebSearchLabel(input, maxLength) {
   return `${t10("tools.names.webSearch")}: ${summary || t10("tools.names.search")}`;
 }
 function appendToolLink(parent, title, url) {
-  const linkEl = parent.createEl("a", { cls: "mkortex-tool-link" });
+  const linkEl = parent.createEl("a", { cls: "mesa-tool-link" });
   linkEl.setAttribute("href", url);
   linkEl.setAttribute("target", "_blank");
   linkEl.setAttribute("rel", "noopener noreferrer");
-  const iconEl = linkEl.createSpan({ cls: "mkortex-tool-link-icon" });
+  const iconEl = linkEl.createSpan({ cls: "mesa-tool-link-icon" });
   (0, import_obsidian11.setIcon)(iconEl, "external-link");
-  linkEl.createSpan({ cls: "mkortex-tool-link-title", text: title });
+  linkEl.createSpan({ cls: "mesa-tool-link-title", text: title });
 }
 function isPlaceholderWebSearchResult(result) {
   if (!result) return true;
@@ -46305,41 +46305,41 @@ function renderWebSearchActionExpanded(container, input) {
   if (!hasStructuredData) {
     return false;
   }
-  const linesEl = container.createDiv({ cls: "mkortex-tool-lines" });
+  const linesEl = container.createDiv({ cls: "mesa-tool-lines" });
   switch (data.actionType) {
     case "open_page":
-      linesEl.createDiv({ cls: "mkortex-tool-line", text: t10("tools.webSearch.openPage") });
+      linesEl.createDiv({ cls: "mesa-tool-line", text: t10("tools.webSearch.openPage") });
       if (data.url) {
         appendToolLink(linesEl, data.url, data.url);
       } else {
-        linesEl.createDiv({ cls: "mkortex-tool-line", text: t10("tools.webSearch.urlUnavailable") });
+        linesEl.createDiv({ cls: "mesa-tool-line", text: t10("tools.webSearch.urlUnavailable") });
       }
       return true;
     case "find_in_page":
-      linesEl.createDiv({ cls: "mkortex-tool-line", text: t10("tools.webSearch.findInPage") });
+      linesEl.createDiv({ cls: "mesa-tool-line", text: t10("tools.webSearch.findInPage") });
       if (data.url) {
         appendToolLink(linesEl, data.url, data.url);
       } else {
-        linesEl.createDiv({ cls: "mkortex-tool-line", text: t10("tools.webSearch.urlUnavailable") });
+        linesEl.createDiv({ cls: "mesa-tool-line", text: t10("tools.webSearch.urlUnavailable") });
       }
       if (data.pattern) {
-        linesEl.createDiv({ cls: "mkortex-tool-line", text: `${t10("tools.webSearch.pattern")}: ${data.pattern}` });
+        linesEl.createDiv({ cls: "mesa-tool-line", text: `${t10("tools.webSearch.pattern")}: ${data.pattern}` });
       }
       return true;
     case "search":
     default: {
       const primaryQuery = data.query || data.queries[0];
       linesEl.createDiv({
-        cls: "mkortex-tool-line",
+        cls: "mesa-tool-line",
         text: primaryQuery ? `${t10("tools.webSearch.query")}: ${primaryQuery}` : t10("tools.webSearch.searchWeb")
       });
       const alternateQueries = data.queries.filter((query) => query !== primaryQuery);
       for (const query of alternateQueries.slice(0, 4)) {
-        linesEl.createDiv({ cls: "mkortex-tool-line", text: `${t10("tools.webSearch.altQuery")}: ${query}` });
+        linesEl.createDiv({ cls: "mesa-tool-line", text: `${t10("tools.webSearch.altQuery")}: ${query}` });
       }
       if (alternateQueries.length > 4) {
         linesEl.createDiv({
-          cls: "mkortex-tool-truncated",
+          cls: "mesa-tool-truncated",
           text: `... ${alternateQueries.length - 4} more queries`
         });
       }
@@ -46350,12 +46350,12 @@ function renderWebSearchActionExpanded(container, input) {
 function renderWebSearchExpanded(container, input, result) {
   const parsed = result ? parseWebSearchResult(result) : null;
   if (parsed && parsed.links.length > 0) {
-    const linksEl = container.createDiv({ cls: "mkortex-tool-lines" });
+    const linksEl = container.createDiv({ cls: "mesa-tool-lines" });
     for (const link of parsed.links) {
       appendToolLink(linksEl, link.title, link.url);
     }
     if (parsed.summary) {
-      const summaryEl = container.createDiv({ cls: "mkortex-tool-web-summary" });
+      const summaryEl = container.createDiv({ cls: "mesa-tool-web-summary" });
       summaryEl.setText(parsed.summary.length > 800 ? parsed.summary.slice(0, 800) + "..." : parsed.summary);
     }
     return;
@@ -46375,12 +46375,12 @@ function renderWebSearchExpanded(container, input, result) {
   if (renderWebSearchActionExpanded(container, input)) {
     return;
   }
-  container.createDiv({ cls: "mkortex-tool-empty", text: t10("tools.empty.noResult") });
+  container.createDiv({ cls: "mesa-tool-empty", text: t10("tools.empty.noResult") });
 }
 function renderFileSearchExpanded(container, result) {
   const lines = result.split(/\r?\n/).filter((line) => line.trim());
   if (lines.length === 0) {
-    container.createDiv({ cls: "mkortex-tool-empty", text: t10("tools.empty.noMatches") });
+    container.createDiv({ cls: "mesa-tool-empty", text: t10("tools.empty.noMatches") });
     return;
   }
   renderLinesExpanded(container, result, 15, true);
@@ -46389,16 +46389,16 @@ function renderLinesExpanded(container, result, maxLines, hoverable = false) {
   const lines = result.split(/\r?\n/);
   const truncated = lines.length > maxLines;
   const displayLines = truncated ? lines.slice(0, maxLines) : lines;
-  const linesEl = container.createDiv({ cls: "mkortex-tool-lines" });
+  const linesEl = container.createDiv({ cls: "mesa-tool-lines" });
   for (const line of displayLines) {
     const stripped = line.replace(/^\s*\d+→/, "");
-    const lineEl = linesEl.createDiv({ cls: "mkortex-tool-line" });
+    const lineEl = linesEl.createDiv({ cls: "mesa-tool-line" });
     if (hoverable) lineEl.addClass("hoverable");
     lineEl.setText(stripped || " ");
   }
   if (truncated) {
     linesEl.createDiv({
-      cls: "mkortex-tool-truncated",
+      cls: "mesa-tool-truncated",
       text: `... ${lines.length - maxLines} more lines`
     });
   }
@@ -46417,20 +46417,20 @@ function renderToolSearchExpanded(container, result) {
     return;
   }
   for (const name of toolNames) {
-    const lineEl = container.createDiv({ cls: "mkortex-tool-search-item" });
-    const iconEl = lineEl.createSpan({ cls: "mkortex-tool-search-icon" });
+    const lineEl = container.createDiv({ cls: "mesa-tool-search-item" });
+    const iconEl = lineEl.createSpan({ cls: "mesa-tool-search-icon" });
     setToolIcon(iconEl, name);
     lineEl.createSpan({ text: name });
   }
 }
 function renderWebFetchExpanded(container, result) {
   const maxChars = 500;
-  const linesEl = container.createDiv({ cls: "mkortex-tool-lines" });
-  const lineEl = linesEl.createDiv({ cls: "mkortex-tool-line mkortex-tool-line-wrap" });
+  const linesEl = container.createDiv({ cls: "mesa-tool-lines" });
+  const lineEl = linesEl.createDiv({ cls: "mesa-tool-line mesa-tool-line-wrap" });
   if (result.length > maxChars) {
     lineEl.setText(result.slice(0, maxChars));
     linesEl.createDiv({
-      cls: "mkortex-tool-truncated",
+      cls: "mesa-tool-truncated",
       text: `... ${result.length - maxChars} more characters`
     });
   } else {
@@ -46450,7 +46450,7 @@ function renderApplyPatchExpanded(container, input, result) {
   }
   const changes = Array.isArray(input.changes) ? input.changes : [];
   if (changes.length > 0) {
-    const linesEl = container.createDiv({ cls: "mkortex-tool-lines" });
+    const linesEl = container.createDiv({ cls: "mesa-tool-lines" });
     for (const change of changes) {
       if (!change || typeof change !== "object" || Array.isArray(change)) continue;
       const changeRecord = change;
@@ -46458,7 +46458,7 @@ function renderApplyPatchExpanded(container, input, result) {
       if (!path25) continue;
       const movedTo = readMoveTarget(changeRecord.kind);
       const pathText = movedTo ? `${path25} -> ${movedTo}` : path25;
-      linesEl.createDiv({ cls: "mkortex-tool-line", text: pathText });
+      linesEl.createDiv({ cls: "mesa-tool-line", text: pathText });
     }
     return;
   }
@@ -46469,11 +46469,11 @@ function renderApplyPatchExpanded(container, input, result) {
   if (result) {
     const fileMatches = [...result.matchAll(/(?:update|add|delete|create|modify|Applied:\s*)(?:\w+:\s*)?([^\n,]+)/gi)];
     if (fileMatches.length > 0) {
-      const linesEl = container.createDiv({ cls: "mkortex-tool-lines" });
+      const linesEl = container.createDiv({ cls: "mesa-tool-lines" });
       for (const match of fileMatches) {
         const filePath = (_a3 = match[1]) == null ? void 0 : _a3.trim();
         if (filePath) {
-          const lineEl = linesEl.createDiv({ cls: "mkortex-tool-line" });
+          const lineEl = linesEl.createDiv({ cls: "mesa-tool-line" });
           lineEl.setText(filePath);
         }
       }
@@ -46482,21 +46482,21 @@ function renderApplyPatchExpanded(container, input, result) {
     renderLinesExpanded(container, result, 20);
     return;
   }
-  container.createDiv({ cls: "mkortex-tool-empty", text: t10("tools.empty.noResult") });
+  container.createDiv({ cls: "mesa-tool-empty", text: t10("tools.empty.noResult") });
 }
 function renderApplyPatchDiffSections(container, fileDiffs) {
   for (const fileDiff of fileDiffs) {
-    const sectionEl = container.createDiv({ cls: "mkortex-tool-patch-section" });
+    const sectionEl = container.createDiv({ cls: "mesa-tool-patch-section" });
     if (fileDiff.operation === "delete" && fileDiff.diffLines.length === 0) {
-      sectionEl.createDiv({ cls: "mkortex-tool-empty", text: t10("tools.patch.fileDeleted") });
+      sectionEl.createDiv({ cls: "mesa-tool-empty", text: t10("tools.patch.fileDeleted") });
       continue;
     }
     if (fileDiff.diffLines.length === 0) {
-      sectionEl.createDiv({ cls: "mkortex-tool-empty", text: t10("tools.patch.noTextualDiff") });
+      sectionEl.createDiv({ cls: "mesa-tool-empty", text: t10("tools.patch.noTextualDiff") });
       continue;
     }
-    const diffRow = sectionEl.createDiv({ cls: "mkortex-write-edit-diff-row" });
-    const diffEl = diffRow.createDiv({ cls: "mkortex-write-edit-diff" });
+    const diffRow = sectionEl.createDiv({ cls: "mesa-write-edit-diff-row" });
+    const diffEl = diffRow.createDiv({ cls: "mesa-write-edit-diff" });
     renderDiffContent(diffEl, fileDiff.diffLines);
   }
 }
@@ -46532,9 +46532,9 @@ function renderAgentLifecycleExpanded(container, result) {
   if (trimmed.startsWith("{")) {
     try {
       const parsed = JSON.parse(trimmed);
-      const linesEl = container.createDiv({ cls: "mkortex-tool-lines" });
+      const linesEl = container.createDiv({ cls: "mesa-tool-lines" });
       for (const [key, value] of Object.entries(parsed)) {
-        const lineEl = linesEl.createDiv({ cls: "mkortex-tool-line" });
+        const lineEl = linesEl.createDiv({ cls: "mesa-tool-line" });
         const displayValue = formatToolDisplayValue(value);
         lineEl.setText(`${key}: ${displayValue}`);
       }
@@ -46557,7 +46557,7 @@ function formatToolDisplayValue(value) {
 function renderExpandedContent(container, toolName, result, input = {}) {
   const canonicalToolName = resolveCanonicalToolName(toolName);
   if (!result && canonicalToolName !== TOOL_WEB_SEARCH && canonicalToolName !== TOOL_BASH && canonicalToolName !== TOOL_APPLY_PATCH) {
-    container.createDiv({ cls: "mkortex-tool-empty", text: t10("tools.empty.noResult") });
+    container.createDiv({ cls: "mesa-tool-empty", text: t10("tools.empty.noResult") });
     return;
   }
   const resolvedResult = localizeToolResultText(result != null ? result : "");
@@ -46613,7 +46613,7 @@ function areAllTodosCompleted(input) {
   return todos.every((t11) => t11.status === "completed");
 }
 function resetStatusElement(statusEl, statusClass, ariaLabel) {
-  statusEl.className = "mkortex-tool-status";
+  statusEl.className = "mesa-tool-status";
   statusEl.empty();
   statusEl.addClass(statusClass);
   statusEl.setAttribute("aria-label", ariaLabel);
@@ -46643,7 +46643,7 @@ function setApplyPatchHeaderRight(statusEl, toolCall) {
     setToolStatus(statusEl, toolCall.status);
     return;
   }
-  statusEl.className = "mkortex-tool-status mkortex-write-edit-stats";
+  statusEl.className = "mesa-tool-status mesa-write-edit-stats";
   statusEl.empty();
   statusEl.setAttribute("aria-label", getDiffStatsAriaLabel(stats));
   renderDiffStats(statusEl, stats);
@@ -46657,11 +46657,11 @@ function setGenericToolHeaderRight(statusEl, toolCall) {
 }
 function renderTodoWriteResult(container, input) {
   container.empty();
-  container.addClass("mkortex-todo-panel-content");
-  container.addClass("mkortex-todo-list-container");
+  container.addClass("mesa-todo-panel-content");
+  container.addClass("mesa-todo-list-container");
   const todos = input.todos;
   if (!todos || !Array.isArray(todos)) {
-    const item = container.createSpan({ cls: "mkortex-tool-result-item" });
+    const item = container.createSpan({ cls: "mesa-tool-result-item" });
     item.setText(t10("tools.todo.updated"));
     return;
   }
@@ -46677,23 +46677,23 @@ function isBlockedToolResult(content, isError) {
   return false;
 }
 function createToolElementStructure(parentEl, toolCall) {
-  const toolEl = parentEl.createDiv({ cls: "mkortex-tool-call" });
+  const toolEl = parentEl.createDiv({ cls: "mesa-tool-call" });
   if (toolCall.name === TOOL_BASH) {
-    toolEl.addClass("mkortex-tool-call-bash");
+    toolEl.addClass("mesa-tool-call-bash");
   }
-  const header = toolEl.createDiv({ cls: "mkortex-tool-header" });
+  const header = toolEl.createDiv({ cls: "mesa-tool-header" });
   header.setAttribute("tabindex", "0");
   header.setAttribute("role", "button");
-  const iconEl = header.createSpan({ cls: "mkortex-tool-icon" });
+  const iconEl = header.createSpan({ cls: "mesa-tool-icon" });
   iconEl.setAttribute("aria-hidden", "true");
   setToolIcon(iconEl, toolCall.name);
-  const nameEl = header.createSpan({ cls: "mkortex-tool-name" });
+  const nameEl = header.createSpan({ cls: "mesa-tool-name" });
   nameEl.setText(getToolName(toolCall.name, toolCall.input));
-  const summaryEl = header.createSpan({ cls: "mkortex-tool-summary" });
+  const summaryEl = header.createSpan({ cls: "mesa-tool-summary" });
   summaryEl.setText(getToolSummary(toolCall.name, toolCall.input));
   const currentTaskEl = toolCall.name === TOOL_TODO_WRITE ? createCurrentTaskPreview(header, toolCall.input) : null;
-  const statusEl = header.createSpan({ cls: "mkortex-tool-status" });
-  const content = toolEl.createDiv({ cls: "mkortex-tool-content" });
+  const statusEl = header.createSpan({ cls: "mesa-tool-status" });
+  const content = toolEl.createDiv({ cls: "mesa-tool-content" });
   return { toolEl, header, iconEl, nameEl, summaryEl, statusEl, content, currentTaskEl };
 }
 function formatAnswer(raw) {
@@ -46716,19 +46716,19 @@ function renderAskUserQuestionResult(container, toolCall) {
   const questions = toolCall.input.questions;
   const answers = resolveAskUserAnswers(toolCall);
   if (!questions || !Array.isArray(questions) || !answers) return false;
-  const reviewEl = container.createDiv({ cls: "mkortex-ask-review" });
+  const reviewEl = container.createDiv({ cls: "mesa-ask-review" });
   for (let i = 0; i < questions.length; i++) {
     const q = questions[i];
     const answer = formatAnswer(
       (_a3 = q.id ? answers[q.id] : void 0) != null ? _a3 : answers[q.question]
     );
-    const pairEl = reviewEl.createDiv({ cls: "mkortex-ask-review-pair" });
-    pairEl.createDiv({ text: `${i + 1}.`, cls: "mkortex-ask-review-num" });
-    const bodyEl = pairEl.createDiv({ cls: "mkortex-ask-review-body" });
-    bodyEl.createDiv({ text: q.question, cls: "mkortex-ask-review-q-text" });
+    const pairEl = reviewEl.createDiv({ cls: "mesa-ask-review-pair" });
+    pairEl.createDiv({ text: `${i + 1}.`, cls: "mesa-ask-review-num" });
+    const bodyEl = pairEl.createDiv({ cls: "mesa-ask-review-body" });
+    bodyEl.createDiv({ text: q.question, cls: "mesa-ask-review-q-text" });
     bodyEl.createDiv({
       text: answer || t10("chat.ask.notAnswered"),
-      cls: answer ? "mkortex-ask-review-a-text" : "mkortex-ask-review-empty"
+      cls: answer ? "mesa-ask-review-a-text" : "mesa-ask-review-empty"
     });
   }
   return true;
@@ -46742,50 +46742,50 @@ function renderAskUserQuestionFallback(container, toolCall, initialText) {
   }
   if (initialText || toolCall.result) {
     container.createDiv({
-      cls: "mkortex-ask-review-prompt",
+      cls: "mesa-ask-review-prompt",
       text: initialText || toolCall.result || t10("tools.empty.waitingForAnswer")
     });
   }
   for (let questionIndex = 0; questionIndex < questions.length; questionIndex++) {
     const question = questions[questionIndex];
-    const reviewEl = container.createDiv({ cls: "mkortex-ask-review" });
-    const pairEl = reviewEl.createDiv({ cls: "mkortex-ask-review-pair" });
-    pairEl.createDiv({ text: `${questionIndex + 1}.`, cls: "mkortex-ask-review-num" });
-    const bodyEl = pairEl.createDiv({ cls: "mkortex-ask-review-body" });
-    bodyEl.createDiv({ text: question.question, cls: "mkortex-ask-review-q-text" });
+    const reviewEl = container.createDiv({ cls: "mesa-ask-review" });
+    const pairEl = reviewEl.createDiv({ cls: "mesa-ask-review-pair" });
+    pairEl.createDiv({ text: `${questionIndex + 1}.`, cls: "mesa-ask-review-num" });
+    const bodyEl = pairEl.createDiv({ cls: "mesa-ask-review-body" });
+    bodyEl.createDiv({ text: question.question, cls: "mesa-ask-review-q-text" });
     if (!Array.isArray(question.options) || question.options.length === 0) {
-      bodyEl.createDiv({ cls: "mkortex-ask-review-empty", text: t10("chat.ask.noOptions") });
+      bodyEl.createDiv({ cls: "mesa-ask-review-empty", text: t10("chat.ask.noOptions") });
       continue;
     }
-    const listEl = bodyEl.createDiv({ cls: "mkortex-ask-list" });
+    const listEl = bodyEl.createDiv({ cls: "mesa-ask-list" });
     question.options.forEach((option, optionIndex) => {
       renderAskUserQuestionOption(listEl, option, optionIndex, question.multiSelect === true);
     });
   }
 }
 function renderAskUserQuestionOption(parentEl, option, optionIndex, isMultiSelect) {
-  const itemEl = parentEl.createDiv({ cls: "mkortex-ask-item is-disabled" });
+  const itemEl = parentEl.createDiv({ cls: "mesa-ask-item is-disabled" });
   if (isMultiSelect) {
-    itemEl.createDiv({ cls: "mkortex-ask-check", text: "[ ] " });
+    itemEl.createDiv({ cls: "mesa-ask-check", text: "[ ] " });
   } else {
-    itemEl.createDiv({ cls: "mkortex-ask-item-num", text: `${optionIndex + 1}. ` });
+    itemEl.createDiv({ cls: "mesa-ask-item-num", text: `${optionIndex + 1}. ` });
   }
-  const contentEl = itemEl.createDiv({ cls: "mkortex-ask-item-content" });
-  const labelRowEl = contentEl.createDiv({ cls: "mkortex-ask-label-row" });
-  labelRowEl.createDiv({ cls: "mkortex-ask-item-label", text: option.label });
+  const contentEl = itemEl.createDiv({ cls: "mesa-ask-item-content" });
+  const labelRowEl = contentEl.createDiv({ cls: "mesa-ask-label-row" });
+  labelRowEl.createDiv({ cls: "mesa-ask-item-label", text: option.label });
   if (option.description) {
-    contentEl.createDiv({ cls: "mkortex-ask-item-desc", text: option.description });
+    contentEl.createDiv({ cls: "mesa-ask-item-desc", text: option.description });
   }
 }
 function contentFallback(container, text) {
-  const resultRow = container.createDiv({ cls: "mkortex-tool-result-row" });
-  const resultText = resultRow.createSpan({ cls: "mkortex-tool-result-text" });
+  const resultRow = container.createDiv({ cls: "mesa-tool-result-row" });
+  const resultText = resultRow.createSpan({ cls: "mesa-tool-result-text" });
   resultText.setText(text);
 }
 function renderBashContent(container, input, result, initialText) {
   const command = input.command || "";
   if (command) {
-    const cmdEl = container.createDiv({ cls: "mkortex-tool-bash-command" });
+    const cmdEl = container.createDiv({ cls: "mesa-tool-bash-command" });
     cmdEl.setText(`$ ${command}`);
   }
   if (initialText) {
@@ -46793,11 +46793,11 @@ function renderBashContent(container, input, result, initialText) {
   } else if (result) {
     renderLinesExpanded(container, result, 20);
   } else {
-    container.createDiv({ cls: "mkortex-tool-empty", text: t10("tools.empty.noResult") });
+    container.createDiv({ cls: "mesa-tool-empty", text: t10("tools.empty.noResult") });
   }
 }
 function createCurrentTaskPreview(header, input) {
-  const currentTaskEl = header.createSpan({ cls: "mkortex-tool-current" });
+  const currentTaskEl = header.createSpan({ cls: "mesa-tool-current" });
   const currentTask = getCurrentTask(input);
   if (currentTask) {
     currentTaskEl.setText(currentTask.activeForm);
@@ -46808,20 +46808,20 @@ function createTodoToggleHandler(currentTaskEl, statusEl, onExpandChange) {
   return (expanded) => {
     if (onExpandChange) onExpandChange(expanded);
     if (currentTaskEl) {
-      currentTaskEl.toggleClass("mkortex-hidden", expanded);
+      currentTaskEl.toggleClass("mesa-hidden", expanded);
     }
     if (statusEl) {
-      statusEl.toggleClass("mkortex-hidden", expanded);
+      statusEl.toggleClass("mesa-hidden", expanded);
     }
   };
 }
 function renderToolContent(content, toolCall, initialText) {
   var _a3;
   if (toolCall.name === TOOL_TODO_WRITE) {
-    content.addClass("mkortex-tool-content-todo");
+    content.addClass("mesa-tool-content-todo");
     renderTodoWriteResult(content, toolCall.input);
   } else if (toolCall.name === TOOL_ASK_USER_QUESTION) {
-    content.addClass("mkortex-tool-content-ask");
+    content.addClass("mesa-tool-content-ask");
     if (initialText) {
       renderAskUserQuestionFallback(content, toolCall, t10("tools.empty.waitingForAnswer"));
     } else if (!renderAskUserQuestionResult(content, toolCall)) {
@@ -46859,40 +46859,40 @@ function updateToolCallResult(toolId, toolCall, toolCallElements) {
   const toolEl = toolCallElements.get(toolId);
   if (!toolEl) return;
   if (toolCall.name === TOOL_TODO_WRITE) {
-    const statusEl2 = toolEl.querySelector(".mkortex-tool-status");
+    const statusEl2 = toolEl.querySelector(".mesa-tool-status");
     if (statusEl2) {
       setTodoWriteStatus(statusEl2, toolCall.input);
     }
-    const content2 = toolEl.querySelector(".mkortex-tool-content");
+    const content2 = toolEl.querySelector(".mesa-tool-content");
     if (content2) {
       renderTodoWriteResult(content2, toolCall.input);
     }
-    const nameEl = toolEl.querySelector(".mkortex-tool-name");
+    const nameEl = toolEl.querySelector(".mesa-tool-name");
     if (nameEl) {
       nameEl.setText(getToolName(toolCall.name, toolCall.input));
     }
-    const currentTaskEl = toolEl.querySelector(".mkortex-tool-current");
+    const currentTaskEl = toolEl.querySelector(".mesa-tool-current");
     if (currentTaskEl) {
       const currentTask = getCurrentTask(toolCall.input);
       currentTaskEl.setText(currentTask ? currentTask.activeForm : "");
     }
     return;
   }
-  const statusEl = toolEl.querySelector(".mkortex-tool-status");
+  const statusEl = toolEl.querySelector(".mesa-tool-status");
   if (statusEl) {
     setGenericToolHeaderRight(statusEl, toolCall);
   }
   if (toolCall.name === TOOL_ASK_USER_QUESTION) {
-    const content2 = toolEl.querySelector(".mkortex-tool-content");
+    const content2 = toolEl.querySelector(".mesa-tool-content");
     if (content2) {
-      content2.addClass("mkortex-tool-content-ask");
+      content2.addClass("mesa-tool-content-ask");
       if (!renderAskUserQuestionResult(content2, toolCall)) {
         renderAskUserQuestionFallback(content2, toolCall);
       }
     }
     return;
   }
-  const content = toolEl.querySelector(".mkortex-tool-content");
+  const content = toolEl.querySelector(".mesa-tool-content");
   if (content) {
     content.empty();
     renderExpandedContent(content, toolCall.name, toolCall.result, toolCall.input);
@@ -47060,7 +47060,7 @@ var InputController = class {
     const streamGeneration = state.bumpStreamGeneration();
     const welcomeEl = this.deps.getWelcomeEl();
     if (welcomeEl) {
-      welcomeEl.addClass("mkortex-hidden");
+      welcomeEl.addClass("mesa-hidden");
     }
     fileContextManager == null ? void 0 : fileContextManager.startSession();
     const images = (_d = imageOverride != null ? imageOverride : imageContextManager == null ? void 0 : imageContextManager.getAttachedImages()) != null ? _d : [];
@@ -47113,7 +47113,7 @@ var InputController = class {
     this.awaitingProviderAssistantStart = true;
     streamController.showThinkingIndicator(
       isCompact ? t10("chat.compacting") : void 0,
-      isCompact ? "mkortex-thinking--compact" : void 0
+      isCompact ? "mesa-thinking--compact" : void 0
     );
     state.responseStartTime = performance.now();
     let wasInterrupted = false;
@@ -47192,7 +47192,7 @@ var InputController = class {
         if (didCancelThisTurn && !state.pendingNewSessionPlan) {
           await streamController.appendText(`
 
-<span class="mkortex-interrupted">${t10("chat.messages.interrupted")}</span> <span class="mkortex-interrupted-hint">\xB7 ${t10("chat.messages.interruptedHint")}</span>`);
+<span class="mesa-interrupted">${t10("chat.messages.interrupted")}</span> <span class="mesa-interrupted-hint">\xB7 ${t10("chat.messages.interruptedHint")}</span>`);
         }
         streamController.hideThinkingIndicator();
         state.isStreaming = false;
@@ -47206,13 +47206,13 @@ var InputController = class {
             finalAssistantMsg.durationSeconds = durationSeconds;
             finalAssistantMsg.durationFlavorWord = flavorWord;
             if (state.currentContentEl) {
-              const footerEl = state.currentContentEl.createDiv({ cls: "mkortex-response-footer" });
+              const footerEl = state.currentContentEl.createDiv({ cls: "mesa-response-footer" });
               footerEl.createSpan({
                 text: `* ${t10("chat.messages.completionDuration", {
                   flavor: flavorWord,
                   duration: formatDurationMmSs(durationSeconds)
                 })}`,
-                cls: "mkortex-baked-duration"
+                cls: "mesa-baked-duration"
               });
             }
           }
@@ -47295,14 +47295,14 @@ var InputController = class {
     if (visibleQueuedMessage) {
       const isPendingSteerOnly = !state.queuedMessage && !!this.pendingSteerMessage;
       indicatorEl.createSpan({
-        cls: "mkortex-queue-indicator-text",
+        cls: "mesa-queue-indicator-text",
         text: `${isPendingSteerOnly ? `\u2319 ${t10("chat.queue.steering")} ` : `\u2319 ${t10("chat.queue.queued")} `}${this.getQueuedMessageDisplay(visibleQueuedMessage)}`
       });
       if (state.queuedMessage) {
-        const actionsEl = indicatorEl.createDiv({ cls: "mkortex-queue-indicator-actions" });
+        const actionsEl = indicatorEl.createDiv({ cls: "mesa-queue-indicator-actions" });
         if (this.canSteerQueuedMessage()) {
           const steerButton = actionsEl.createEl("button", {
-            cls: "mkortex-queue-indicator-action",
+            cls: "mesa-queue-indicator-action",
             text: this.steerInFlight ? t10("chat.queue.steeringInProgress") : t10("chat.queue.steerNow")
           });
           steerButton.setAttribute("type", "button");
@@ -47334,12 +47334,12 @@ var InputController = class {
           this.clearQueuedMessage();
         });
       }
-      indicatorEl.addClass("mkortex-visible-flex");
-      indicatorEl.removeClass("mkortex-hidden");
+      indicatorEl.addClass("mesa-visible-flex");
+      indicatorEl.removeClass("mesa-hidden");
       return;
     }
-    indicatorEl.removeClass("mkortex-visible-flex");
-    indicatorEl.addClass("mkortex-hidden");
+    indicatorEl.removeClass("mesa-visible-flex");
+    indicatorEl.addClass("mesa-hidden");
   }
   clearQueuedMessage() {
     const { state } = this.deps;
@@ -47446,7 +47446,7 @@ var InputController = class {
   }
   createQueueIconButton(parentEl, icon, label) {
     const button = parentEl.createEl("button", {
-      cls: "mkortex-queue-indicator-icon-action",
+      cls: "mesa-queue-indicator-icon-action",
       attr: {
         "aria-label": label,
         title: label,
@@ -47590,7 +47590,7 @@ var InputController = class {
   activateStreamingAssistantMessage(message) {
     const { state, renderer } = this.deps;
     const msgEl = renderer.addMessage(message);
-    const contentEl = msgEl.querySelector(".mkortex-message-content");
+    const contentEl = msgEl.querySelector(".mesa-message-content");
     if (!contentEl) {
       return;
     }
@@ -47836,23 +47836,23 @@ var InputController = class {
     if (!parentEl) {
       throw new Error(t10("errors.inputDetached"));
     }
-    const headerEl = parentEl.createDiv({ cls: "mkortex-ask-approval-info" });
+    const headerEl = parentEl.createDiv({ cls: "mesa-ask-approval-info" });
     headerEl.remove();
-    const toolEl = headerEl.createDiv({ cls: "mkortex-ask-approval-tool" });
-    const iconEl = toolEl.createSpan({ cls: "mkortex-ask-approval-icon" });
+    const toolEl = headerEl.createDiv({ cls: "mesa-ask-approval-tool" });
+    const iconEl = toolEl.createSpan({ cls: "mesa-ask-approval-icon" });
     iconEl.setAttribute("aria-hidden", "true");
     setToolIcon(iconEl, toolName);
-    toolEl.createSpan({ text: getToolName(toolName, _input), cls: "mkortex-ask-approval-tool-name" });
+    toolEl.createSpan({ text: getToolName(toolName, _input), cls: "mesa-ask-approval-tool-name" });
     if (approvalOptions == null ? void 0 : approvalOptions.decisionReason) {
-      headerEl.createDiv({ text: approvalOptions.decisionReason, cls: "mkortex-ask-approval-reason" });
+      headerEl.createDiv({ text: approvalOptions.decisionReason, cls: "mesa-ask-approval-reason" });
     }
     if (approvalOptions == null ? void 0 : approvalOptions.blockedPath) {
-      headerEl.createDiv({ text: approvalOptions.blockedPath, cls: "mkortex-ask-approval-blocked-path" });
+      headerEl.createDiv({ text: approvalOptions.blockedPath, cls: "mesa-ask-approval-blocked-path" });
     }
     if (approvalOptions == null ? void 0 : approvalOptions.agentID) {
-      headerEl.createDiv({ text: t10("permissions.agent", { id: approvalOptions.agentID }), cls: "mkortex-ask-approval-agent" });
+      headerEl.createDiv({ text: t10("permissions.agent", { id: approvalOptions.agentID }), cls: "mesa-ask-approval-agent" });
     }
-    headerEl.createDiv({ text: description, cls: "mkortex-ask-approval-desc" });
+    headerEl.createDiv({ text: description, cls: "mesa-ask-approval-desc" });
     const decisionOptions = (_a3 = approvalOptions == null ? void 0 : approvalOptions.decisionOptions) != null ? _a3 : DEFAULT_APPROVAL_DECISION_OPTIONS;
     const optionDecisionMap = /* @__PURE__ */ new Map();
     const questionOptions = decisionOptions.map((option, index) => {
@@ -48038,19 +48038,19 @@ var InputController = class {
   }
   hideInputContainer(inputContainerEl) {
     this.inputContainerHideDepth++;
-    inputContainerEl.addClass("mkortex-hidden");
+    inputContainerEl.addClass("mesa-hidden");
   }
   restoreInputContainer(inputContainerEl) {
     if (this.inputContainerHideDepth <= 0) return;
     this.inputContainerHideDepth--;
     if (this.inputContainerHideDepth === 0) {
-      inputContainerEl.removeClass("mkortex-hidden");
+      inputContainerEl.removeClass("mesa-hidden");
     }
   }
   resetInputContainerVisibility() {
     if (this.inputContainerHideDepth > 0) {
       this.inputContainerHideDepth = 0;
-      this.deps.getInputContainerEl().removeClass("mkortex-hidden");
+      this.deps.getInputContainerEl().removeClass("mesa-hidden");
     }
   }
   // ============================================
@@ -48212,7 +48212,7 @@ var NavigationController = class {
     const inputEl = this.deps.getInputEl();
     if (!messagesEl || !inputEl) return;
     messagesEl.setAttribute("tabindex", "0");
-    messagesEl.addClass("mkortex-messages-focusable");
+    messagesEl.addClass("mesa-messages-focusable");
     messagesEl.addEventListener("keydown", this.boundMessagesKeydown);
     this.keyboardDocument = messagesEl.ownerDocument;
     this.keyboardDocument.addEventListener("keyup", this.boundKeyup);
@@ -48229,7 +48229,7 @@ var NavigationController = class {
     this.keyboardDocument = null;
     const messagesEl = this.deps.getMessagesEl();
     messagesEl == null ? void 0 : messagesEl.removeEventListener("keydown", this.boundMessagesKeydown);
-    messagesEl == null ? void 0 : messagesEl.removeClass("mkortex-messages-focusable");
+    messagesEl == null ? void 0 : messagesEl.removeClass("mesa-messages-focusable");
     const inputEl = this.deps.getInputEl();
     inputEl == null ? void 0 : inputEl.removeEventListener("keydown", this.boundInputKeydown, { capture: true });
   }
@@ -48325,7 +48325,7 @@ function createSelectionHighlighter() {
         if (e2.is(showHighlight)) {
           const builder = new import_state.RangeSetBuilder();
           builder.add(e2.value.from, e2.value.to, import_view.Decoration.mark({
-            class: "mkortex-selection-highlight"
+            class: "mesa-selection-highlight"
           }));
           return builder.finish();
         } else if (e2.is(hideHighlight)) {
@@ -48371,7 +48371,7 @@ function hideSelectionHighlight(editorView) {
 // src/features/chat/controllers/SelectionController.ts
 var SELECTION_POLL_INTERVAL = 250;
 var INPUT_HANDOFF_GRACE_MS = 1500;
-var HIGHLIGHT_KEY = "mkortex-selection";
+var HIGHLIGHT_KEY = "mesa-selection";
 var SelectionController = class {
   constructor(app, indicatorEl, inputEl, contextRowEl, onVisibilityChange, focusScopeEl) {
     this.storedSelection = null;
@@ -48647,9 +48647,9 @@ var SelectionController = class {
     if (this.storedSelection) {
       const lineText = this.storedSelection.lineCount === 1 ? "line" : "lines";
       this.indicatorEl.textContent = `${this.storedSelection.lineCount} ${lineText} selected`;
-      this.indicatorEl.removeClass("mkortex-hidden");
+      this.indicatorEl.removeClass("mesa-hidden");
     } else {
-      this.indicatorEl.addClass("mkortex-hidden");
+      this.indicatorEl.addClass("mesa-hidden");
     }
     this.updateContextRowVisibility();
   }
@@ -48841,13 +48841,13 @@ function truncateDescription(description, maxLength = 40) {
   return description.substring(0, maxLength) + "...";
 }
 function createSection(parentEl, title, bodyClass) {
-  const wrapperEl = parentEl.createDiv({ cls: "mkortex-subagent-section" });
-  const headerEl = wrapperEl.createDiv({ cls: "mkortex-subagent-section-header" });
+  const wrapperEl = parentEl.createDiv({ cls: "mesa-subagent-section" });
+  const headerEl = wrapperEl.createDiv({ cls: "mesa-subagent-section-header" });
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
-  const titleEl = headerEl.createDiv({ cls: "mkortex-subagent-section-title" });
+  const titleEl = headerEl.createDiv({ cls: "mesa-subagent-section-title" });
   titleEl.setText(title);
-  const bodyEl = wrapperEl.createDiv({ cls: "mkortex-subagent-section-body" });
+  const bodyEl = wrapperEl.createDiv({ cls: "mesa-subagent-section-body" });
   if (bodyClass) bodyEl.addClass(bodyClass);
   const state = { isExpanded: false };
   setupCollapsible(wrapperEl, headerEl, bodyEl, state, {
@@ -48857,7 +48857,7 @@ function createSection(parentEl, title, bodyClass) {
 }
 function setPromptText(promptBodyEl, prompt) {
   promptBodyEl.empty();
-  const textEl = promptBodyEl.createDiv({ cls: "mkortex-subagent-prompt-text" });
+  const textEl = promptBodyEl.createDiv({ cls: "mesa-subagent-prompt-text" });
   textEl.setText(prompt || t10("notices.noPromptProvided"));
 }
 function updateSyncHeaderAria(state) {
@@ -48870,14 +48870,14 @@ function updateSyncHeaderAria(state) {
 function renderSubagentToolContent(contentEl, toolCall) {
   contentEl.empty();
   if (!toolCall.result && toolCall.status === "running") {
-    const emptyEl = contentEl.createDiv({ cls: "mkortex-subagent-tool-empty" });
+    const emptyEl = contentEl.createDiv({ cls: "mesa-subagent-tool-empty" });
     emptyEl.setText(t10("agent.running"));
     return;
   }
   renderExpandedContent(contentEl, toolCall.name, toolCall.result, toolCall.input);
 }
 function setSubagentToolStatus(view, status) {
-  view.statusEl.className = "mkortex-subagent-tool-status";
+  view.statusEl.className = "mesa-subagent-tool-status";
   view.statusEl.addClass(`status-${status}`);
   view.statusEl.empty();
   view.statusEl.setAttribute("aria-label", `Status: ${status}`);
@@ -48887,7 +48887,7 @@ function setSubagentToolStatus(view, status) {
   }
 }
 function updateSubagentToolView(view, toolCall) {
-  view.wrapperEl.className = `mkortex-subagent-tool-item mkortex-subagent-tool-${toolCall.status}`;
+  view.wrapperEl.className = `mesa-subagent-tool-item mesa-subagent-tool-${toolCall.status}`;
   view.nameEl.setText(getToolName(toolCall.name, toolCall.input));
   view.summaryEl.setText(getToolSummary(toolCall.name, toolCall.input));
   setSubagentToolStatus(view, toolCall.status);
@@ -48896,19 +48896,19 @@ function updateSubagentToolView(view, toolCall) {
 function createSubagentToolView(parentEl, toolCall) {
   var _a3, _b3;
   const wrapperEl = parentEl.createDiv({
-    cls: `mkortex-subagent-tool-item mkortex-subagent-tool-${toolCall.status}`
+    cls: `mesa-subagent-tool-item mesa-subagent-tool-${toolCall.status}`
   });
   wrapperEl.dataset.toolId = toolCall.id;
-  const headerEl = wrapperEl.createDiv({ cls: "mkortex-subagent-tool-header" });
+  const headerEl = wrapperEl.createDiv({ cls: "mesa-subagent-tool-header" });
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
-  const iconEl = headerEl.createDiv({ cls: "mkortex-subagent-tool-icon" });
+  const iconEl = headerEl.createDiv({ cls: "mesa-subagent-tool-icon" });
   iconEl.setAttribute("aria-hidden", "true");
   setToolIcon(iconEl, toolCall.name);
-  const nameEl = headerEl.createDiv({ cls: "mkortex-subagent-tool-name" });
-  const summaryEl = headerEl.createDiv({ cls: "mkortex-subagent-tool-summary" });
-  const statusEl = headerEl.createDiv({ cls: "mkortex-subagent-tool-status" });
-  const contentEl = wrapperEl.createDiv({ cls: "mkortex-subagent-tool-content" });
+  const nameEl = headerEl.createDiv({ cls: "mesa-subagent-tool-name" });
+  const summaryEl = headerEl.createDiv({ cls: "mesa-subagent-tool-summary" });
+  const statusEl = headerEl.createDiv({ cls: "mesa-subagent-tool-status" });
+  const contentEl = wrapperEl.createDiv({ cls: "mesa-subagent-tool-content" });
   const collapseState = { isExpanded: (_a3 = toolCall.isExpanded) != null ? _a3 : false };
   setupCollapsible(wrapperEl, headerEl, contentEl, collapseState, {
     initiallyExpanded: (_b3 = toolCall.isExpanded) != null ? _b3 : false,
@@ -48931,8 +48931,8 @@ function ensureResultSection(state) {
   if (state.resultSectionEl && state.resultBodyEl) {
     return { wrapperEl: state.resultSectionEl, bodyEl: state.resultBodyEl };
   }
-  const section = createSection(state.contentEl, t10("agent.result"), "mkortex-subagent-result-body");
-  section.wrapperEl.addClass("mkortex-subagent-section-result");
+  const section = createSection(state.contentEl, t10("agent.result"), "mesa-subagent-result-body");
+  section.wrapperEl.addClass("mesa-subagent-section-result");
   state.resultSectionEl = section.wrapperEl;
   state.resultBodyEl = section.bodyEl;
   return section;
@@ -48940,7 +48940,7 @@ function ensureResultSection(state) {
 function setResultText(state, text) {
   const section = ensureResultSection(state);
   section.bodyEl.empty();
-  const resultEl = section.bodyEl.createDiv({ cls: "mkortex-subagent-result-output" });
+  const resultEl = section.bodyEl.createDiv({ cls: "mesa-subagent-result-output" });
   resultEl.setText(text);
 }
 function hydrateSyncSubagentStateFromStored(state, subagent) {
@@ -48965,7 +48965,7 @@ function hydrateSyncSubagentStateFromStored(state, subagent) {
     const fallback = subagent.status === "error" ? "ERROR" : "DONE";
     finalizeSubagentBlock(state, subagent.result || fallback, subagent.status === "error");
   } else {
-    state.statusEl.className = "mkortex-subagent-status status-running";
+    state.statusEl.className = "mesa-subagent-status status-running";
     state.statusEl.empty();
     updateSyncHeaderAria(state);
   }
@@ -48981,23 +48981,23 @@ function createSubagentBlock(parentEl, taskToolId, taskInput) {
     toolCalls: [],
     isExpanded: false
   };
-  const wrapperEl = parentEl.createDiv({ cls: "mkortex-subagent-list" });
+  const wrapperEl = parentEl.createDiv({ cls: "mesa-subagent-list" });
   wrapperEl.dataset.subagentId = taskToolId;
-  const headerEl = wrapperEl.createDiv({ cls: "mkortex-subagent-header" });
+  const headerEl = wrapperEl.createDiv({ cls: "mesa-subagent-header" });
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
-  const iconEl = headerEl.createDiv({ cls: "mkortex-subagent-icon" });
+  const iconEl = headerEl.createDiv({ cls: "mesa-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
   (0, import_obsidian14.setIcon)(iconEl, getToolIcon(TOOL_TASK));
-  const labelEl = headerEl.createDiv({ cls: "mkortex-subagent-label" });
+  const labelEl = headerEl.createDiv({ cls: "mesa-subagent-label" });
   labelEl.setText(truncateDescription(description));
-  const statusEl = headerEl.createDiv({ cls: "mkortex-subagent-status status-running" });
+  const statusEl = headerEl.createDiv({ cls: "mesa-subagent-status status-running" });
   statusEl.setAttribute("aria-label", t10("tools.status.runningAria"));
-  const contentEl = wrapperEl.createDiv({ cls: "mkortex-subagent-content" });
-  const promptSection = createSection(contentEl, t10("agent.prompt"), "mkortex-subagent-prompt-body");
-  promptSection.wrapperEl.addClass("mkortex-subagent-section-prompt");
+  const contentEl = wrapperEl.createDiv({ cls: "mesa-subagent-content" });
+  const promptSection = createSection(contentEl, t10("agent.prompt"), "mesa-subagent-prompt-body");
+  promptSection.wrapperEl.addClass("mesa-subagent-section-prompt");
   setPromptText(promptSection.bodyEl, prompt);
-  const toolsContainerEl = contentEl.createDiv({ cls: "mkortex-subagent-tools" });
+  const toolsContainerEl = contentEl.createDiv({ cls: "mesa-subagent-tools" });
   setupCollapsible(wrapperEl, headerEl, contentEl, info);
   const state = {
     wrapperEl,
@@ -49059,7 +49059,7 @@ function finalizeSubagentBlock(state, result, isError) {
   state.info.status = isError ? "error" : "completed";
   state.info.result = result;
   state.labelEl.setText(truncateDescription(state.info.description));
-  state.statusEl.className = "mkortex-subagent-status";
+  state.statusEl.className = "mesa-subagent-status";
   state.statusEl.addClass(`status-${state.info.status}`);
   state.statusEl.empty();
   if (state.info.status === "completed") {
@@ -49140,10 +49140,10 @@ function updateAsyncLabel(state) {
 function renderAsyncContentLikeSync(contentEl, subagent, displayStatus) {
   var _a3;
   contentEl.empty();
-  const promptSection = createSection(contentEl, t10("agent.prompt"), "mkortex-subagent-prompt-body");
-  promptSection.wrapperEl.addClass("mkortex-subagent-section-prompt");
+  const promptSection = createSection(contentEl, t10("agent.prompt"), "mesa-subagent-prompt-body");
+  promptSection.wrapperEl.addClass("mesa-subagent-section-prompt");
   setPromptText(promptSection.bodyEl, subagent.prompt || "");
-  const toolsContainerEl = contentEl.createDiv({ cls: "mkortex-subagent-tools" });
+  const toolsContainerEl = contentEl.createDiv({ cls: "mesa-subagent-tools" });
   for (const originalToolCall of subagent.toolCalls) {
     const toolCall = {
       ...originalToolCall,
@@ -49154,9 +49154,9 @@ function renderAsyncContentLikeSync(contentEl, subagent, displayStatus) {
   if (displayStatus === "running") {
     return;
   }
-  const resultSection = createSection(contentEl, t10("agent.result"), "mkortex-subagent-result-body");
-  resultSection.wrapperEl.addClass("mkortex-subagent-section-result");
-  const resultEl = resultSection.bodyEl.createDiv({ cls: "mkortex-subagent-result-output" });
+  const resultSection = createSection(contentEl, t10("agent.result"), "mesa-subagent-result-body");
+  resultSection.wrapperEl.addClass("mesa-subagent-section-result");
+  const resultEl = resultSection.bodyEl.createDiv({ cls: "mesa-subagent-result-output" });
   if (displayStatus === "orphaned") {
     resultEl.setText(subagent.result || t10("notices.conversationEndedEarly"));
     return;
@@ -49178,24 +49178,24 @@ function createAsyncSubagentBlock(parentEl, taskToolId, taskInput) {
     isExpanded: false,
     asyncStatus: "pending"
   };
-  const wrapperEl = parentEl.createDiv({ cls: "mkortex-subagent-list" });
+  const wrapperEl = parentEl.createDiv({ cls: "mesa-subagent-list" });
   setAsyncWrapperStatus(wrapperEl, "pending");
   wrapperEl.dataset.asyncSubagentId = taskToolId;
-  const headerEl = wrapperEl.createDiv({ cls: "mkortex-subagent-header" });
+  const headerEl = wrapperEl.createDiv({ cls: "mesa-subagent-header" });
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
   headerEl.setAttribute("aria-expanded", "false");
   headerEl.setAttribute("aria-label", `Background task: ${description} - Initializing - click to expand`);
-  const iconEl = headerEl.createDiv({ cls: "mkortex-subagent-icon" });
+  const iconEl = headerEl.createDiv({ cls: "mesa-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
   (0, import_obsidian14.setIcon)(iconEl, getToolIcon(TOOL_TASK));
-  const labelEl = headerEl.createDiv({ cls: "mkortex-subagent-label" });
+  const labelEl = headerEl.createDiv({ cls: "mesa-subagent-label" });
   labelEl.setText(truncateDescription(description));
-  const statusTextEl = headerEl.createDiv({ cls: "mkortex-subagent-status-text" });
+  const statusTextEl = headerEl.createDiv({ cls: "mesa-subagent-status-text" });
   statusTextEl.setText(t10("agent.initializing"));
-  const statusEl = headerEl.createDiv({ cls: "mkortex-subagent-status status-running" });
+  const statusEl = headerEl.createDiv({ cls: "mesa-subagent-status status-running" });
   statusEl.setAttribute("aria-label", t10("tools.status.runningAria"));
-  const contentEl = wrapperEl.createDiv({ cls: "mkortex-subagent-content" });
+  const contentEl = wrapperEl.createDiv({ cls: "mesa-subagent-content" });
   renderAsyncContentLikeSync(contentEl, info, "running");
   setupCollapsible(wrapperEl, headerEl, contentEl, info);
   return {
@@ -49223,7 +49223,7 @@ function finalizeAsyncSubagent(state, result, isError) {
   setAsyncWrapperStatus(state.wrapperEl, isError ? "error" : "completed");
   updateAsyncLabel(state);
   state.statusTextEl.setText(isError ? "Error" : "");
-  state.statusEl.className = "mkortex-subagent-status";
+  state.statusEl.className = "mesa-subagent-status";
   state.statusEl.addClass(`status-${isError ? "error" : "completed"}`);
   state.statusEl.empty();
   if (isError) {
@@ -49245,7 +49245,7 @@ function markAsyncSubagentOrphaned(state) {
   setAsyncWrapperStatus(state.wrapperEl, "orphaned");
   updateAsyncLabel(state);
   state.statusTextEl.setText(t10("agent.orphaned"));
-  state.statusEl.className = "mkortex-subagent-status status-error";
+  state.statusEl.className = "mesa-subagent-status status-error";
   state.statusEl.empty();
   (0, import_obsidian14.setIcon)(state.statusEl, "alert-circle");
   state.wrapperEl.addClass("error");
@@ -49253,7 +49253,7 @@ function markAsyncSubagentOrphaned(state) {
   renderAsyncContentLikeSync(state.contentEl, state.info, "orphaned");
 }
 function renderStoredAsyncSubagent(parentEl, subagent) {
-  const wrapperEl = parentEl.createDiv({ cls: "mkortex-subagent-list" });
+  const wrapperEl = parentEl.createDiv({ cls: "mesa-subagent-list" });
   const displayStatus = getAsyncDisplayStatus(subagent.asyncStatus);
   setAsyncWrapperStatus(wrapperEl, displayStatus);
   if (displayStatus === "completed") {
@@ -49264,7 +49264,7 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
   wrapperEl.dataset.asyncSubagentId = subagent.id;
   const statusText = getAsyncStatusText(subagent.asyncStatus);
   const statusAriaLabel = getAsyncStatusAriaLabel(subagent.asyncStatus);
-  const headerEl = wrapperEl.createDiv({ cls: "mkortex-subagent-header" });
+  const headerEl = wrapperEl.createDiv({ cls: "mesa-subagent-header" });
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
   headerEl.setAttribute("aria-expanded", "false");
@@ -49272,12 +49272,12 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
     "aria-label",
     `Background task: ${subagent.description} - ${statusAriaLabel} - click to expand`
   );
-  const iconEl = headerEl.createDiv({ cls: "mkortex-subagent-icon" });
+  const iconEl = headerEl.createDiv({ cls: "mesa-subagent-icon" });
   iconEl.setAttribute("aria-hidden", "true");
   (0, import_obsidian14.setIcon)(iconEl, getToolIcon(TOOL_TASK));
-  const labelEl = headerEl.createDiv({ cls: "mkortex-subagent-label" });
+  const labelEl = headerEl.createDiv({ cls: "mesa-subagent-label" });
   labelEl.setText(truncateDescription(subagent.description));
-  const statusTextEl = headerEl.createDiv({ cls: "mkortex-subagent-status-text" });
+  const statusTextEl = headerEl.createDiv({ cls: "mesa-subagent-status-text" });
   statusTextEl.setText(statusText);
   let statusIconClass;
   switch (displayStatus) {
@@ -49291,7 +49291,7 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
     default:
       statusIconClass = "status-running";
   }
-  const statusEl = headerEl.createDiv({ cls: `mkortex-subagent-status ${statusIconClass}` });
+  const statusEl = headerEl.createDiv({ cls: `mesa-subagent-status ${statusIconClass}` });
   statusEl.setAttribute("aria-label", `Status: ${statusAriaLabel}`);
   switch (displayStatus) {
     case "completed":
@@ -49304,7 +49304,7 @@ function renderStoredAsyncSubagent(parentEl, subagent) {
       (0, import_obsidian14.setIcon)(statusEl, "alert-circle");
       break;
   }
-  const contentEl = wrapperEl.createDiv({ cls: "mkortex-subagent-content" });
+  const contentEl = wrapperEl.createDiv({ cls: "mesa-subagent-content" });
   renderAsyncContentLikeSync(contentEl, subagent, displayStatus);
   const state = { isExpanded: false };
   setupCollapsible(wrapperEl, headerEl, contentEl, state);
@@ -49336,24 +49336,24 @@ function createWriteEditBlock(parentEl, toolCall, options = {}) {
   const filePath = toolCall.input.file_path || "";
   const toolLabel = getToolName(toolCall.name, toolCall.input);
   const baseAriaLabel = `${toolLabel}: ${shortenPath2(filePath)}`;
-  const wrapperEl = parentEl.createDiv({ cls: "mkortex-write-edit-block" });
+  const wrapperEl = parentEl.createDiv({ cls: "mesa-write-edit-block" });
   wrapperEl.dataset.toolId = toolCall.id;
-  const headerEl = wrapperEl.createDiv({ cls: "mkortex-write-edit-header" });
+  const headerEl = wrapperEl.createDiv({ cls: "mesa-write-edit-header" });
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
-  const iconEl = headerEl.createDiv({ cls: "mkortex-write-edit-icon" });
+  const iconEl = headerEl.createDiv({ cls: "mesa-write-edit-icon" });
   iconEl.setAttribute("aria-hidden", "true");
   (0, import_obsidian15.setIcon)(iconEl, getToolIcon(toolCall.name));
-  const nameEl = headerEl.createDiv({ cls: "mkortex-write-edit-name" });
+  const nameEl = headerEl.createDiv({ cls: "mesa-write-edit-name" });
   nameEl.setText(toolLabel);
-  const summaryEl = headerEl.createDiv({ cls: "mkortex-write-edit-summary" });
+  const summaryEl = headerEl.createDiv({ cls: "mesa-write-edit-summary" });
   summaryEl.setText(formatToolFileLabel(filePath));
-  const statsEl = headerEl.createDiv({ cls: "mkortex-write-edit-stats" });
-  const statusEl = headerEl.createDiv({ cls: "mkortex-write-edit-status status-running" });
+  const statsEl = headerEl.createDiv({ cls: "mesa-write-edit-stats" });
+  const statusEl = headerEl.createDiv({ cls: "mesa-write-edit-status status-running" });
   statusEl.setAttribute("aria-label", t10("tools.status.runningAria"));
-  const contentEl = wrapperEl.createDiv({ cls: "mkortex-write-edit-content" });
-  const loadingRow = contentEl.createDiv({ cls: "mkortex-write-edit-diff-row" });
-  const loadingEl = loadingRow.createDiv({ cls: "mkortex-write-edit-loading" });
+  const contentEl = wrapperEl.createDiv({ cls: "mesa-write-edit-content" });
+  const loadingRow = contentEl.createDiv({ cls: "mesa-write-edit-diff-row" });
+  const loadingEl = loadingRow.createDiv({ cls: "mesa-write-edit-loading" });
   loadingEl.setText(t10("tools.writeEdit.writing"));
   const state = {
     wrapperEl,
@@ -49378,12 +49378,12 @@ function updateWriteEditWithDiff(state, diffData) {
   const { diffLines, stats } = diffData;
   state.diffLines = diffLines;
   renderDiffStats(state.statsEl, stats);
-  const row = state.contentEl.createDiv({ cls: "mkortex-write-edit-diff-row" });
-  const diffEl = row.createDiv({ cls: "mkortex-write-edit-diff" });
+  const row = state.contentEl.createDiv({ cls: "mesa-write-edit-diff-row" });
+  const diffEl = row.createDiv({ cls: "mesa-write-edit-diff" });
   renderDiffContent(diffEl, diffLines);
 }
 function finalizeWriteEditBlock(state, isError) {
-  state.statusEl.className = "mkortex-write-edit-status";
+  state.statusEl.className = "mesa-write-edit-status";
   state.statusEl.empty();
   if (isError) {
     state.statusEl.addClass("status-error");
@@ -49391,14 +49391,14 @@ function finalizeWriteEditBlock(state, isError) {
     state.statusEl.setAttribute("aria-label", t10("tools.status.errorAria"));
     if (!state.diffLines) {
       state.contentEl.empty();
-      const row = state.contentEl.createDiv({ cls: "mkortex-write-edit-diff-row" });
-      const errorEl = row.createDiv({ cls: "mkortex-write-edit-error" });
+      const row = state.contentEl.createDiv({ cls: "mesa-write-edit-diff-row" });
+      const errorEl = row.createDiv({ cls: "mesa-write-edit-error" });
       errorEl.setText(localizeToolResultText(state.toolCall.result || "") || t10("tools.writeEdit.error"));
     }
   } else if (!state.diffLines) {
     state.contentEl.empty();
-    const row = state.contentEl.createDiv({ cls: "mkortex-write-edit-diff-row" });
-    const doneEl = row.createDiv({ cls: "mkortex-write-edit-done-text" });
+    const row = state.contentEl.createDiv({ cls: "mesa-write-edit-diff-row" });
+    const doneEl = row.createDiv({ cls: "mesa-write-edit-done-text" });
     doneEl.setText(t10("tools.writeEdit.done"));
   }
   if (isError) {
@@ -49413,42 +49413,42 @@ function renderStoredWriteEdit(parentEl, toolCall, options = {}) {
   const toolLabel = getToolName(toolCall.name, toolCall.input);
   const baseAriaLabel = `${toolLabel}: ${shortenPath2(filePath)}`;
   const isError = toolCall.status === "error" || toolCall.status === "blocked";
-  const wrapperEl = parentEl.createDiv({ cls: "mkortex-write-edit-block" });
+  const wrapperEl = parentEl.createDiv({ cls: "mesa-write-edit-block" });
   if (isError) {
     wrapperEl.addClass("error");
   } else if (toolCall.status === "completed") {
     wrapperEl.addClass("done");
   }
   wrapperEl.dataset.toolId = toolCall.id;
-  const headerEl = wrapperEl.createDiv({ cls: "mkortex-write-edit-header" });
+  const headerEl = wrapperEl.createDiv({ cls: "mesa-write-edit-header" });
   headerEl.setAttribute("tabindex", "0");
   headerEl.setAttribute("role", "button");
-  const iconEl = headerEl.createDiv({ cls: "mkortex-write-edit-icon" });
+  const iconEl = headerEl.createDiv({ cls: "mesa-write-edit-icon" });
   iconEl.setAttribute("aria-hidden", "true");
   (0, import_obsidian15.setIcon)(iconEl, getToolIcon(toolCall.name));
-  const nameEl = headerEl.createDiv({ cls: "mkortex-write-edit-name" });
+  const nameEl = headerEl.createDiv({ cls: "mesa-write-edit-name" });
   nameEl.setText(toolLabel);
-  const summaryEl = headerEl.createDiv({ cls: "mkortex-write-edit-summary" });
+  const summaryEl = headerEl.createDiv({ cls: "mesa-write-edit-summary" });
   summaryEl.setText(formatToolFileLabel(filePath));
-  const statsEl = headerEl.createDiv({ cls: "mkortex-write-edit-stats" });
+  const statsEl = headerEl.createDiv({ cls: "mesa-write-edit-stats" });
   if (toolCall.diffData) {
     renderDiffStats(statsEl, toolCall.diffData.stats);
   }
-  const statusEl = headerEl.createDiv({ cls: "mkortex-write-edit-status" });
+  const statusEl = headerEl.createDiv({ cls: "mesa-write-edit-status" });
   if (isError) {
     statusEl.addClass("status-error");
     (0, import_obsidian15.setIcon)(statusEl, "x");
   }
-  const contentEl = wrapperEl.createDiv({ cls: "mkortex-write-edit-content" });
-  const row = contentEl.createDiv({ cls: "mkortex-write-edit-diff-row" });
+  const contentEl = wrapperEl.createDiv({ cls: "mesa-write-edit-content" });
+  const row = contentEl.createDiv({ cls: "mesa-write-edit-diff-row" });
   if (toolCall.diffData && toolCall.diffData.diffLines.length > 0) {
-    const diffEl = row.createDiv({ cls: "mkortex-write-edit-diff" });
+    const diffEl = row.createDiv({ cls: "mesa-write-edit-diff" });
     renderDiffContent(diffEl, toolCall.diffData.diffLines);
   } else if (isError && toolCall.result) {
-    const errorEl = row.createDiv({ cls: "mkortex-write-edit-error" });
+    const errorEl = row.createDiv({ cls: "mesa-write-edit-error" });
     errorEl.setText(localizeToolResultText(toolCall.result));
   } else {
-    const doneEl = row.createDiv({ cls: "mkortex-write-edit-done-text" });
+    const doneEl = row.createDiv({ cls: "mesa-write-edit-done-text" });
     doneEl.setText(isError ? t10("tools.writeEdit.error") : t10("tools.writeEdit.done"));
   }
   const state = { isExpanded: false };
@@ -49623,11 +49623,11 @@ var _StreamController = class _StreamController {
         }
         const toolEl = state.toolCallElements.get(chunk.id);
         if (toolEl) {
-          const nameEl = (_b3 = toolEl.querySelector(".mkortex-tool-name")) != null ? _b3 : toolEl.querySelector(".mkortex-write-edit-name");
+          const nameEl = (_b3 = toolEl.querySelector(".mesa-tool-name")) != null ? _b3 : toolEl.querySelector(".mesa-write-edit-name");
           if (nameEl) {
             nameEl.setText(getToolName(existingToolCall.name, existingToolCall.input));
           }
-          const summaryEl = (_c2 = toolEl.querySelector(".mkortex-tool-summary")) != null ? _c2 : toolEl.querySelector(".mkortex-write-edit-summary");
+          const summaryEl = (_c2 = toolEl.querySelector(".mesa-tool-summary")) != null ? _c2 : toolEl.querySelector(".mesa-write-edit-summary");
           if (summaryEl) {
             summaryEl.setText(getToolSummary(existingToolCall.name, existingToolCall.input));
           }
@@ -49911,7 +49911,7 @@ var _StreamController = class _StreamController {
     if (!state.currentContentEl) return;
     this.hideThinkingIndicator();
     if (!state.currentTextEl) {
-      state.currentTextEl = state.currentContentEl.createDiv({ cls: "mkortex-text-block" });
+      state.currentTextEl = state.currentContentEl.createDiv({ cls: "mesa-text-block" });
       state.currentTextContent = "";
     }
     state.currentTextContent += text;
@@ -50453,11 +50453,11 @@ var _StreamController = class _StreamController {
       var _a4;
       state.setThinkingIndicatorTimeout(null, null);
       if (!state.currentContentEl || state.thinkingEl || state.currentThinkingState) return;
-      const cls = overrideCls ? `mkortex-thinking ${overrideCls}` : "mkortex-thinking";
+      const cls = overrideCls ? `mesa-thinking ${overrideCls}` : "mesa-thinking";
       state.thinkingEl = state.currentContentEl.createDiv({ cls });
       const text = overrideText || FLAVOR_TEXTS[Math.floor(Math.random() * FLAVOR_TEXTS.length)];
       state.thinkingEl.createSpan({ text });
-      const timerSpan = state.thinkingEl.createSpan({ cls: "mkortex-thinking-hint" });
+      const timerSpan = state.thinkingEl.createSpan({ cls: "mesa-thinking-hint" });
       const updateTimer = () => {
         if (!state.responseStartTime) return;
         if (!timerSpan.isConnected) {
@@ -50500,8 +50500,8 @@ var _StreamController = class _StreamController {
     const { state } = this.deps;
     if (!state.currentContentEl) return;
     this.hideThinkingIndicator();
-    const el2 = state.currentContentEl.createDiv({ cls: "mkortex-compact-boundary" });
-    el2.createSpan({ cls: "mkortex-compact-boundary-label", text: t10("chat.messages.compacted") });
+    const el2 = state.currentContentEl.createDiv({ cls: "mesa-compact-boundary" });
+    el2.createSpan({ cls: "mesa-compact-boundary-label", text: t10("chat.messages.compacted") });
   }
   // ============================================
   // Utilities
@@ -50691,7 +50691,7 @@ function extractLinkPathFromTarget(linkTarget) {
 }
 function createWikilink(ownerDocument, linkTarget, displayText) {
   const link = ownerDocument.createElement("a");
-  link.className = "mkortex-file-link internal-link";
+  link.className = "mesa-file-link internal-link";
   link.textContent = displayText;
   link.setAttribute("data-href", linkTarget);
   link.setAttribute("href", linkTarget);
@@ -50703,7 +50703,7 @@ function repairEmptyInternalLink(app, link) {
   if (!linkTarget) return;
   const linkPath = extractLinkPathFromTarget(linkTarget);
   if (!linkPath || !fileExistsInVault(app, linkPath)) return;
-  link.classList.add("mkortex-file-link");
+  link.classList.add("mesa-file-link");
   if (!link.dataset.href) {
     link.setAttribute("data-href", linkTarget);
   }
@@ -50712,7 +50712,7 @@ function repairEmptyInternalLink(app, link) {
 function registerFileLinkHandler(app, container, component) {
   component.registerDomEvent(container, "click", (event) => {
     const target = event.target;
-    const link = target.closest(".mkortex-file-link, .internal-link");
+    const link = target.closest(".mesa-file-link, .internal-link");
     if (link) {
       event.preventDefault();
       const linkTarget = link.dataset.href || link.getAttribute("href");
@@ -50779,7 +50779,7 @@ function processFileLinks(app, container) {
         if (tagName === "PRE" || tagName === "CODE" || tagName === "A") {
           return NodeFilter.FILTER_REJECT;
         }
-        if (parent.closest("pre, code, a, .mkortex-file-link, .internal-link")) {
+        if (parent.closest("pre, code, a, .mesa-file-link, .internal-link")) {
           return NodeFilter.FILTER_REJECT;
         }
         return NodeFilter.FILTER_ACCEPT;
@@ -50859,11 +50859,11 @@ function wrapEmbeddedChatImages(container) {
     if (!img.src.startsWith("app://")) {
       return;
     }
-    if ((_a3 = img.parentElement) == null ? void 0 : _a3.classList.contains("mkortex-embedded-image")) {
+    if ((_a3 = img.parentElement) == null ? void 0 : _a3.classList.contains("mesa-embedded-image")) {
       return;
     }
     const wrapper = img.ownerDocument.createElement("span");
-    wrapper.className = "mkortex-embedded-image";
+    wrapper.className = "mesa-embedded-image";
     (_b3 = img.parentElement) == null ? void 0 : _b3.insertBefore(wrapper, img);
     wrapper.appendChild(img);
   });
@@ -50928,17 +50928,17 @@ var MessageRenderer = class {
       }
     }
     const msgEl = this.messagesEl.createDiv({
-      cls: `mkortex-message mkortex-message-${msg.role}`,
+      cls: `mesa-message mesa-message-${msg.role}`,
       attr: {
         "data-message-id": msg.id,
         "data-role": msg.role
       }
     });
-    const contentEl = msgEl.createDiv({ cls: "mkortex-message-content", attr: { dir: "auto" } });
+    const contentEl = msgEl.createDiv({ cls: "mesa-message-content", attr: { dir: "auto" } });
     if (msg.role === "user") {
       const textToShow = this.getUserMessageTextToShow(msg);
       if (textToShow) {
-        const textEl = contentEl.createDiv({ cls: "mkortex-text-block" });
+        const textEl = contentEl.createDiv({ cls: "mesa-text-block" });
         void this.renderContent(textEl, textToShow);
         this.addUserCopyButton(msgEl, textToShow);
       }
@@ -50958,19 +50958,19 @@ var MessageRenderer = class {
     if (!msgEl) {
       return;
     }
-    const contentEl = msgEl.querySelector(".mkortex-message-content");
+    const contentEl = msgEl.querySelector(".mesa-message-content");
     if (!contentEl) {
       return;
     }
     contentEl.empty();
     const textToShow = this.getUserMessageTextToShow(msg);
     if (textToShow) {
-      const textEl = contentEl.createDiv({ cls: "mkortex-text-block" });
+      const textEl = contentEl.createDiv({ cls: "mesa-text-block" });
       void this.renderContent(textEl, textToShow);
     }
-    const toolbar = msgEl.querySelector(".mkortex-user-msg-actions");
+    const toolbar = msgEl.querySelector(".mesa-user-msg-actions");
     if (toolbar) {
-      toolbar.querySelectorAll(".mkortex-user-msg-copy-btn").forEach((el2) => el2.remove());
+      toolbar.querySelectorAll(".mesa-user-msg-copy-btn").forEach((el2) => el2.remove());
     }
     if (textToShow) {
       this.addUserCopyButton(msgEl, textToShow);
@@ -50997,8 +50997,8 @@ var MessageRenderer = class {
   renderMessages(messages, getGreeting) {
     this.messagesEl.empty();
     this.liveMessageEls.clear();
-    const newWelcomeEl = this.messagesEl.createDiv({ cls: "mkortex-welcome" });
-    newWelcomeEl.createDiv({ cls: "mkortex-welcome-greeting", text: getGreeting() });
+    const newWelcomeEl = this.messagesEl.createDiv({ cls: "mesa-welcome" });
+    newWelcomeEl.createDiv({ cls: "mesa-welcome-greeting", text: getGreeting() });
     for (let i = 0; i < messages.length; i++) {
       this.renderStoredMessage(messages[i], messages, i);
     }
@@ -51026,17 +51026,17 @@ var MessageRenderer = class {
       return;
     }
     const msgEl = this.messagesEl.createDiv({
-      cls: `mkortex-message mkortex-message-${msg.role}`,
+      cls: `mesa-message mesa-message-${msg.role}`,
       attr: {
         "data-message-id": msg.id,
         "data-role": msg.role
       }
     });
-    const contentEl = msgEl.createDiv({ cls: "mkortex-message-content", attr: { dir: "auto" } });
+    const contentEl = msgEl.createDiv({ cls: "mesa-message-content", attr: { dir: "auto" } });
     if (msg.role === "user") {
       const textToShow = this.getUserMessageTextToShow(msg);
       if (textToShow) {
-        const textEl = contentEl.createDiv({ cls: "mkortex-text-block" });
+        const textEl = contentEl.createDiv({ cls: "mesa-text-block" });
         void this.renderContent(textEl, textToShow);
         this.addUserCopyButton(msgEl, textToShow);
       }
@@ -51081,28 +51081,28 @@ var MessageRenderer = class {
     if (!canRewind) return;
     const msgEl = this.liveMessageEls.get(msg.id);
     if (!msgEl) return;
-    if (canRewind && this.rewindCallback && !msgEl.querySelector(".mkortex-message-rewind-btn")) {
+    if (canRewind && this.rewindCallback && !msgEl.querySelector(".mesa-message-rewind-btn")) {
       this.addRewindButton(msgEl, msg.id);
     }
     this.cleanupLiveMessageEl(msg.id, msgEl, { canRewind });
   }
   cleanupLiveMessageEl(msgId, msgEl, expectedActions) {
-    const needsRewind = expectedActions.canRewind && this.rewindCallback && !msgEl.querySelector(".mkortex-message-rewind-btn");
+    const needsRewind = expectedActions.canRewind && this.rewindCallback && !msgEl.querySelector(".mesa-message-rewind-btn");
     if (!needsRewind) {
       this.liveMessageEls.delete(msgId);
     }
   }
   renderInterruptMessage() {
-    const msgEl = this.messagesEl.createDiv({ cls: "mkortex-message mkortex-message-assistant" });
-    const contentEl = msgEl.createDiv({ cls: "mkortex-message-content", attr: { dir: "auto" } });
+    const msgEl = this.messagesEl.createDiv({ cls: "mesa-message mesa-message-assistant" });
+    const contentEl = msgEl.createDiv({ cls: "mesa-message-content", attr: { dir: "auto" } });
     this.appendInterruptIndicator(contentEl);
   }
   appendInterruptIndicator(contentEl) {
-    const textEl = contentEl.createDiv({ cls: "mkortex-text-block" });
-    textEl.createSpan({ cls: "mkortex-interrupted", text: t10("chat.messages.interrupted") });
+    const textEl = contentEl.createDiv({ cls: "mesa-text-block" });
+    textEl.createSpan({ cls: "mesa-interrupted", text: t10("chat.messages.interrupted") });
     textEl.appendText(" ");
     textEl.createSpan({
-      cls: "mkortex-interrupted-hint",
+      cls: "mesa-interrupted-hint",
       text: `\xB7 ${t10("chat.messages.interruptedHint")}`
     });
   }
@@ -51125,7 +51125,7 @@ var MessageRenderer = class {
           if (!block.content || !block.content.trim()) {
             continue;
           }
-          const textEl = contentEl.createDiv({ cls: "mkortex-text-block" });
+          const textEl = contentEl.createDiv({ cls: "mesa-text-block" });
           void this.renderContent(textEl, block.content);
           this.addTextCopyButton(textEl, block.content);
         } else if (block.type === "tool_use") {
@@ -51135,8 +51135,8 @@ var MessageRenderer = class {
             renderedToolIds.add(toolCall.id);
           }
         } else if (block.type === "context_compacted") {
-          const boundaryEl = contentEl.createDiv({ cls: "mkortex-compact-boundary" });
-          boundaryEl.createSpan({ cls: "mkortex-compact-boundary-label", text: t10("chat.messages.compacted") });
+          const boundaryEl = contentEl.createDiv({ cls: "mesa-compact-boundary" });
+          boundaryEl.createSpan({ cls: "mesa-compact-boundary-label", text: t10("chat.messages.compacted") });
         } else if (block.type === "subagent") {
           const taskToolCall = (_b3 = msg.toolCalls) == null ? void 0 : _b3.find(
             (tc2) => tc2.id === block.subagentId && isSubagentToolName(tc2.name)
@@ -51155,7 +51155,7 @@ var MessageRenderer = class {
       }
     } else {
       if (msg.content) {
-        const textEl = contentEl.createDiv({ cls: "mkortex-text-block" });
+        const textEl = contentEl.createDiv({ cls: "mesa-text-block" });
         void this.renderContent(textEl, msg.content);
         this.addTextCopyButton(textEl, msg.content);
       }
@@ -51168,13 +51168,13 @@ var MessageRenderer = class {
     const hasCompactBoundary = (_c2 = msg.contentBlocks) == null ? void 0 : _c2.some((b2) => b2.type === "context_compacted");
     if (msg.durationSeconds && msg.durationSeconds > 0 && !hasCompactBoundary) {
       const flavorWord = msg.durationFlavorWord || tArray("flavor.completion")[0] || "\u0413\u043E\u0442\u043E\u0432\u043E";
-      const footerEl = contentEl.createDiv({ cls: "mkortex-response-footer" });
+      const footerEl = contentEl.createDiv({ cls: "mesa-response-footer" });
       footerEl.createSpan({
         text: `* ${t10("chat.messages.completionDuration", {
           flavor: flavorWord,
           duration: formatDurationMmSs(msg.durationSeconds)
         })}`,
-        cls: "mkortex-baked-duration"
+        cls: "mesa-baked-duration"
       });
     }
   }
@@ -51300,9 +51300,9 @@ var MessageRenderer = class {
    * Renders image attachments above a message.
    */
   renderMessageImages(containerEl, images) {
-    const imagesEl = containerEl.createDiv({ cls: "mkortex-message-images" });
+    const imagesEl = containerEl.createDiv({ cls: "mesa-message-images" });
     for (const image of images) {
-      const imageWrapper = imagesEl.createDiv({ cls: "mkortex-message-image" });
+      const imageWrapper = imagesEl.createDiv({ cls: "mesa-message-image" });
       const imgEl = imageWrapper.createEl("img", {
         attr: {
           alt: image.name
@@ -51321,15 +51321,15 @@ var MessageRenderer = class {
     var _a3;
     const dataUri = `data:${image.mediaType};base64,${image.data}`;
     const ownerDocument = (_a3 = this.messagesEl.ownerDocument) != null ? _a3 : window.document;
-    const overlay = ownerDocument.body.createDiv({ cls: "mkortex-image-modal-overlay" });
-    const modal = overlay.createDiv({ cls: "mkortex-image-modal" });
+    const overlay = ownerDocument.body.createDiv({ cls: "mesa-image-modal-overlay" });
+    const modal = overlay.createDiv({ cls: "mesa-image-modal" });
     modal.createEl("img", {
       attr: {
         src: dataUri,
         alt: image.name
       }
     });
-    const closeBtn = modal.createDiv({ cls: "mkortex-image-modal-close" });
+    const closeBtn = modal.createDiv({ cls: "mesa-image-modal-close" });
     closeBtn.setText("\xD7");
     const handleEsc = (e2) => {
       if (e2.key === "Escape") {
@@ -51377,8 +51377,8 @@ var MessageRenderer = class {
       wrapEmbeddedChatImages(el2);
       el2.querySelectorAll("pre").forEach((pre) => {
         var _a3, _b3;
-        if ((_a3 = pre.parentElement) == null ? void 0 : _a3.classList.contains("mkortex-code-wrapper")) return;
-        const wrapper = createEl("div", { cls: "mkortex-code-wrapper" });
+        if ((_a3 = pre.parentElement) == null ? void 0 : _a3.classList.contains("mesa-code-wrapper")) return;
+        const wrapper = createEl("div", { cls: "mesa-code-wrapper" });
         (_b3 = pre.parentElement) == null ? void 0 : _b3.insertBefore(wrapper, pre);
         wrapper.appendChild(pre);
         const code = pre.querySelector('code[class*="language-"]');
@@ -51387,7 +51387,7 @@ var MessageRenderer = class {
           if (match) {
             wrapper.classList.add("has-language");
             const label = createEl("span", {
-              cls: "mkortex-code-lang-label",
+              cls: "mesa-code-lang-label",
               text: match[1]
             });
             wrapper.appendChild(label);
@@ -51415,7 +51415,7 @@ var MessageRenderer = class {
       }
     } catch (e2) {
       el2.createDiv({
-        cls: "mkortex-render-error",
+        cls: "mesa-render-error",
         text: t10("chat.messages.renderError")
       });
     }
@@ -51430,7 +51430,7 @@ var MessageRenderer = class {
    * @param markdown The original markdown content to copy
    */
   addTextCopyButton(textEl, markdown) {
-    const copyBtn = textEl.createSpan({ cls: "mkortex-text-copy-btn" });
+    const copyBtn = textEl.createSpan({ cls: "mesa-text-copy-btn" });
     (0, import_obsidian17.setIcon)(copyBtn, "copy");
     let feedbackTimeout = null;
     copyBtn.addEventListener("click", (e2) => {
@@ -51457,13 +51457,13 @@ var MessageRenderer = class {
     });
   }
   getOrCreateActionsToolbar(msgEl) {
-    const existing = msgEl.querySelector(".mkortex-user-msg-actions");
+    const existing = msgEl.querySelector(".mesa-user-msg-actions");
     if (existing) return existing;
-    return msgEl.createDiv({ cls: "mkortex-user-msg-actions" });
+    return msgEl.createDiv({ cls: "mesa-user-msg-actions" });
   }
   addUserCopyButton(msgEl, content) {
     const toolbar = this.getOrCreateActionsToolbar(msgEl);
-    const copyBtn = toolbar.createSpan({ cls: "mkortex-user-msg-copy-btn" });
+    const copyBtn = toolbar.createSpan({ cls: "mesa-user-msg-copy-btn" });
     (0, import_obsidian17.setIcon)(copyBtn, "copy");
     copyBtn.setAttribute("aria-label", t10("chat.messages.copyMessage"));
     let feedbackTimeout = null;
@@ -51491,7 +51491,7 @@ var MessageRenderer = class {
   addRewindButton(msgEl, messageId) {
     if (!this.getCapabilities().supportsRewind) return;
     const toolbar = this.getOrCreateActionsToolbar(msgEl);
-    const btn = toolbar.createSpan({ cls: "mkortex-message-rewind-btn" });
+    const btn = toolbar.createSpan({ cls: "mesa-message-rewind-btn" });
     if (toolbar.firstChild !== btn) toolbar.insertBefore(btn, toolbar.firstChild);
     (0, import_obsidian17.setIcon)(btn, "rotate-ccw");
     btn.setAttribute("aria-label", t10("chat.rewind.ariaLabel"));
@@ -52003,7 +52003,7 @@ var _SubagentManager = class _SubagentManager {
     const description = newInput.description || "";
     if (description) {
       info.description = description;
-      const labelEl = wrapperEl.querySelector(".mkortex-subagent-label");
+      const labelEl = wrapperEl.querySelector(".mesa-subagent-label");
       if (labelEl) {
         const truncated = description.length > 40 ? description.substring(0, 40) + "..." : description;
         labelEl.setText(truncated);
@@ -52012,7 +52012,7 @@ var _SubagentManager = class _SubagentManager {
     const prompt = newInput.prompt || "";
     if (prompt) {
       info.prompt = prompt;
-      const promptEl = wrapperEl.querySelector(".mkortex-subagent-prompt-text");
+      const promptEl = wrapperEl.querySelector(".mesa-subagent-prompt-text");
       if (promptEl) {
         promptEl.setText(prompt);
       }
@@ -52778,7 +52778,7 @@ var BangBashModeManager = class {
   enterMode() {
     const wrapper = this.callbacks.getInputWrapper();
     if (!wrapper) return false;
-    wrapper.addClass("mkortex-input-bang-bash-mode");
+    wrapper.addClass("mesa-input-bang-bash-mode");
     this.state = { active: true, rawCommand: "" };
     this.inputEl.placeholder = t10("chat.bangBash.placeholder");
     return true;
@@ -52786,7 +52786,7 @@ var BangBashModeManager = class {
   exitMode() {
     const wrapper = this.callbacks.getInputWrapper();
     if (wrapper) {
-      wrapper.removeClass("mkortex-input-bang-bash-mode");
+      wrapper.removeClass("mesa-input-bang-bash-mode");
     }
     this.state = { active: false, rawCommand: "" };
     this.inputEl.placeholder = this.originalPlaceholder;
@@ -53139,11 +53139,11 @@ var MentionDropdownController = class {
     this.callbacks = callbacks;
     this.fixed = (_a3 = options.fixed) != null ? _a3 : false;
     this.dropdown = new SelectableDropdown(this.containerEl, {
-      listClassName: "mkortex-mention-dropdown",
-      itemClassName: "mkortex-mention-item",
-      emptyClassName: "mkortex-mention-empty",
+      listClassName: "mesa-mention-dropdown",
+      itemClassName: "mesa-mention-item",
+      emptyClassName: "mesa-mention-empty",
       fixed: this.fixed,
-      fixedClassName: "mkortex-mention-dropdown-fixed"
+      fixedClassName: "mesa-mention-dropdown-fixed"
     });
   }
   setMcpManager(manager) {
@@ -53454,7 +53454,7 @@ var MentionDropdownController = class {
         }
       },
       renderItem: (item, itemEl) => {
-        const iconEl = itemEl.createSpan({ cls: "mkortex-mention-icon" });
+        const iconEl = itemEl.createSpan({ cls: "mesa-mention-icon" });
         switch (item.type) {
           case "mcp-server":
             appendMcpIcon(iconEl);
@@ -53473,42 +53473,42 @@ var MentionDropdownController = class {
           default:
             (0, import_obsidian19.setIcon)(iconEl, "file-text");
         }
-        const textEl = itemEl.createSpan({ cls: "mkortex-mention-text" });
+        const textEl = itemEl.createSpan({ cls: "mesa-mention-text" });
         switch (item.type) {
           case "mcp-server":
-            textEl.createSpan({ cls: "mkortex-mention-name" }).setText(`@${item.name}`);
+            textEl.createSpan({ cls: "mesa-mention-name" }).setText(`@${item.name}`);
             break;
           case "agent-folder":
             textEl.createSpan({
-              cls: "mkortex-mention-name mkortex-mention-name-agent-folder"
+              cls: "mesa-mention-name mesa-mention-name-agent-folder"
             }).setText(`@${item.name}/`);
             break;
           case "agent": {
             textEl.createSpan({
-              cls: "mkortex-mention-name mkortex-mention-name-agent"
+              cls: "mesa-mention-name mesa-mention-name-agent"
             }).setText(`@${item.id}`);
             if (item.description) {
-              textEl.createSpan({ cls: "mkortex-mention-agent-desc" }).setText(item.description);
+              textEl.createSpan({ cls: "mesa-mention-agent-desc" }).setText(item.description);
             }
             break;
           }
           case "context-folder":
             textEl.createSpan({
-              cls: "mkortex-mention-name mkortex-mention-name-folder"
+              cls: "mesa-mention-name mesa-mention-name-folder"
             }).setText(`@${item.name}/`);
             break;
           case "context-file":
             textEl.createSpan({
-              cls: "mkortex-mention-name mkortex-mention-name-context"
+              cls: "mesa-mention-name mesa-mention-name-context"
             }).setText(item.name);
             break;
           case "folder":
             textEl.createSpan({
-              cls: "mkortex-mention-name mkortex-mention-name-folder"
+              cls: "mesa-mention-name mesa-mention-name-folder"
             }).setText(`@${item.path}/`);
             break;
           default:
-            textEl.createSpan({ cls: "mkortex-mention-path" }).setText(item.path || item.name);
+            textEl.createSpan({ cls: "mesa-mention-path" }).setText(item.path || item.name);
         }
       },
       onItemClick: (item, index, e2) => {
@@ -53531,9 +53531,9 @@ var MentionDropdownController = class {
     if (!dropdownEl) return;
     const inputRect = this.inputEl.getBoundingClientRect();
     dropdownEl.setCssProps({
-      "--mkortex-fixed-dropdown-bottom": `${window.innerHeight - inputRect.top + 4}px`,
-      "--mkortex-fixed-dropdown-left": `${inputRect.left}px`,
-      "--mkortex-fixed-dropdown-width": `${Math.max(inputRect.width, 280)}px`
+      "--mesa-fixed-dropdown-bottom": `${window.innerHeight - inputRect.top + 4}px`,
+      "--mesa-fixed-dropdown-left": `${inputRect.left}px`,
+      "--mesa-fixed-dropdown-width": `${Math.max(inputRect.width, 280)}px`
     });
   }
   insertReplacement(beforeAt, replacement, afterCursor) {
@@ -53912,7 +53912,7 @@ var FileChipsView = class {
     this.containerEl = containerEl;
     this.callbacks = callbacks;
     const firstChild = this.containerEl.firstChild;
-    this.fileIndicatorEl = this.containerEl.createDiv({ cls: "mkortex-file-indicator" });
+    this.fileIndicatorEl = this.containerEl.createDiv({ cls: "mesa-file-indicator" });
     if (firstChild) {
       this.containerEl.insertBefore(this.fileIndicatorEl, firstChild);
     }
@@ -53923,30 +53923,30 @@ var FileChipsView = class {
   renderCurrentNote(filePath) {
     this.fileIndicatorEl.empty();
     if (!filePath) {
-      this.fileIndicatorEl.removeClass("mkortex-visible-flex");
-      this.fileIndicatorEl.addClass("mkortex-hidden");
+      this.fileIndicatorEl.removeClass("mesa-visible-flex");
+      this.fileIndicatorEl.addClass("mesa-hidden");
       return;
     }
-    this.fileIndicatorEl.addClass("mkortex-visible-flex");
-    this.fileIndicatorEl.removeClass("mkortex-hidden");
+    this.fileIndicatorEl.addClass("mesa-visible-flex");
+    this.fileIndicatorEl.removeClass("mesa-hidden");
     this.renderFileChip(filePath, () => {
       this.callbacks.onRemoveAttachment(filePath);
     });
   }
   renderFileChip(filePath, onRemove) {
-    const chipEl = this.fileIndicatorEl.createDiv({ cls: "mkortex-file-chip" });
-    const iconEl = chipEl.createSpan({ cls: "mkortex-file-chip-icon" });
+    const chipEl = this.fileIndicatorEl.createDiv({ cls: "mesa-file-chip" });
+    const iconEl = chipEl.createSpan({ cls: "mesa-file-chip-icon" });
     (0, import_obsidian21.setIcon)(iconEl, "file-text");
     const normalizedPath = filePath.replace(/\\/g, "/");
     const filename = normalizedPath.split("/").pop() || filePath;
-    const nameEl = chipEl.createSpan({ cls: "mkortex-file-chip-name" });
+    const nameEl = chipEl.createSpan({ cls: "mesa-file-chip-name" });
     nameEl.setText(filename);
     nameEl.setAttribute("title", filePath);
-    const removeEl = chipEl.createSpan({ cls: "mkortex-file-chip-remove" });
+    const removeEl = chipEl.createSpan({ cls: "mesa-file-chip-remove" });
     removeEl.setText("\xD7");
     removeEl.setAttribute("aria-label", t10("ui.remove"));
     chipEl.addEventListener("click", (e2) => {
-      if (!e2.target.closest(".mkortex-file-chip-remove")) {
+      if (!e2.target.closest(".mesa-file-chip-remove")) {
         this.callbacks.onOpenFile(filePath);
       }
     });
@@ -54244,8 +54244,8 @@ var ImageContextManager = class {
     this.previewContainerEl = previewContainerEl != null ? previewContainerEl : containerEl;
     this.inputEl = inputEl;
     this.callbacks = callbacks;
-    const fileIndicator = this.previewContainerEl.querySelector(".mkortex-file-indicator");
-    this.imagePreviewEl = this.previewContainerEl.createDiv({ cls: "mkortex-image-preview" });
+    const fileIndicator = this.previewContainerEl.querySelector(".mesa-file-indicator");
+    this.imagePreviewEl = this.previewContainerEl.createDiv({ cls: "mesa-image-preview" });
     if (fileIndicator && fileIndicator.parentElement === this.previewContainerEl) {
       this.previewContainerEl.insertBefore(this.imagePreviewEl, fileIndicator);
     }
@@ -54280,10 +54280,10 @@ var ImageContextManager = class {
   }
   setupDragAndDrop() {
     var _a3;
-    const inputWrapper = this.containerEl.querySelector(".mkortex-input-wrapper");
+    const inputWrapper = this.containerEl.querySelector(".mesa-input-wrapper");
     if (!inputWrapper) return;
-    this.dropOverlay = inputWrapper.createDiv({ cls: "mkortex-drop-overlay" });
-    const dropContent = this.dropOverlay.createDiv({ cls: "mkortex-drop-content" });
+    this.dropOverlay = inputWrapper.createDiv({ cls: "mesa-drop-overlay" });
+    const dropContent = this.dropOverlay.createDiv({ cls: "mesa-drop-content" });
     const ownerDocument = (_a3 = inputWrapper.ownerDocument) != null ? _a3 : window.document;
     const svg = ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", "0 0 24 24");
@@ -54330,7 +54330,7 @@ var ImageContextManager = class {
     var _a3, _b3;
     e2.preventDefault();
     e2.stopPropagation();
-    const inputWrapper = this.containerEl.querySelector(".mkortex-input-wrapper");
+    const inputWrapper = this.containerEl.querySelector(".mesa-input-wrapper");
     if (!inputWrapper) {
       (_a3 = this.dropOverlay) == null ? void 0 : _a3.removeClass("visible");
       return;
@@ -54425,32 +54425,32 @@ var ImageContextManager = class {
   updateImagePreview() {
     this.imagePreviewEl.empty();
     if (this.attachedImages.size === 0) {
-      this.imagePreviewEl.removeClass("mkortex-visible-flex");
-      this.imagePreviewEl.addClass("mkortex-hidden");
+      this.imagePreviewEl.removeClass("mesa-visible-flex");
+      this.imagePreviewEl.addClass("mesa-hidden");
       return;
     }
-    this.imagePreviewEl.addClass("mkortex-visible-flex");
-    this.imagePreviewEl.removeClass("mkortex-hidden");
+    this.imagePreviewEl.addClass("mesa-visible-flex");
+    this.imagePreviewEl.removeClass("mesa-hidden");
     for (const [id, image] of this.attachedImages) {
       this.renderImagePreview(id, image);
     }
   }
   renderImagePreview(id, image) {
-    const previewEl = this.imagePreviewEl.createDiv({ cls: "mkortex-image-chip" });
-    const thumbEl = previewEl.createDiv({ cls: "mkortex-image-thumb" });
+    const previewEl = this.imagePreviewEl.createDiv({ cls: "mesa-image-chip" });
+    const thumbEl = previewEl.createDiv({ cls: "mesa-image-thumb" });
     thumbEl.createEl("img", {
       attr: {
         src: `data:${image.mediaType};base64,${image.data}`,
         alt: image.name
       }
     });
-    const infoEl = previewEl.createDiv({ cls: "mkortex-image-info" });
-    const nameEl = infoEl.createSpan({ cls: "mkortex-image-name" });
+    const infoEl = previewEl.createDiv({ cls: "mesa-image-info" });
+    const nameEl = infoEl.createSpan({ cls: "mesa-image-name" });
     nameEl.setText(this.truncateName(image.name, 20));
     nameEl.setAttribute("title", image.name);
-    const sizeEl = infoEl.createSpan({ cls: "mkortex-image-size" });
+    const sizeEl = infoEl.createSpan({ cls: "mesa-image-size" });
     sizeEl.setText(this.formatSize(image.size));
-    const removeEl = previewEl.createSpan({ cls: "mkortex-image-remove" });
+    const removeEl = previewEl.createSpan({ cls: "mesa-image-remove" });
     removeEl.setText("\xD7");
     removeEl.setAttribute("aria-label", t10("ui.removeImage"));
     removeEl.addEventListener("click", (e2) => {
@@ -54466,15 +54466,15 @@ var ImageContextManager = class {
   showFullImage(image) {
     var _a3;
     const ownerDocument = (_a3 = this.containerEl.ownerDocument) != null ? _a3 : window.document;
-    const overlay = ownerDocument.body.createDiv({ cls: "mkortex-image-modal-overlay" });
-    const modal = overlay.createDiv({ cls: "mkortex-image-modal" });
+    const overlay = ownerDocument.body.createDiv({ cls: "mesa-image-modal-overlay" });
+    const modal = overlay.createDiv({ cls: "mesa-image-modal" });
     modal.createEl("img", {
       attr: {
         src: `data:${image.mediaType};base64,${image.data}`,
         alt: image.name
       }
     });
-    const closeBtn = modal.createDiv({ cls: "mkortex-image-modal-close" });
+    const closeBtn = modal.createDiv({ cls: "mesa-image-modal-close" });
     closeBtn.setText("\xD7");
     const handleEsc = (e2) => {
       if (e2.key === "Escape") {
@@ -54534,7 +54534,7 @@ function closeActiveToolbarPopover() {
   activePopoverClose = null;
 }
 function bindToolbarPopover(containerEl, triggerEl, dropdownEl, onOpen) {
-  const openClass = containerEl.classList.contains("mkortex-model-selector") ? "open" : "open";
+  const openClass = containerEl.classList.contains("mesa-model-selector") ? "open" : "open";
   const close = () => {
     containerEl.removeClass(openClass);
     document.removeEventListener("mousedown", onDocumentMouseDown, true);
@@ -54589,9 +54589,9 @@ function translateReasoningLabel(value, fallbackLabel) {
 var SendStopButton = class {
   constructor(parentEl, callbacks) {
     this.callbacks = callbacks;
-    this.container = parentEl.createDiv({ cls: "mkortex-send-stop-host" });
+    this.container = parentEl.createDiv({ cls: "mesa-send-stop-host" });
     this.buttonEl = this.container.createEl("button", {
-      cls: "mkortex-send-stop-btn",
+      cls: "mesa-send-stop-btn",
       attr: { type: "button", "aria-label": t10("ui.sendMessage") }
     });
     this.buttonEl.addEventListener("click", (e2) => {
@@ -54640,7 +54640,7 @@ var ModelSelector = class {
     var _a3;
     this.callbacks = callbacks;
     this.mcpServerSelector = (_a3 = options == null ? void 0 : options.mcpServerSelector) != null ? _a3 : null;
-    this.container = parentEl.createDiv({ cls: "mkortex-model-selector" });
+    this.container = parentEl.createDiv({ cls: "mesa-model-selector" });
     this.render();
   }
   setMcpServerSelector(selector) {
@@ -54659,12 +54659,12 @@ var ModelSelector = class {
     this.container.empty();
     this.closePopover = null;
     this.buttonEl = this.container.createEl("button", {
-      cls: "mkortex-model-btn",
+      cls: "mesa-model-btn",
       attr: { type: "button" }
     });
     this.updateDisplay();
     this.dropdownEl = this.container.createDiv({
-      cls: "mkortex-composer-popover mkortex-model-dropdown"
+      cls: "mesa-composer-popover mesa-model-dropdown"
     });
     this.renderOptions();
     if (this.buttonEl && this.dropdownEl) {
@@ -54681,7 +54681,7 @@ var ModelSelector = class {
     const displayModel = (_a3 = models.find((model) => model.value === currentModel)) != null ? _a3 : models[0];
     const label = (displayModel == null ? void 0 : displayModel.label) || t10("ui.unknown");
     this.buttonEl.empty();
-    const labelEl = this.buttonEl.createSpan({ cls: "mkortex-model-label" });
+    const labelEl = this.buttonEl.createSpan({ cls: "mesa-model-label" });
     labelEl.setText(label);
     labelEl.setAttr("title", label);
     this.buttonEl.setAttr("title", label);
@@ -54696,18 +54696,18 @@ var ModelSelector = class {
     let lastGroup;
     for (const model of reversed) {
       if (model.group && model.group !== lastGroup) {
-        const separator = this.dropdownEl.createDiv({ cls: "mkortex-model-group" });
+        const separator = this.dropdownEl.createDiv({ cls: "mesa-model-group" });
         separator.setText(model.group);
         lastGroup = model.group;
       }
-      const option = this.dropdownEl.createDiv({ cls: "mkortex-model-option" });
+      const option = this.dropdownEl.createDiv({ cls: "mesa-model-option" });
       if (model.value === currentModel) {
         option.addClass("selected");
       }
       const icon = (_c2 = model.providerIcon) != null ? _c2 : (_b3 = (_a3 = this.callbacks.getUIConfig()).getProviderIcon) == null ? void 0 : _b3.call(_a3);
       if (icon) {
         option.appendChild(createProviderIconSvg(icon, {
-          className: "mkortex-model-provider-icon",
+          className: "mesa-model-provider-icon",
           height: 12,
           ownerDocument: option.ownerDocument,
           width: 12
@@ -54771,9 +54771,9 @@ var ModelSelector = class {
       sections.push({
         title: t10("ui.fastMode"),
         render: (parent) => {
-          const row = parent.createDiv({ cls: "mkortex-composer-popover-row" });
-          row.createSpan({ cls: "mkortex-composer-popover-row-label", text: tierConfig.activeLabel });
-          const tierBtn = row.createSpan({ cls: "mkortex-composer-popover-tier" });
+          const row = parent.createDiv({ cls: "mesa-composer-popover-row" });
+          row.createSpan({ cls: "mesa-composer-popover-row-label", text: tierConfig.activeLabel });
+          const tierBtn = row.createSpan({ cls: "mesa-composer-popover-tier" });
           if (isActive) tierBtn.addClass("active");
           (0, import_obsidian24.setIcon)(tierBtn, "zap");
           tierBtn.setAttribute("title", t10("ui.fastMode"));
@@ -54798,32 +54798,32 @@ var ModelSelector = class {
       });
     }
     if (sections.length === 0) return;
-    const header = this.dropdownEl.createDiv({ cls: "mkortex-composer-popover-section" });
+    const header = this.dropdownEl.createDiv({ cls: "mesa-composer-popover-section" });
     header.setText(t10("ui.modelExtras"));
     for (const section of sections) {
       if (section.title.trim()) {
-        const sectionHeader = this.dropdownEl.createDiv({ cls: "mkortex-composer-popover-section" });
+        const sectionHeader = this.dropdownEl.createDiv({ cls: "mesa-composer-popover-section" });
         sectionHeader.setText(section.title);
       }
-      const body = this.dropdownEl.createDiv({ cls: "mkortex-composer-popover-extras-body" });
+      const body = this.dropdownEl.createDiv({ cls: "mesa-composer-popover-extras-body" });
       section.render(body);
     }
   }
   renderReasoningSelectRow(parent, options, currentValue, labelPrefix, onSelect, failureMessage) {
     var _a3, _b3, _c2, _d;
-    const row = parent.createDiv({ cls: "mkortex-composer-extra-row" });
-    row.createSpan({ cls: "mkortex-composer-extra-label", text: labelPrefix });
-    const select = row.createDiv({ cls: "mkortex-composer-extra-select" });
+    const row = parent.createDiv({ cls: "mesa-composer-extra-row" });
+    row.createSpan({ cls: "mesa-composer-extra-label", text: labelPrefix });
+    const select = row.createDiv({ cls: "mesa-composer-extra-select" });
     const currentOption = (_a3 = options.find((option) => option.value === currentValue)) != null ? _a3 : options[0];
     const currentLabel = translateReasoningLabel(
       (_b3 = currentOption == null ? void 0 : currentOption.value) != null ? _b3 : "",
       (_c2 = currentOption == null ? void 0 : currentOption.label) != null ? _c2 : t10("ui.unknown")
     );
-    const trigger = select.createSpan({ cls: "mkortex-composer-extra-select-value" });
+    const trigger = select.createSpan({ cls: "mesa-composer-extra-select-value" });
     trigger.setText(currentLabel);
-    const menu = select.createDiv({ cls: "mkortex-composer-extra-select-menu" });
+    const menu = select.createDiv({ cls: "mesa-composer-extra-select-menu" });
     for (const option of options) {
-      const item = menu.createDiv({ cls: "mkortex-composer-extra-select-option" });
+      const item = menu.createDiv({ cls: "mesa-composer-extra-select-option" });
       if (option.value === currentValue) {
         item.addClass("selected");
       }
@@ -54850,7 +54850,7 @@ var ModelSelector = class {
     trigger.addEventListener("click", (e2) => {
       e2.stopPropagation();
       const willOpen = !select.hasClass("open");
-      parent.ownerDocument.querySelectorAll(".mkortex-composer-extra-select.open").forEach((el2) => {
+      parent.ownerDocument.querySelectorAll(".mesa-composer-extra-select.open").forEach((el2) => {
         el2.removeClass("open");
       });
       if (willOpen) {
@@ -54866,7 +54866,7 @@ var ModePill = class _ModePill {
     this.closePopover = null;
     this.visible = true;
     this.callbacks = callbacks;
-    this.container = parentEl.createDiv({ cls: "mkortex-composer-pill mkortex-mode-pill" });
+    this.container = parentEl.createDiv({ cls: "mesa-composer-pill mesa-mode-pill" });
     this.render();
   }
   /** @deprecated Use ModePill — kept as alias for migration. */
@@ -54881,10 +54881,10 @@ var ModePill = class _ModePill {
     this.container.empty();
     this.closePopover = null;
     this.buttonEl = this.container.createEl("button", {
-      cls: "mkortex-composer-pill-btn",
+      cls: "mesa-composer-pill-btn",
       attr: { type: "button" }
     });
-    this.dropdownEl = this.container.createDiv({ cls: "mkortex-composer-popover mkortex-mode-dropdown" });
+    this.dropdownEl = this.container.createDiv({ cls: "mesa-composer-popover mesa-mode-dropdown" });
     this.renderOptions();
     if (this.buttonEl && this.dropdownEl) {
       this.closePopover = bindToolbarPopover(this.container, this.buttonEl, this.dropdownEl, () => {
@@ -54925,16 +54925,16 @@ var ModePill = class _ModePill {
     const toggleConfig = this.getToggleConfig();
     const capabilities = this.callbacks.getCapabilities();
     if (!this.visible || !toggleConfig) {
-      this.container.addClass("mkortex-hidden");
+      this.container.addClass("mesa-hidden");
       return;
     }
-    this.container.removeClass("mkortex-hidden");
+    this.container.removeClass("mesa-hidden");
     const mode = this.callbacks.getSettings().permissionMode;
     const supportsPlan = Boolean(toggleConfig.planValue) && capabilities.supportsPlanMode;
     const options = this.getModeOptions(toggleConfig, supportsPlan);
     const current = (_a3 = options.find((option) => option.value === mode)) != null ? _a3 : options[0];
     this.buttonEl.empty();
-    const labelEl = this.buttonEl.createSpan({ cls: "mkortex-composer-pill-label" });
+    const labelEl = this.buttonEl.createSpan({ cls: "mesa-composer-pill-label" });
     labelEl.setText((_b3 = current == null ? void 0 : current.label) != null ? _b3 : t10("ui.modeAuto"));
     labelEl.setAttr("title", (_c2 = current == null ? void 0 : current.description) != null ? _c2 : "");
     this.buttonEl.setAttr("title", (_d = current == null ? void 0 : current.description) != null ? _d : "");
@@ -54950,12 +54950,12 @@ var ModePill = class _ModePill {
     const currentMode = this.callbacks.getSettings().permissionMode;
     const options = this.getModeOptions(toggleConfig, supportsPlan);
     for (const option of options) {
-      const optionEl = this.dropdownEl.createDiv({ cls: "mkortex-composer-popover-option" });
+      const optionEl = this.dropdownEl.createDiv({ cls: "mesa-composer-popover-option" });
       if (option.value === currentMode) {
         optionEl.addClass("selected");
       }
-      optionEl.createSpan({ cls: "mkortex-composer-popover-option-title", text: option.label });
-      optionEl.createSpan({ cls: "mkortex-composer-popover-option-desc", text: option.description });
+      optionEl.createSpan({ cls: "mesa-composer-popover-option-title", text: option.label });
+      optionEl.createSpan({ cls: "mesa-composer-popover-option-desc", text: option.description });
       optionEl.addEventListener("click", (e2) => {
         var _a3, _b3;
         e2.stopPropagation();
@@ -54990,7 +54990,7 @@ var ExternalContextSelector = class {
     this.onChangeCallback = null;
     this.onPersistenceChangeCallback = null;
     this.callbacks = callbacks;
-    this.container = parentEl.createDiv({ cls: "mkortex-external-context-selector" });
+    this.container = parentEl.createDiv({ cls: "mesa-external-context-selector" });
     this.render();
   }
   setOnChange(callback) {
@@ -55122,16 +55122,16 @@ var ExternalContextSelector = class {
   }
   render() {
     this.container.empty();
-    const iconWrapper = this.container.createDiv({ cls: "mkortex-external-context-icon-wrapper" });
-    this.iconEl = iconWrapper.createDiv({ cls: "mkortex-external-context-icon" });
+    const iconWrapper = this.container.createDiv({ cls: "mesa-external-context-icon-wrapper" });
+    this.iconEl = iconWrapper.createDiv({ cls: "mesa-external-context-icon" });
     (0, import_obsidian24.setIcon)(this.iconEl, "folder");
-    this.badgeEl = iconWrapper.createDiv({ cls: "mkortex-external-context-badge" });
+    this.badgeEl = iconWrapper.createDiv({ cls: "mesa-external-context-badge" });
     this.updateDisplay();
     iconWrapper.addEventListener("click", (e2) => {
       e2.stopPropagation();
       void this.openFolderPicker();
     });
-    this.dropdownEl = this.container.createDiv({ cls: "mkortex-external-context-dropdown" });
+    this.dropdownEl = this.container.createDiv({ cls: "mesa-external-context-dropdown" });
     this.renderDropdown();
   }
   async openFolderPicker() {
@@ -55174,23 +55174,23 @@ var ExternalContextSelector = class {
   renderDropdown() {
     if (!this.dropdownEl) return;
     this.dropdownEl.empty();
-    const headerEl = this.dropdownEl.createDiv({ cls: "mkortex-external-context-header" });
+    const headerEl = this.dropdownEl.createDiv({ cls: "mesa-external-context-header" });
     headerEl.setText(t10("ui.externalContexts"));
-    const hintEl = this.dropdownEl.createDiv({ cls: "mkortex-external-context-hint" });
+    const hintEl = this.dropdownEl.createDiv({ cls: "mesa-external-context-hint" });
     hintEl.setText(t10("ui.externalFoldersHint"));
-    const listEl = this.dropdownEl.createDiv({ cls: "mkortex-external-context-list" });
+    const listEl = this.dropdownEl.createDiv({ cls: "mesa-external-context-list" });
     if (this.externalContextPaths.length === 0) {
-      const emptyEl = listEl.createDiv({ cls: "mkortex-external-context-empty" });
+      const emptyEl = listEl.createDiv({ cls: "mesa-external-context-empty" });
       emptyEl.setText(t10("ui.clickFolderToAdd"));
     } else {
       for (const pathStr of this.externalContextPaths) {
-        const itemEl = listEl.createDiv({ cls: "mkortex-external-context-item" });
-        const pathTextEl = itemEl.createSpan({ cls: "mkortex-external-context-text" });
+        const itemEl = listEl.createDiv({ cls: "mesa-external-context-item" });
+        const pathTextEl = itemEl.createSpan({ cls: "mesa-external-context-text" });
         const displayPath = this.shortenPath(pathStr);
         pathTextEl.setText(displayPath);
         pathTextEl.setAttribute("title", pathStr);
         const isPersistent = this.persistentPaths.has(pathStr);
-        const lockBtn = itemEl.createSpan({ cls: "mkortex-external-context-lock" });
+        const lockBtn = itemEl.createSpan({ cls: "mesa-external-context-lock" });
         if (isPersistent) {
           lockBtn.addClass("locked");
         }
@@ -55200,7 +55200,7 @@ var ExternalContextSelector = class {
           e2.stopPropagation();
           this.togglePersistence(pathStr);
         });
-        const removeBtn = itemEl.createSpan({ cls: "mkortex-external-context-remove" });
+        const removeBtn = itemEl.createSpan({ cls: "mesa-external-context-remove" });
         (0, import_obsidian24.setIcon)(removeBtn, "x");
         removeBtn.setAttribute("title", t10("ui.removePath"));
         removeBtn.addEventListener("click", (e2) => {
@@ -55255,13 +55255,13 @@ var McpServerSelector = class {
     this.enabledServers = /* @__PURE__ */ new Set();
     this.onChangeCallback = null;
     this.visible = true;
-    this.container = parentEl.createDiv({ cls: "mkortex-mcp-selector" });
+    this.container = parentEl.createDiv({ cls: "mesa-mcp-selector" });
     this.render();
   }
   setVisible(visible) {
     this.visible = visible;
     if (!visible) {
-      this.container.addClass("mkortex-hidden");
+      this.container.addClass("mesa-hidden");
     } else {
       this.updateDisplay();
     }
@@ -55324,12 +55324,12 @@ var McpServerSelector = class {
   }
   render() {
     this.container.empty();
-    const iconWrapper = this.container.createDiv({ cls: "mkortex-mcp-selector-icon-wrapper" });
-    this.iconEl = iconWrapper.createDiv({ cls: "mkortex-mcp-selector-icon" });
+    const iconWrapper = this.container.createDiv({ cls: "mesa-mcp-selector-icon-wrapper" });
+    this.iconEl = iconWrapper.createDiv({ cls: "mesa-mcp-selector-icon" });
     appendMcpIcon(this.iconEl);
-    this.badgeEl = iconWrapper.createDiv({ cls: "mkortex-mcp-selector-badge" });
+    this.badgeEl = iconWrapper.createDiv({ cls: "mesa-mcp-selector-badge" });
     this.updateDisplay();
-    this.dropdownEl = this.container.createDiv({ cls: "mkortex-mcp-selector-dropdown" });
+    this.dropdownEl = this.container.createDiv({ cls: "mesa-mcp-selector-dropdown" });
     this.renderDropdown();
     this.container.addEventListener("mouseenter", () => {
       this.renderDropdown();
@@ -55352,7 +55352,7 @@ var McpServerSelector = class {
     const allServers = ((_a3 = this.mcpManager) == null ? void 0 : _a3.getServers()) || [];
     const servers = allServers.filter((s2) => s2.enabled);
     if (servers.length === 0) {
-      const emptyEl = listEl.createDiv({ cls: "mkortex-composer-popover-empty" });
+      const emptyEl = listEl.createDiv({ cls: "mesa-composer-popover-empty" });
       emptyEl.setText(allServers.length === 0 ? t10("ui.noMcpConfigured") : t10("ui.allMcpDisabled"));
       return;
     }
@@ -55361,20 +55361,20 @@ var McpServerSelector = class {
     }
   }
   renderServerItem(listEl, server) {
-    const itemEl = listEl.createDiv({ cls: "mkortex-composer-popover-mcp-item mkortex-mcp-selector-item" });
+    const itemEl = listEl.createDiv({ cls: "mesa-composer-popover-mcp-item mesa-mcp-selector-item" });
     itemEl.dataset.serverName = server.name;
     const isEnabled = this.enabledServers.has(server.name);
     if (isEnabled) {
       itemEl.addClass("enabled");
     }
-    const checkEl = itemEl.createDiv({ cls: "mkortex-composer-popover-mcp-check mkortex-mcp-selector-check" });
+    const checkEl = itemEl.createDiv({ cls: "mesa-composer-popover-mcp-check mesa-mcp-selector-check" });
     if (isEnabled) {
       appendCheckIcon(checkEl);
     }
-    const nameEl = itemEl.createSpan({ cls: "mkortex-mcp-selector-item-name" });
+    const nameEl = itemEl.createSpan({ cls: "mesa-mcp-selector-item-name" });
     nameEl.setText(server.name);
     if (server.contextSaving) {
-      const csEl = itemEl.createSpan({ cls: "mkortex-mcp-selector-cs-badge" });
+      const csEl = itemEl.createSpan({ cls: "mesa-mcp-selector-cs-badge" });
       csEl.setText("@");
       csEl.setAttribute("title", t10("ui.contextSaving", { name: server.name }));
     }
@@ -55392,7 +55392,7 @@ var McpServerSelector = class {
       this.enabledServers.add(name);
     }
     const isEnabled = this.enabledServers.has(name);
-    const checkEl = itemEl.querySelector(".mkortex-mcp-selector-check");
+    const checkEl = itemEl.querySelector(".mesa-mcp-selector-check");
     if (isEnabled) {
       itemEl.addClass("enabled");
       if (checkEl) appendCheckIcon(checkEl);
@@ -55410,10 +55410,10 @@ var McpServerSelector = class {
     const count = this.enabledServers.size;
     const hasServers = (((_a3 = this.mcpManager) == null ? void 0 : _a3.getServers().length) || 0) > 0;
     if (!hasServers || !this.visible) {
-      this.container.addClass("mkortex-hidden");
+      this.container.addClass("mesa-hidden");
       return;
     }
-    this.container.removeClass("mkortex-hidden");
+    this.container.removeClass("mesa-hidden");
     if (count > 0) {
       this.iconEl.addClass("active");
       this.iconEl.setAttribute("title", t10("ui.mcpEnabledCount", { count }));
@@ -55435,12 +55435,12 @@ var ContextUsageMeter = class {
     this.fillPath = null;
     this.percentEl = null;
     this.circumference = 0;
-    this.container = parentEl.createDiv({ cls: "mkortex-context-meter" });
+    this.container = parentEl.createDiv({ cls: "mesa-context-meter" });
     this.render();
-    this.container.addClass("mkortex-hidden");
+    this.container.addClass("mesa-hidden");
   }
   setVisible(visible) {
-    this.container.toggleClass("mkortex-hidden", !visible);
+    this.container.toggleClass("mesa-hidden", !visible);
   }
   render() {
     const size = 18;
@@ -55459,20 +55459,20 @@ var ContextUsageMeter = class {
     const y1 = cy + radius * Math.sin(startRad);
     const x2 = cx2 + radius * Math.cos(endRad);
     const y2 = cy + radius * Math.sin(endRad);
-    const gaugeEl = this.container.createDiv({ cls: "mkortex-context-meter-gauge" });
+    const gaugeEl = this.container.createDiv({ cls: "mesa-context-meter-gauge" });
     const svg = gaugeEl.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("width", String(size));
     svg.setAttribute("height", String(size));
     svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
     const pathData = `M ${x1} ${y1} A ${radius} ${radius} 0 1 1 ${x2} ${y2}`;
     const backgroundPath = gaugeEl.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "path");
-    backgroundPath.classList.add("mkortex-meter-bg");
+    backgroundPath.classList.add("mesa-meter-bg");
     backgroundPath.setAttribute("d", pathData);
     backgroundPath.setAttribute("fill", "none");
     backgroundPath.setAttribute("stroke-width", String(strokeWidth));
     backgroundPath.setAttribute("stroke-linecap", "round");
     const fillPath = gaugeEl.ownerDocument.createElementNS("http://www.w3.org/2000/svg", "path");
-    fillPath.classList.add("mkortex-meter-fill");
+    fillPath.classList.add("mesa-meter-fill");
     fillPath.setAttribute("d", pathData);
     fillPath.setAttribute("fill", "none");
     fillPath.setAttribute("stroke-width", String(strokeWidth));
@@ -55483,14 +55483,14 @@ var ContextUsageMeter = class {
     svg.appendChild(fillPath);
     gaugeEl.appendChild(svg);
     this.fillPath = fillPath;
-    this.percentEl = this.container.createSpan({ cls: "mkortex-context-meter-percent" });
+    this.percentEl = this.container.createSpan({ cls: "mesa-context-meter-percent" });
   }
   update(usage) {
     if (!usage || usage.contextTokens <= 0) {
-      this.container.addClass("mkortex-hidden");
+      this.container.addClass("mesa-hidden");
       return;
     }
-    this.container.removeClass("mkortex-hidden");
+    this.container.removeClass("mesa-hidden");
     const fillLength = usage.percentage / 100 * this.circumference;
     if (this.fillPath) {
       this.fillPath.setAttribute("stroke-dashoffset", String(this.circumference - fillLength));
@@ -55521,10 +55521,10 @@ var ContextUsageMeter = class {
   }
 };
 function createInputToolbar(parentEl, callbacks, sendStopCallbacks) {
-  parentEl.addClass("mkortex-input-toolbar");
-  const leftZone = parentEl.createDiv({ cls: "mkortex-composer-bar-left" });
-  const rightZone = parentEl.createDiv({ cls: "mkortex-composer-bar-right" });
-  const hiddenHost = parentEl.createDiv({ cls: "mkortex-composer-hidden-host" });
+  parentEl.addClass("mesa-input-toolbar");
+  const leftZone = parentEl.createDiv({ cls: "mesa-composer-bar-left" });
+  const rightZone = parentEl.createDiv({ cls: "mesa-composer-bar-right" });
+  const hiddenHost = parentEl.createDiv({ cls: "mesa-composer-hidden-host" });
   const modePill = new ModePill(leftZone, callbacks);
   const mcpServerSelector = new McpServerSelector(hiddenHost);
   const modelSelector = new ModelSelector(leftZone, callbacks, { mcpServerSelector });
@@ -55587,7 +55587,7 @@ var InstructionModeManager = class {
   enterMode() {
     const wrapper = this.callbacks.getInputWrapper();
     if (!wrapper) return false;
-    wrapper.addClass("mkortex-input-instruction-mode");
+    wrapper.addClass("mesa-input-instruction-mode");
     this.state = { active: true, rawInstruction: "" };
     this.inputEl.placeholder = INSTRUCTION_MODE_PLACEHOLDER;
     return true;
@@ -55596,7 +55596,7 @@ var InstructionModeManager = class {
   exitMode() {
     const wrapper = this.callbacks.getInputWrapper();
     if (wrapper) {
-      wrapper.removeClass("mkortex-input-instruction-mode");
+      wrapper.removeClass("mesa-input-instruction-mode");
     }
     this.state = { active: false, rawInstruction: "" };
     this.inputEl.placeholder = this.originalPlaceholder;
@@ -55657,7 +55657,7 @@ var InstructionModeManager = class {
   destroy() {
     const wrapper = this.callbacks.getInputWrapper();
     if (wrapper) {
-      wrapper.removeClass("mkortex-input-instruction-mode");
+      wrapper.removeClass("mesa-input-instruction-mode");
     }
     this.inputEl.placeholder = this.originalPlaceholder;
   }
@@ -55751,11 +55751,11 @@ var StatusPanel = class {
     }
     const ownerDocument = (_a3 = this.containerEl.ownerDocument) != null ? _a3 : window.document;
     this.panelEl = ownerDocument.createElement("div");
-    this.panelEl.className = "mkortex-status-panel";
+    this.panelEl.className = "mesa-status-panel";
     this.bashOutputContainerEl = ownerDocument.createElement("div");
-    this.bashOutputContainerEl.className = "mkortex-status-panel-bash mkortex-hidden";
+    this.bashOutputContainerEl.className = "mesa-status-panel-bash mesa-hidden";
     this.bashHeaderEl = ownerDocument.createElement("div");
-    this.bashHeaderEl.className = "mkortex-tool-header mkortex-status-panel-bash-header";
+    this.bashHeaderEl.className = "mesa-tool-header mesa-status-panel-bash-header";
     this.bashHeaderEl.setAttribute("tabindex", "0");
     this.bashHeaderEl.setAttribute("role", "button");
     this.bashClickHandler = () => this.toggleBashSection();
@@ -55768,15 +55768,15 @@ var StatusPanel = class {
     this.bashHeaderEl.addEventListener("click", this.bashClickHandler);
     this.bashHeaderEl.addEventListener("keydown", this.bashKeydownHandler);
     this.bashContentEl = ownerDocument.createElement("div");
-    this.bashContentEl.className = "mkortex-status-panel-bash-content";
+    this.bashContentEl.className = "mesa-status-panel-bash-content";
     this.bashOutputContainerEl.appendChild(this.bashHeaderEl);
     this.bashOutputContainerEl.appendChild(this.bashContentEl);
     this.panelEl.appendChild(this.bashOutputContainerEl);
     this.todoContainerEl = ownerDocument.createElement("div");
-    this.todoContainerEl.className = "mkortex-status-panel-todos mkortex-hidden";
+    this.todoContainerEl.className = "mesa-status-panel-todos mesa-hidden";
     this.panelEl.appendChild(this.todoContainerEl);
     this.todoHeaderEl = ownerDocument.createElement("div");
-    this.todoHeaderEl.className = "mkortex-status-panel-header";
+    this.todoHeaderEl.className = "mesa-status-panel-header";
     this.todoHeaderEl.setAttribute("tabindex", "0");
     this.todoHeaderEl.setAttribute("role", "button");
     this.todoClickHandler = () => this.toggleTodos();
@@ -55790,7 +55790,7 @@ var StatusPanel = class {
     this.todoHeaderEl.addEventListener("keydown", this.todoKeydownHandler);
     this.todoContainerEl.appendChild(this.todoHeaderEl);
     this.todoContentEl = ownerDocument.createElement("div");
-    this.todoContentEl.className = "mkortex-status-panel-content mkortex-todo-list-container mkortex-hidden";
+    this.todoContentEl.className = "mesa-status-panel-content mesa-todo-list-container mesa-hidden";
     this.todoContainerEl.appendChild(this.todoContentEl);
     this.containerEl.appendChild(this.panelEl);
   }
@@ -55805,12 +55805,12 @@ var StatusPanel = class {
     }
     this.currentTodos = todos;
     if (!todos || todos.length === 0) {
-      this.todoContainerEl.addClass("mkortex-hidden");
+      this.todoContainerEl.addClass("mesa-hidden");
       this.todoHeaderEl.empty();
       this.todoContentEl.empty();
       return;
     }
-    this.todoContainerEl.removeClass("mkortex-hidden");
+    this.todoContainerEl.removeClass("mesa-hidden");
     const completedCount = todos.filter((t11) => t11.status === "completed").length;
     const totalCount = todos.length;
     const currentTask = todos.find((t11) => t11.status === "in_progress");
@@ -55828,23 +55828,23 @@ var StatusPanel = class {
     this.todoHeaderEl.empty();
     const ownerDocument = (_a3 = this.todoHeaderEl.ownerDocument) != null ? _a3 : window.document;
     const icon = ownerDocument.createElement("span");
-    icon.className = "mkortex-status-panel-icon";
+    icon.className = "mesa-status-panel-icon";
     (0, import_obsidian25.setIcon)(icon, getToolIcon(TOOL_TODO_WRITE));
     this.todoHeaderEl.appendChild(icon);
     const label = ownerDocument.createElement("span");
-    label.className = "mkortex-status-panel-label";
+    label.className = "mesa-status-panel-label";
     label.textContent = `Tasks (${completedCount}/${totalCount})`;
     this.todoHeaderEl.appendChild(label);
     if (!this.isTodoExpanded) {
       if (completedCount === totalCount && totalCount > 0) {
         const status = ownerDocument.createElement("span");
-        status.className = "mkortex-status-panel-status status-completed";
+        status.className = "mesa-status-panel-status status-completed";
         (0, import_obsidian25.setIcon)(status, "check");
         this.todoHeaderEl.appendChild(status);
       }
       if (currentTask) {
         const current = ownerDocument.createElement("span");
-        current.className = "mkortex-status-panel-current";
+        current.className = "mesa-status-panel-current";
         current.textContent = currentTask.activeForm;
         this.todoHeaderEl.appendChild(current);
       }
@@ -55869,7 +55869,7 @@ var StatusPanel = class {
    */
   updateTodoDisplay() {
     if (!this.todoContentEl || !this.todoHeaderEl) return;
-    this.todoContentEl.toggleClass("mkortex-hidden", !this.isTodoExpanded);
+    this.todoContentEl.toggleClass("mesa-hidden", !this.isTodoExpanded);
     if (this.currentTodos && this.currentTodos.length > 0) {
       const completedCount = this.currentTodos.filter((t11) => t11.status === "completed").length;
       const totalCount = this.currentTodos.length;
@@ -55932,21 +55932,21 @@ var StatusPanel = class {
     if (!this.bashOutputContainerEl || !this.bashHeaderEl || !this.bashContentEl) return;
     const scroll = (_a3 = options.scroll) != null ? _a3 : true;
     if (this.currentBashOutputs.size === 0) {
-      this.bashOutputContainerEl.addClass("mkortex-hidden");
+      this.bashOutputContainerEl.addClass("mesa-hidden");
       return;
     }
-    this.bashOutputContainerEl.removeClass("mkortex-hidden");
+    this.bashOutputContainerEl.removeClass("mesa-hidden");
     this.bashHeaderEl.empty();
     this.bashContentEl.empty();
     const ownerDocument = (_b3 = this.bashHeaderEl.ownerDocument) != null ? _b3 : window.document;
     const headerIconEl = ownerDocument.createElement("span");
-    headerIconEl.className = "mkortex-tool-icon";
+    headerIconEl.className = "mesa-tool-icon";
     headerIconEl.setAttribute("aria-hidden", "true");
     (0, import_obsidian25.setIcon)(headerIconEl, "terminal");
     this.bashHeaderEl.appendChild(headerIconEl);
     const latest = Array.from(this.currentBashOutputs.values()).at(-1);
     const headerLabelEl = ownerDocument.createElement("span");
-    headerLabelEl.className = "mkortex-tool-label";
+    headerLabelEl.className = "mesa-tool-label";
     if (this.isBashExpanded) {
       headerLabelEl.textContent = t10("chat.bangBash.commandPanel");
     } else {
@@ -55954,23 +55954,23 @@ var StatusPanel = class {
     }
     this.bashHeaderEl.appendChild(headerLabelEl);
     const previewEl = ownerDocument.createElement("span");
-    previewEl.className = "mkortex-tool-current";
-    previewEl.classList.toggle("mkortex-hidden", !this.isBashExpanded);
+    previewEl.className = "mesa-tool-current";
+    previewEl.classList.toggle("mesa-hidden", !this.isBashExpanded);
     this.bashHeaderEl.appendChild(previewEl);
     const summaryStatusEl = ownerDocument.createElement("span");
-    summaryStatusEl.className = "mkortex-tool-status";
+    summaryStatusEl.className = "mesa-tool-status";
     if (!this.isBashExpanded && latest) {
       summaryStatusEl.classList.add(`status-${latest.status}`);
       summaryStatusEl.setAttribute("aria-label", t10("chat.bangBash.statusLabel", { status: latest.status }));
       if (latest.status === "completed") (0, import_obsidian25.setIcon)(summaryStatusEl, "check");
       if (latest.status === "error") (0, import_obsidian25.setIcon)(summaryStatusEl, "x");
     } else {
-      summaryStatusEl.classList.add("mkortex-hidden");
+      summaryStatusEl.classList.add("mesa-hidden");
     }
     this.bashHeaderEl.appendChild(summaryStatusEl);
     this.bashHeaderEl.setAttribute("aria-expanded", String(this.isBashExpanded));
     const actionsEl = ownerDocument.createElement("span");
-    actionsEl.className = "mkortex-status-panel-bash-actions";
+    actionsEl.className = "mesa-status-panel-bash-actions";
     this.appendActionButton(actionsEl, "copy", t10("chat.bangBash.copyAriaLabel"), "copy", () => {
       void this.copyLatestBashOutput();
     });
@@ -55978,7 +55978,7 @@ var StatusPanel = class {
       this.clearBashOutputs();
     });
     this.bashHeaderEl.appendChild(actionsEl);
-    this.bashContentEl.toggleClass("mkortex-hidden", !this.isBashExpanded);
+    this.bashContentEl.toggleClass("mesa-hidden", !this.isBashExpanded);
     if (!this.isBashExpanded) {
       return;
     }
@@ -55993,22 +55993,22 @@ var StatusPanel = class {
   renderBashEntry(info, ownerDocument) {
     var _a3;
     const entryEl = ownerDocument.createElement("div");
-    entryEl.className = "mkortex-tool-call mkortex-status-panel-bash-entry";
+    entryEl.className = "mesa-tool-call mesa-status-panel-bash-entry";
     const entryHeaderEl = ownerDocument.createElement("div");
-    entryHeaderEl.className = "mkortex-tool-header";
+    entryHeaderEl.className = "mesa-tool-header";
     entryHeaderEl.setAttribute("tabindex", "0");
     entryHeaderEl.setAttribute("role", "button");
     const entryIconEl = ownerDocument.createElement("span");
-    entryIconEl.className = "mkortex-tool-icon";
+    entryIconEl.className = "mesa-tool-icon";
     entryIconEl.setAttribute("aria-hidden", "true");
     (0, import_obsidian25.setIcon)(entryIconEl, "dollar-sign");
     entryHeaderEl.appendChild(entryIconEl);
     const entryLabelEl = ownerDocument.createElement("span");
-    entryLabelEl.className = "mkortex-tool-label";
+    entryLabelEl.className = "mesa-tool-label";
     entryLabelEl.textContent = t10("chat.bangBash.commandLabel", { command: this.truncateDescription(info.command, 60) });
     entryHeaderEl.appendChild(entryLabelEl);
     const entryStatusEl = ownerDocument.createElement("span");
-    entryStatusEl.className = "mkortex-tool-status";
+    entryStatusEl.className = "mesa-tool-status";
     entryStatusEl.classList.add(`status-${info.status}`);
     entryStatusEl.setAttribute("aria-label", t10("chat.bangBash.statusLabel", { status: info.status }));
     if (info.status === "completed") (0, import_obsidian25.setIcon)(entryStatusEl, "check");
@@ -56016,9 +56016,9 @@ var StatusPanel = class {
     entryHeaderEl.appendChild(entryStatusEl);
     entryEl.appendChild(entryHeaderEl);
     const contentEl = ownerDocument.createElement("div");
-    contentEl.className = "mkortex-tool-content";
+    contentEl.className = "mesa-tool-content";
     const isEntryExpanded = (_a3 = this.bashEntryExpanded.get(info.id)) != null ? _a3 : true;
-    contentEl.classList.toggle("mkortex-hidden", !isEntryExpanded);
+    contentEl.classList.toggle("mesa-hidden", !isEntryExpanded);
     entryHeaderEl.setAttribute("aria-expanded", String(isEntryExpanded));
     entryHeaderEl.setAttribute("aria-label", isEntryExpanded ? t10("chat.bangBash.collapseOutput") : t10("chat.bangBash.expandOutput"));
     entryHeaderEl.addEventListener("click", () => {
@@ -56033,9 +56033,9 @@ var StatusPanel = class {
       }
     });
     const rowEl = ownerDocument.createElement("div");
-    rowEl.className = "mkortex-tool-result-row";
+    rowEl.className = "mesa-tool-result-row";
     const textEl = ownerDocument.createElement("span");
-    textEl.className = "mkortex-tool-result-text";
+    textEl.className = "mesa-tool-result-text";
     if (info.status === "running" && !info.output) {
       textEl.textContent = t10("chat.bangBash.running");
     } else if (info.output) {
@@ -56062,7 +56062,7 @@ ${output}` : `$ ${latest.command}`;
   appendActionButton(parent, name, ariaLabel, icon, action) {
     var _a3;
     const el2 = ((_a3 = parent.ownerDocument) != null ? _a3 : window.document).createElement("span");
-    el2.className = `mkortex-status-panel-bash-action mkortex-status-panel-bash-action-${name}`;
+    el2.className = `mesa-status-panel-bash-action mesa-status-panel-bash-action-${name}`;
     el2.setAttribute("role", "button");
     el2.setAttribute("tabindex", "0");
     el2.setAttribute("aria-label", ariaLabel);
@@ -56142,18 +56142,18 @@ function calculateTextareaMinHeight({
 }
 function autoResizeTextarea(textarea) {
   var _a3, _b3;
-  const viewHeight = (_b3 = (_a3 = textarea.closest(".mkortex-container")) == null ? void 0 : _a3.clientHeight) != null ? _b3 : window.innerHeight;
+  const viewHeight = (_b3 = (_a3 = textarea.closest(".mesa-container")) == null ? void 0 : _a3.clientHeight) != null ? _b3 : window.innerHeight;
   const maxHeight = calculateTextareaMaxHeight(viewHeight);
   textarea.setCssProps({
-    "--mkortex-textarea-min-height": `${TEXTAREA_BASE_MIN_HEIGHT}px`,
-    "--mkortex-textarea-max-height": `${maxHeight}px`
+    "--mesa-textarea-min-height": `${TEXTAREA_BASE_MIN_HEIGHT}px`,
+    "--mesa-textarea-max-height": `${maxHeight}px`
   });
   const flexAllocatedHeight = textarea.offsetHeight;
   const contentHeight = Math.min(textarea.scrollHeight, maxHeight);
   const minHeight = calculateTextareaMinHeight({ contentHeight, flexAllocatedHeight });
   textarea.setCssProps({
-    "--mkortex-textarea-min-height": `${minHeight}px`,
-    "--mkortex-textarea-max-height": `${maxHeight}px`
+    "--mesa-textarea-min-height": `${minHeight}px`,
+    "--mesa-textarea-max-height": `${maxHeight}px`
   });
 }
 
@@ -56349,7 +56349,7 @@ function refreshSessionProviderUI(session, plugin) {
   (_h2 = session.ui.permissionToggle) == null ? void 0 : _h2.updateDisplay();
   (_i = session.ui.serviceTierToggle) == null ? void 0 : _i.updateDisplay();
   session.dom.inputWrapper.toggleClass(
-    "mkortex-input-plan-mode",
+    "mesa-input-plan-mode",
     permissionMode === "plan" && capabilities.supportsPlanMode
   );
 }
@@ -56431,7 +56431,7 @@ function createChatSession(options) {
     onConversationIdChanged
   } = options;
   const id = sessionId != null ? sessionId : generateSessionId();
-  const contentEl = containerEl.createDiv({ cls: "mkortex-chat-pane-content mkortex-hidden" });
+  const contentEl = containerEl.createDiv({ cls: "mesa-chat-pane-content mesa-hidden" });
   const state = new ChatState({
     onStreamingStateChanged: onStreamingChanged,
     onAttentionChanged,
@@ -56491,17 +56491,17 @@ function createChatSession(options) {
   return session;
 }
 function buildSessionDOM(contentEl) {
-  const messagesWrapperEl = contentEl.createDiv({ cls: "mkortex-messages-wrapper" });
-  const messagesEl = messagesWrapperEl.createDiv({ cls: "mkortex-messages" });
-  const welcomeEl = messagesEl.createDiv({ cls: "mkortex-welcome" });
-  const statusPanelContainerEl = contentEl.createDiv({ cls: "mkortex-status-panel-container" });
-  const inputComposerEl = contentEl.createDiv({ cls: "mkortex-input-composer" });
-  const inputContainerEl = inputComposerEl.createDiv({ cls: "mkortex-input-container" });
-  const queueIndicatorEl = inputContainerEl.createDiv({ cls: "mkortex-input-queue-row" });
-  const inputWrapper = inputContainerEl.createDiv({ cls: "mkortex-input-wrapper" });
-  const contextRowEl = inputWrapper.createDiv({ cls: "mkortex-context-row" });
+  const messagesWrapperEl = contentEl.createDiv({ cls: "mesa-messages-wrapper" });
+  const messagesEl = messagesWrapperEl.createDiv({ cls: "mesa-messages" });
+  const welcomeEl = messagesEl.createDiv({ cls: "mesa-welcome" });
+  const statusPanelContainerEl = contentEl.createDiv({ cls: "mesa-status-panel-container" });
+  const inputComposerEl = contentEl.createDiv({ cls: "mesa-input-composer" });
+  const inputContainerEl = inputComposerEl.createDiv({ cls: "mesa-input-container" });
+  const queueIndicatorEl = inputContainerEl.createDiv({ cls: "mesa-input-queue-row" });
+  const inputWrapper = inputContainerEl.createDiv({ cls: "mesa-input-wrapper" });
+  const contextRowEl = inputWrapper.createDiv({ cls: "mesa-context-row" });
   const inputEl = inputWrapper.createEl("textarea", {
-    cls: "mkortex-input",
+    cls: "mesa-input",
     attr: {
       placeholder: t10("chat.input.placeholder"),
       rows: "3",
@@ -56682,7 +56682,7 @@ function isBangBashEnabled(settings) {
 function initializeInputToolbar(session, plugin, getProviderCatalogConfig, onProviderChanged) {
   var _a3;
   const { dom } = session;
-  const inputToolbar = dom.inputWrapper.createDiv({ cls: "mkortex-input-toolbar" });
+  const inputToolbar = dom.inputWrapper.createDiv({ cls: "mesa-input-toolbar" });
   const blankSessionUIConfigProxy = () => {
     const draftProvider = session.draftModel ? getEnabledProviderForModel(session.draftModel, plugin.settings) : DEFAULT_CHAT_PROVIDER_ID;
     const baseConfig = ProviderRegistry.getChatUIConfig(draftProvider);
@@ -56807,7 +56807,7 @@ function initializeInputToolbar(session, plugin, getProviderCatalogConfig, onPro
       (_b3 = session.ui.modePill) == null ? void 0 : _b3.updateDisplay();
       (_c2 = session.ui.modePill) == null ? void 0 : _c2.renderOptions();
       dom.inputWrapper.toggleClass(
-        "mkortex-input-plan-mode",
+        "mesa-input-plan-mode",
         mode === "plan" && getSessionCapabilities(session, plugin).supportsPlanMode
       );
     }
@@ -56862,9 +56862,9 @@ function initializeSessionUI(session, plugin, options = {}) {
   var _a3, _b3;
   const { dom, state } = session;
   initializeContextManagers(session, plugin);
-  dom.selectionIndicatorEl = dom.contextRowEl.createDiv({ cls: "mkortex-selection-indicator mkortex-hidden" });
-  dom.browserIndicatorEl = dom.contextRowEl.createDiv({ cls: "mkortex-browser-selection-indicator mkortex-hidden" });
-  dom.canvasIndicatorEl = dom.contextRowEl.createDiv({ cls: "mkortex-canvas-indicator mkortex-hidden" });
+  dom.selectionIndicatorEl = dom.contextRowEl.createDiv({ cls: "mesa-selection-indicator mesa-hidden" });
+  dom.browserIndicatorEl = dom.contextRowEl.createDiv({ cls: "mesa-browser-selection-indicator mesa-hidden" });
+  dom.canvasIndicatorEl = dom.contextRowEl.createDiv({ cls: "mesa-canvas-indicator mesa-hidden" });
   const catalogInfo = (_b3 = (_a3 = options.getProviderCatalogConfig) == null ? void 0 : _a3.call(options)) != null ? _b3 : null;
   initializeSlashCommands(
     session,
@@ -57204,7 +57204,7 @@ function wireSessionInputEvents(session, plugin) {
 }
 function activateChatSession(session) {
   var _a3, _b3, _c2;
-  session.dom.contentEl.removeClass("mkortex-hidden");
+  session.dom.contentEl.removeClass("mesa-hidden");
   (_a3 = session.controllers.selectionController) == null ? void 0 : _a3.start();
   (_b3 = session.controllers.browserSelectionController) == null ? void 0 : _b3.start();
   (_c2 = session.controllers.canvasSelectionController) == null ? void 0 : _c2.start();
@@ -57370,7 +57370,7 @@ async function renderAutoTriggeredTurn(session, result) {
   if (hasVisibleContent) {
     session.state.addMessage(assistantMsg);
     const msgEl = (_c2 = (_b3 = session.renderer) == null ? void 0 : _b3.addMessage) == null ? void 0 : _c2.call(_b3, assistantMsg);
-    const contentEl = msgEl == null ? void 0 : msgEl.querySelector(".mkortex-message-content");
+    const contentEl = msgEl == null ? void 0 : msgEl.querySelector(".mesa-message-content");
     if (contentEl) {
       if (!previousContentEl) {
         session.state.toolCallElements.clear();
@@ -57426,7 +57426,7 @@ function updatePlanModeUI(session, plugin, mode) {
   (_b3 = session.ui.modePill) == null ? void 0 : _b3.updateDisplay();
   (_c2 = session.ui.modePill) == null ? void 0 : _c2.renderOptions();
   session.dom.inputWrapper.toggleClass(
-    "mkortex-input-plan-mode",
+    "mesa-input-plan-mode",
     mode === "plan" && getSessionCapabilities(session, plugin).supportsPlanMode
   );
 }
@@ -57839,8 +57839,8 @@ var ChatSessionManager = class {
   }
 };
 
-// src/features/chat/MKortexView.ts
-var MKortexView = class extends import_obsidian27.ItemView {
+// src/features/chat/MesaView.ts
+var MesaView = class extends import_obsidian27.ItemView {
   constructor(leaf, plugin) {
     super(leaf);
     // Chat session (single chat per pane)
@@ -57875,10 +57875,10 @@ var MKortexView = class extends import_obsidian27.ItemView {
     });
   }
   getViewType() {
-    return VIEW_TYPE_MKORTEX;
+    return VIEW_TYPE_MESA_ACP;
   }
   getDisplayText() {
-    return "MKortex";
+    return "Mesa";
   }
   getIcon() {
     return "bot";
@@ -57916,7 +57916,7 @@ var MKortexView = class extends import_obsidian27.ItemView {
     (_i = session.ui.permissionToggle) == null ? void 0 : _i.updateDisplay();
     (_j = session.ui.serviceTierToggle) == null ? void 0 : _j.updateDisplay();
     session.dom.inputWrapper.toggleClass(
-      "mkortex-input-plan-mode",
+      "mesa-input-plan-mode",
       providerSettings.permissionMode === "plan" && capabilities.supportsPlanMode
     );
     (_k3 = this.sessionManager) == null ? void 0 : _k3.primeProviderRuntime();
@@ -57947,9 +57947,9 @@ var MKortexView = class extends import_obsidian27.ItemView {
     }
     this.viewContainerEl = container;
     this.viewContainerEl.empty();
-    this.viewContainerEl.addClass("mkortex-container");
+    this.viewContainerEl.addClass("mesa-container");
     this.buildChatHeader();
-    this.chatPaneEl = this.viewContainerEl.createDiv({ cls: "mkortex-chat-pane" });
+    this.chatPaneEl = this.viewContainerEl.createDiv({ cls: "mesa-chat-pane" });
     this.buildInputFooter();
     this.sessionManager = new ChatSessionManager(
       this.plugin,
@@ -58013,13 +58013,13 @@ var MKortexView = class extends import_obsidian27.ItemView {
   /** Builds the chat header (title + new chat + history). */
   buildChatHeader() {
     if (!this.viewContainerEl) return;
-    this.chatHeaderEl = this.viewContainerEl.createDiv({ cls: "mkortex-chat-header" });
+    this.chatHeaderEl = this.viewContainerEl.createDiv({ cls: "mesa-chat-header" });
     this.chatHeaderEl.setAttribute("hidden", "");
-    this.chatTitleEl = this.chatHeaderEl.createDiv({ cls: "mkortex-chat-header-title" });
+    this.chatTitleEl = this.chatHeaderEl.createDiv({ cls: "mesa-chat-header-title" });
     const defaultTitle = t10("chat.history.newChat");
     this.chatTitleEl.setText(defaultTitle);
     const newBtnLabel = t10("chat.nav.newConversation");
-    const newBtn = this.chatHeaderEl.createDiv({ cls: "mkortex-input-nav-btn" });
+    const newBtn = this.chatHeaderEl.createDiv({ cls: "mesa-input-nav-btn" });
     (0, import_obsidian27.setIcon)(newBtn, "square-pen");
     newBtn.setAttribute("aria-label", newBtnLabel);
     newBtn.setAttribute("title", newBtnLabel);
@@ -58031,13 +58031,13 @@ var MKortexView = class extends import_obsidian27.ItemView {
         this.refreshHistoryDropdownIfOpen();
       })().catch(() => new import_obsidian27.Notice(t10("notices.failedToCreateConversation")));
     });
-    const historyContainer = this.chatHeaderEl.createDiv({ cls: "mkortex-history-container" });
+    const historyContainer = this.chatHeaderEl.createDiv({ cls: "mesa-history-container" });
     const historyBtnLabel = t10("chat.nav.chatHistory");
-    const historyBtn = historyContainer.createDiv({ cls: "mkortex-input-nav-btn" });
+    const historyBtn = historyContainer.createDiv({ cls: "mesa-input-nav-btn" });
     (0, import_obsidian27.setIcon)(historyBtn, "history");
     historyBtn.setAttribute("aria-label", historyBtnLabel);
     historyBtn.setAttribute("title", historyBtnLabel);
-    this.historyDropdown = historyContainer.createDiv({ cls: "mkortex-history-menu" });
+    this.historyDropdown = historyContainer.createDiv({ cls: "mesa-history-menu" });
     this.historyDropdown.setAttribute("hidden", "");
     historyBtn.addEventListener("click", (e2) => {
       e2.stopPropagation();
@@ -58072,8 +58072,8 @@ var MKortexView = class extends import_obsidian27.ItemView {
   }
   buildInputFooter() {
     if (!this.viewContainerEl) return;
-    this.inputFooterEl = this.viewContainerEl.createDiv({ cls: "mkortex-input-footer" });
-    this.activeInputSlotEl = this.inputFooterEl.createDiv({ cls: "mkortex-active-input-slot" });
+    this.inputFooterEl = this.viewContainerEl.createDiv({ cls: "mesa-input-footer" });
+    this.activeInputSlotEl = this.inputFooterEl.createDiv({ cls: "mesa-active-input-slot" });
   }
   updateInputLocation() {
     var _a3;
@@ -58313,7 +58313,7 @@ function emptyElement(container) {
 }
 function appendFallback(container, markdown) {
   const fallback = container.ownerDocument.createElement("div");
-  fallback.className = "mkortex-inline-markdown-fallback";
+  fallback.className = "mesa-inline-markdown-fallback";
   fallback.textContent = markdown;
   container.appendChild(fallback);
 }
@@ -58383,7 +58383,7 @@ function buildInlineEditInputDecorations(options) {
   const lineStart = options.doc.lineAt(options.inputPos).from;
   return import_view2.Decoration.set([
     import_view2.Decoration.line({
-      class: "mkortex-inline-input-line"
+      class: "mesa-inline-input-line"
     }).range(lineStart),
     import_view2.Decoration.widget({
       widget: options.widget,
@@ -58476,11 +58476,11 @@ function mergeAdjacentDiffOps(ops) {
 function getDiffBlockClass(type) {
   switch (type) {
     case "delete":
-      return "mkortex-diff-del";
+      return "mesa-diff-del";
     case "insert":
-      return "mkortex-diff-ins";
+      return "mesa-diff-ins";
     default:
-      return "mkortex-diff-equal";
+      return "mesa-diff-equal";
   }
 }
 function buildMarkdownDiffDocuments(diffOps) {
@@ -58684,22 +58684,22 @@ var InlineEditController = class {
   createInputDOM() {
     const ownerDocument = this.getOwnerDocument();
     const container = ownerDocument.createElement("div");
-    container.className = "mkortex-inline-input-container";
+    container.className = "mesa-inline-input-container";
     this.containerEl = container;
     this.agentReplyEl = ownerDocument.createElement("div");
-    this.agentReplyEl.className = "mkortex-inline-agent-reply mkortex-hidden";
+    this.agentReplyEl.className = "mesa-inline-agent-reply mesa-hidden";
     container.appendChild(this.agentReplyEl);
     const inputWrap = ownerDocument.createElement("div");
-    inputWrap.className = "mkortex-inline-input-wrap";
+    inputWrap.className = "mesa-inline-input-wrap";
     container.appendChild(inputWrap);
     this.inputEl = ownerDocument.createElement("input");
     this.inputEl.type = "text";
-    this.inputEl.className = "mkortex-inline-input";
+    this.inputEl.className = "mesa-inline-input";
     this.inputEl.placeholder = this.mode === "cursor" ? "Insert instructions..." : "Edit instructions...";
     this.inputEl.spellcheck = false;
     inputWrap.appendChild(this.inputEl);
     this.spinnerEl = ownerDocument.createElement("div");
-    this.spinnerEl.className = "mkortex-inline-spinner mkortex-hidden";
+    this.spinnerEl.className = "mesa-inline-spinner mesa-hidden";
     inputWrap.appendChild(this.spinnerEl);
     const inlineCatalog = ProviderWorkspaceRegistry.getCommandCatalog(this.resolvedProviderId);
     this.slashCommandDropdown = new SlashCommandDropdown(
@@ -58754,12 +58754,12 @@ var InlineEditController = class {
   createDiffPreviewDOM(diffOps) {
     const ownerDocument = this.getOwnerDocument();
     const previewEl = ownerDocument.createElement("div");
-    previewEl.className = "mkortex-inline-diff-preview";
+    previewEl.className = "mesa-inline-diff-preview";
     const bodyEl = ownerDocument.createElement("div");
-    bodyEl.className = "mkortex-inline-diff-preview-body markdown-rendered";
+    bodyEl.className = "mesa-inline-diff-preview-body markdown-rendered";
     previewEl.appendChild(bodyEl);
     const actionsEl = ownerDocument.createElement("div");
-    actionsEl.className = "mkortex-inline-preview-actions";
+    actionsEl.className = "mesa-inline-preview-actions";
     actionsEl.appendChild(this.createPreviewActionButton("Reject", "reject", () => this.reject()));
     actionsEl.appendChild(this.createPreviewActionButton("Accept", "accept", () => this.accept()));
     previewEl.appendChild(actionsEl);
@@ -58770,7 +58770,7 @@ var InlineEditController = class {
     const ownerDocument = this.getOwnerDocument();
     const button = ownerDocument.createElement("button");
     button.type = "button";
-    button.className = `mkortex-inline-preview-action ${variant}`;
+    button.className = `mesa-inline-preview-action ${variant}`;
     button.textContent = label;
     button.title = variant === "accept" ? "Accept (enter)" : "Reject (esc)";
     button.addEventListener("click", (event) => {
@@ -58795,7 +58795,7 @@ var InlineEditController = class {
     for (const document2 of buildMarkdownDiffDocuments(diffOps)) {
       if (!document2.markdown) continue;
       const opEl = this.getOwnerDocument().createElement("div");
-      opEl.className = `mkortex-diff-block ${getDiffBlockClass(document2.type)}`;
+      opEl.className = `mesa-diff-block ${getDiffBlockClass(document2.type)}`;
       container.appendChild(opEl);
       await this.renderMarkdownPreview(opEl, document2.markdown);
     }
@@ -58818,7 +58818,7 @@ var InlineEditController = class {
     if (!userMessage) return;
     this.removeSelectionListeners();
     this.inputEl.disabled = true;
-    this.spinnerEl.removeClass("mkortex-hidden");
+    this.spinnerEl.removeClass("mesa-hidden");
     const contextFiles = this.resolveContextFilesFromMessage(userMessage);
     let result;
     if (this.isConversing) {
@@ -58845,7 +58845,7 @@ var InlineEditController = class {
         });
       }
     }
-    this.spinnerEl.addClass("mkortex-hidden");
+    this.spinnerEl.addClass("mesa-hidden");
     if (result.success) {
       if (result.editedText !== void 0) {
         this.editedText = result.editedText;
@@ -58872,7 +58872,7 @@ var InlineEditController = class {
     const replyEl = this.agentReplyEl;
     const renderVersion = ++this.agentReplyRenderVersion;
     const renderedEl = this.getOwnerDocument().createElement("div");
-    replyEl.removeClass("mkortex-hidden");
+    replyEl.removeClass("mesa-hidden");
     replyEl.empty();
     void this.renderMarkdownPreview(renderedEl, message).then(() => {
       if (renderVersion !== this.agentReplyRenderVersion || replyEl !== this.agentReplyEl) {
@@ -59062,7 +59062,7 @@ var InlineEditController = class {
   }
 };
 
-// src/features/settings/MKortexSettings.ts
+// src/features/settings/MesaSettings.ts
 var fs24 = __toESM(require("fs"));
 var import_obsidian32 = require("obsidian");
 
@@ -59073,30 +59073,30 @@ var OPENCODE_METADATA_WARMUP_DB3 = ":memory:";
 function renderOpencodeModelPickerSection(container, plugin, refreshModelSelectors) {
   const settingsBag = plugin.settings;
   new import_obsidian30.Setting(container).setName(t10("providers.shared.visibleModels")).setDesc(t10("providers.shared.visibleModelsDesc"));
-  const pickerEl = container.createDiv({ cls: "mkortex-opencode-model-picker" });
+  const pickerEl = container.createDiv({ cls: "mesa-opencode-model-picker" });
   let searchQuery = "";
   let providerFilter = ALL_PROVIDERS_KEY;
-  const summaryEl = pickerEl.createDiv({ cls: "mkortex-opencode-model-picker-summary" });
-  const selectedEl = pickerEl.createDiv({ cls: "mkortex-opencode-model-picker-selected" });
-  const catalogEl = pickerEl.createEl("details", { cls: "mkortex-opencode-model-picker-catalog" });
+  const summaryEl = pickerEl.createDiv({ cls: "mesa-opencode-model-picker-summary" });
+  const selectedEl = pickerEl.createDiv({ cls: "mesa-opencode-model-picker-selected" });
+  const catalogEl = pickerEl.createEl("details", { cls: "mesa-opencode-model-picker-catalog" });
   catalogEl.open = getOpencodeProviderSettings(settingsBag).visibleModels.length === 0;
   const catalogSummaryEl = catalogEl.createEl("summary", {
-    cls: "mkortex-opencode-model-picker-catalog-summary"
+    cls: "mesa-opencode-model-picker-catalog-summary"
   });
   const caretEl = catalogSummaryEl.createSpan({
-    cls: "mkortex-opencode-model-picker-catalog-caret"
+    cls: "mesa-opencode-model-picker-catalog-caret"
   });
   (0, import_obsidian30.setIcon)(caretEl, "chevron-right");
   catalogSummaryEl.createSpan({
-    cls: "mkortex-opencode-model-picker-catalog-title",
+    cls: "mesa-opencode-model-picker-catalog-title",
     text: t10("providers.shared.browseModels")
   });
   const catalogSummaryCountEl = catalogSummaryEl.createSpan({
-    cls: "mkortex-opencode-model-picker-catalog-count"
+    cls: "mesa-opencode-model-picker-catalog-count"
   });
-  const controlsEl = catalogEl.createDiv({ cls: "mkortex-opencode-model-picker-controls" });
+  const controlsEl = catalogEl.createDiv({ cls: "mesa-opencode-model-picker-controls" });
   const searchInput = controlsEl.createEl("input", {
-    cls: "mkortex-opencode-model-picker-search",
+    cls: "mesa-opencode-model-picker-search",
     type: "search"
   });
   searchInput.placeholder = t10("providers.shared.filterPlaceholder");
@@ -59105,13 +59105,13 @@ function renderOpencodeModelPickerSection(container, plugin, refreshModelSelecto
     renderList();
   });
   const providerSelectEl = controlsEl.createEl("select", {
-    cls: "mkortex-opencode-model-picker-provider"
+    cls: "mesa-opencode-model-picker-provider"
   });
   providerSelectEl.addEventListener("change", () => {
     providerFilter = providerSelectEl.value;
     renderList();
   });
-  const listEl = catalogEl.createDiv({ cls: "mkortex-opencode-model-picker-list" });
+  const listEl = catalogEl.createDiv({ cls: "mesa-opencode-model-picker-list" });
   let loadingModelCatalog = false;
   let modelCatalogLoadFailed = false;
   const getEnrichedModels = () => {
@@ -59173,7 +59173,7 @@ function renderOpencodeModelPickerSection(container, plugin, refreshModelSelecto
     const providerWord = providerCount === 1 ? t10("providers.shared.providerSingular") : t10("providers.shared.providerPlural");
     summaryEl.createSpan({ text: t10("providers.shared.visible") });
     summaryEl.createSpan({
-      cls: "mkortex-opencode-model-picker-summary-value",
+      cls: "mesa-opencode-model-picker-summary-value",
       text: String(current.visibleModels.length)
     });
     summaryEl.createSpan({
@@ -59192,64 +59192,64 @@ function renderOpencodeModelPickerSection(container, plugin, refreshModelSelecto
     selectedEl.empty();
     const current = getOpencodeProviderSettings(settingsBag);
     if (current.visibleModels.length === 0) {
-      selectedEl.toggleClass("mkortex-hidden", true);
+      selectedEl.toggleClass("mesa-hidden", true);
       return;
     }
-    selectedEl.toggleClass("mkortex-hidden", false);
+    selectedEl.toggleClass("mesa-hidden", false);
     const enrichedByRawId = new Map(
       getEnrichedModels().map((model) => [model.rawId, model])
     );
-    const headerEl = selectedEl.createDiv({ cls: "mkortex-opencode-model-picker-selected-header" });
+    const headerEl = selectedEl.createDiv({ cls: "mesa-opencode-model-picker-selected-header" });
     headerEl.createEl("span", {
-      cls: "mkortex-opencode-model-picker-selected-label",
+      cls: "mesa-opencode-model-picker-selected-label",
       text: t10("providers.shared.selectedCount", { count: current.visibleModels.length })
     });
     const clearAllBtn = headerEl.createEl("button", {
-      cls: "mkortex-opencode-model-picker-selected-clear",
+      cls: "mesa-opencode-model-picker-selected-clear",
       text: t10("providers.shared.clearAll")
     });
     clearAllBtn.setAttribute("aria-label", t10("providers.shared.clearAllSelectedModels"));
     clearAllBtn.addEventListener("click", () => {
       void persistVisibleModels([]);
     });
-    const rowsEl = selectedEl.createDiv({ cls: "mkortex-opencode-model-picker-selected-rows" });
+    const rowsEl = selectedEl.createDiv({ cls: "mesa-opencode-model-picker-selected-rows" });
     for (const rawId of current.visibleModels) {
       const enriched = enrichedByRawId.get(rawId);
       const defaultLabel = enriched ? `${enriched.providerLabel}/${enriched.modelLabel}` : rawId;
-      const rowEl = rowsEl.createDiv({ cls: "mkortex-opencode-model-picker-selected-row" });
+      const rowEl = rowsEl.createDiv({ cls: "mesa-opencode-model-picker-selected-row" });
       if (enriched && !enriched.isAvailable) {
-        rowEl.classList.add("mkortex-opencode-model-picker-selected-row--unavailable");
+        rowEl.classList.add("mesa-opencode-model-picker-selected-row--unavailable");
       }
-      const infoEl = rowEl.createDiv({ cls: "mkortex-opencode-model-picker-selected-info" });
-      const titleEl = infoEl.createDiv({ cls: "mkortex-opencode-model-picker-selected-title" });
+      const infoEl = rowEl.createDiv({ cls: "mesa-opencode-model-picker-selected-info" });
+      const titleEl = infoEl.createDiv({ cls: "mesa-opencode-model-picker-selected-title" });
       if (enriched) {
         titleEl.createEl("span", {
-          cls: "mkortex-opencode-model-picker-selected-badge",
+          cls: "mesa-opencode-model-picker-selected-badge",
           text: enriched.providerLabel
         });
         titleEl.createEl("span", {
-          cls: "mkortex-opencode-model-picker-selected-name",
+          cls: "mesa-opencode-model-picker-selected-name",
           text: enriched.modelLabel
         });
       } else {
         titleEl.createEl("span", {
-          cls: "mkortex-opencode-model-picker-selected-name",
+          cls: "mesa-opencode-model-picker-selected-name",
           text: rawId
         });
       }
       if (enriched && !enriched.isAvailable) {
         infoEl.createEl("div", {
-          cls: "mkortex-opencode-model-picker-selected-unavailable",
+          cls: "mesa-opencode-model-picker-selected-unavailable",
           text: t10("providers.shared.notReportedOpencode")
         });
       }
       infoEl.createEl("div", {
-        cls: "mkortex-opencode-model-picker-selected-id",
+        cls: "mesa-opencode-model-picker-selected-id",
         text: rawId
       });
-      const controlsEl2 = rowEl.createDiv({ cls: "mkortex-opencode-model-picker-selected-controls" });
+      const controlsEl2 = rowEl.createDiv({ cls: "mesa-opencode-model-picker-selected-controls" });
       const aliasInput = controlsEl2.createEl("input", {
-        cls: "mkortex-opencode-model-picker-selected-alias",
+        cls: "mesa-opencode-model-picker-selected-alias",
         type: "text"
       });
       aliasInput.placeholder = defaultLabel;
@@ -59286,7 +59286,7 @@ function renderOpencodeModelPickerSection(container, plugin, refreshModelSelecto
         }
       });
       const removeBtn = controlsEl2.createEl("button", {
-        cls: "mkortex-opencode-model-picker-selected-remove",
+        cls: "mesa-opencode-model-picker-selected-remove",
         text: "\xD7"
       });
       removeBtn.setAttribute("aria-label", t10("providers.shared.removeModel", { label: defaultLabel }));
@@ -59330,7 +59330,7 @@ function renderOpencodeModelPickerSection(container, plugin, refreshModelSelecto
     const enriched = getEnrichedModels();
     const filtered = filterModels(enriched);
     if (filtered.length === 0) {
-      const emptyEl = listEl.createDiv({ cls: "mkortex-opencode-model-picker-empty" });
+      const emptyEl = listEl.createDiv({ cls: "mesa-opencode-model-picker-empty" });
       let emptyText = t10("providers.shared.noFilterMatch");
       if (loadingModelCatalog) {
         emptyText = t10("providers.shared.loadingCatalogOpencode");
@@ -59343,10 +59343,10 @@ function renderOpencodeModelPickerSection(container, plugin, refreshModelSelecto
       return;
     }
     for (const model of filtered) {
-      const rowEl = listEl.createEl("label", { cls: "mkortex-opencode-model-picker-row" });
+      const rowEl = listEl.createEl("label", { cls: "mesa-opencode-model-picker-row" });
       const isSelected = selectedIds.has(model.rawId);
       if (isSelected) {
-        rowEl.classList.add("mkortex-opencode-model-picker-row--selected");
+        rowEl.classList.add("mesa-opencode-model-picker-row--selected");
       }
       rowEl.title = model.rawId;
       const checkboxEl = rowEl.createEl("input", { type: "checkbox" });
@@ -59361,28 +59361,28 @@ function renderOpencodeModelPickerSection(container, plugin, refreshModelSelecto
           }
         })();
       });
-      const textEl = rowEl.createDiv({ cls: "mkortex-opencode-model-picker-row-text" });
-      const headerEl = textEl.createDiv({ cls: "mkortex-opencode-model-picker-row-header" });
+      const textEl = rowEl.createDiv({ cls: "mesa-opencode-model-picker-row-text" });
+      const headerEl = textEl.createDiv({ cls: "mesa-opencode-model-picker-row-header" });
       headerEl.createEl("span", {
-        cls: "mkortex-opencode-model-picker-row-name",
+        cls: "mesa-opencode-model-picker-row-name",
         text: model.modelLabel
       });
       const badgeEl = headerEl.createEl("span", {
-        cls: "mkortex-opencode-model-picker-row-badge",
+        cls: "mesa-opencode-model-picker-row-badge",
         text: model.providerLabel
       });
       if (!model.isAvailable) {
-        badgeEl.classList.add("mkortex-opencode-model-picker-row-badge--unavailable");
+        badgeEl.classList.add("mesa-opencode-model-picker-row-badge--unavailable");
         badgeEl.setText(t10("providers.shared.unavailable"));
         badgeEl.title = t10("providers.shared.configuredNotReported", { provider: "OpenCode" });
       }
       textEl.createDiv({
-        cls: "mkortex-opencode-model-picker-row-meta",
+        cls: "mesa-opencode-model-picker-row-meta",
         text: model.rawId
       });
       if (model.description) {
         textEl.createDiv({
-          cls: "mkortex-opencode-model-picker-row-desc",
+          cls: "mesa-opencode-model-picker-row-desc",
           text: model.description
         });
       }
@@ -59516,33 +59516,33 @@ function renderProviderCliPathSetting(options) {
   } = options;
   const hostnameKey = getHostnameKey();
   const cliPathSetting = new import_obsidian31.Setting(container).setName(name).setDesc("");
-  cliPathSetting.settingEl.addClass("mkortex-settings-cli-path");
+  cliPathSetting.settingEl.addClass("mesa-settings-cli-path");
   const descRoot = cliPathSetting.descEl;
-  const mainRow = descRoot.createDiv({ cls: "mkortex-cli-path-main-row" });
+  const mainRow = descRoot.createDiv({ cls: "mesa-cli-path-main-row" });
   const statusEl = mainRow.createDiv({
-    cls: "mkortex-cli-path-status mkortex-hidden"
+    cls: "mesa-cli-path-status mesa-hidden"
   });
-  const inputHost = mainRow.createDiv({ cls: "mkortex-cli-path-input-host" });
+  const inputHost = mainRow.createDiv({ cls: "mesa-cli-path-input-host" });
   const validationEl = descRoot.createDiv({
-    cls: "mkortex-cli-path-validation mkortex-setting-validation-error mkortex-hidden"
+    cls: "mesa-cli-path-validation mesa-setting-validation-error mesa-hidden"
   });
   let manualEl = null;
   if (locateShellCommand) {
-    manualEl = descRoot.createDiv({ cls: "mkortex-cli-path-manual mkortex-hidden" });
+    manualEl = descRoot.createDiv({ cls: "mesa-cli-path-manual mesa-hidden" });
     manualEl.createDiv({
-      cls: "mkortex-cli-path-manual-title",
+      cls: "mesa-cli-path-manual-title",
       text: t10("settings.cliPath.manualTitle")
     });
-    const stepsEl = manualEl.createDiv({ cls: "mkortex-cli-path-manual-steps" });
+    const stepsEl = manualEl.createDiv({ cls: "mesa-cli-path-manual-steps" });
     stepsEl.createDiv({
       text: t10("settings.cliPath.manualStepOpen", { shell: getShellAppLabel() })
     });
-    const commandStep = stepsEl.createDiv({ cls: "mkortex-cli-path-manual-command-row" });
+    const commandStep = stepsEl.createDiv({ cls: "mesa-cli-path-manual-command-row" });
     commandStep.createSpan({
       text: t10("settings.cliPath.manualStepRun")
     });
     const commandEl = commandStep.createEl("code", {
-      cls: "mkortex-cli-path-manual-command",
+      cls: "mesa-cli-path-manual-command",
       text: locateShellCommand,
       attr: {
         role: "button",
@@ -59584,12 +59584,12 @@ function renderProviderCliPathSetting(options) {
     const error = validatePath(value);
     if (error) {
       validationEl.setText(error);
-      validationEl.toggleClass("mkortex-hidden", false);
-      inputEl == null ? void 0 : inputEl.toggleClass("mkortex-input-error", true);
+      validationEl.toggleClass("mesa-hidden", false);
+      inputEl == null ? void 0 : inputEl.toggleClass("mesa-input-error", true);
       return false;
     }
-    validationEl.toggleClass("mkortex-hidden", true);
-    inputEl == null ? void 0 : inputEl.toggleClass("mkortex-input-error", false);
+    validationEl.toggleClass("mesa-hidden", true);
+    inputEl == null ? void 0 : inputEl.toggleClass("mesa-input-error", false);
     return true;
   };
   const refreshStatus = () => {
@@ -59597,22 +59597,22 @@ function renderProviderCliPathSetting(options) {
     const value = ((_a4 = cliPathInputEl == null ? void 0 : cliPathInputEl.value) != null ? _a4 : initialValue).trim();
     if (autoFilledPath && value && pathsEqual(value, autoFilledPath)) {
       statusEl.setText(t10("settings.cliPath.detectedAuto"));
-      statusEl.toggleClass("mkortex-hidden", false);
-      statusEl.toggleClass("mkortex-cli-path-status-ok", true);
-      statusEl.toggleClass("mkortex-cli-path-status-miss", false);
-      manualEl == null ? void 0 : manualEl.toggleClass("mkortex-hidden", true);
+      statusEl.toggleClass("mesa-hidden", false);
+      statusEl.toggleClass("mesa-cli-path-status-ok", true);
+      statusEl.toggleClass("mesa-cli-path-status-miss", false);
+      manualEl == null ? void 0 : manualEl.toggleClass("mesa-hidden", true);
       return;
     }
     if (value) {
-      statusEl.toggleClass("mkortex-hidden", true);
-      manualEl == null ? void 0 : manualEl.toggleClass("mkortex-hidden", true);
+      statusEl.toggleClass("mesa-hidden", true);
+      manualEl == null ? void 0 : manualEl.toggleClass("mesa-hidden", true);
       return;
     }
     statusEl.setText(t10("settings.cliPath.notDetected"));
-    statusEl.toggleClass("mkortex-hidden", false);
-    statusEl.toggleClass("mkortex-cli-path-status-ok", false);
-    statusEl.toggleClass("mkortex-cli-path-status-miss", true);
-    manualEl == null ? void 0 : manualEl.toggleClass("mkortex-hidden", false);
+    statusEl.toggleClass("mesa-hidden", false);
+    statusEl.toggleClass("mesa-cli-path-status-ok", false);
+    statusEl.toggleClass("mesa-cli-path-status-miss", true);
+    manualEl == null ? void 0 : manualEl.toggleClass("mesa-hidden", false);
   };
   const persistCliPath = async (value, persistOptions) => {
     if (!updateCliPathValidation(value, cliPathInputEl != null ? cliPathInputEl : void 0)) {
@@ -59635,12 +59635,12 @@ function renderProviderCliPathSetting(options) {
     text.setPlaceholder(placeholder).setValue(initialValue).onChange((value) => {
       void persistCliPath(value, { restartRuntime: true });
     });
-    text.inputEl.addClass("mkortex-settings-cli-path-input");
+    text.inputEl.addClass("mesa-settings-cli-path-input");
     cliPathInputEl = text.inputEl;
     inputHost.appendChild(text.inputEl);
     updateCliPathValidation(initialValue, text.inputEl);
   });
-  cliPathSetting.controlEl.addClass("mkortex-hidden");
+  cliPathSetting.controlEl.addClass("mesa-hidden");
   if (!storedValue && detectedOnOpen) {
     void persistCliPath(detectedOnOpen, { restartRuntime: false });
   } else {
@@ -59648,7 +59648,7 @@ function renderProviderCliPathSetting(options) {
   }
 }
 
-// src/features/settings/MKortexSettings.ts
+// src/features/settings/MesaSettings.ts
 var MANAGED_PROVIDERS = ["claude", "codex", "opencode"];
 var USE_KEY = {
   claude: "settings.providers.useClaude",
@@ -59665,7 +59665,7 @@ var HINT_KEY = {
   codex: "settings.providerHints.codex",
   opencode: "settings.providerHints.opencode"
 };
-var MKortexSettingTab = class extends import_obsidian32.PluginSettingTab {
+var MesaSettingTab = class extends import_obsidian32.PluginSettingTab {
   constructor(app, plugin) {
     super(app, plugin);
     this.plugin = plugin;
@@ -59673,7 +59673,7 @@ var MKortexSettingTab = class extends import_obsidian32.PluginSettingTab {
   display() {
     const { containerEl } = this;
     containerEl.empty();
-    containerEl.addClass("mkortex-settings");
+    containerEl.addClass("mesa-settings");
     this.renderUserName(containerEl);
     this.renderSectionDivider(containerEl);
     for (const providerId of MANAGED_PROVIDERS) {
@@ -59682,7 +59682,7 @@ var MKortexSettingTab = class extends import_obsidian32.PluginSettingTab {
     }
   }
   renderSectionDivider(container) {
-    container.createDiv({ cls: "mkortex-settings-section-divider" });
+    container.createDiv({ cls: "mesa-settings-section-divider" });
   }
   renderUserName(container) {
     new import_obsidian32.Setting(container).setName(t10("settings.userName.name")).setDesc(t10("settings.userName.desc")).addText((text) => {
@@ -59697,23 +59697,23 @@ var MKortexSettingTab = class extends import_obsidian32.PluginSettingTab {
   }
   renderProviderBlock(container, providerId) {
     const enabled = this.isProviderEnabled(providerId);
-    const block = container.createDiv({ cls: "mkortex-settings-provider-block" });
+    const block = container.createDiv({ cls: "mesa-settings-provider-block" });
     new import_obsidian32.Setting(block).setName(t10(SETTINGS_HEADING_KEY[providerId])).setHeading();
     new import_obsidian32.Setting(block).setName(t10(USE_KEY[providerId])).addToggle((toggle) => {
       toggle.setValue(enabled);
       toggle.onChange(async (value) => {
         this.setProviderEnabled(providerId, value);
         await this.plugin.saveSettings();
-        settingsPanel.toggleClass("mkortex-hidden", !value);
+        settingsPanel.toggleClass("mesa-hidden", !value);
         this.refreshModelSelectors();
       });
     });
     const settingsPanel = block.createDiv({
-      cls: `mkortex-settings-provider-panel${enabled ? "" : " mkortex-hidden"}`
+      cls: `mesa-settings-provider-panel${enabled ? "" : " mesa-hidden"}`
     });
     this.renderProviderCliPath(providerId, settingsPanel);
     settingsPanel.createEl("p", {
-      cls: "mkortex-settings-provider-hint",
+      cls: "mesa-settings-provider-hint",
       text: t10(HINT_KEY[providerId])
     });
     if (providerId === "opencode") {
@@ -59874,10 +59874,10 @@ var MKortexSettingTab = class extends import_obsidian32.PluginSettingTab {
 
 // src/main.ts
 patchSetMaxListenersForElectron();
-function isMKortexView(value) {
+function isMesaView(value) {
   return !!value && typeof value === "object" && typeof value.getSession === "function";
 }
-var MKortexPlugin = class extends import_obsidian33.Plugin {
+var MesaPlugin = class extends import_obsidian33.Plugin {
   constructor() {
     super(...arguments);
     this.conversations = [];
@@ -59886,10 +59886,10 @@ var MKortexPlugin = class extends import_obsidian33.Plugin {
     await this.loadSettings();
     await ProviderWorkspaceRegistry.initializeAll(this);
     this.registerView(
-      VIEW_TYPE_MKORTEX,
-      (leaf) => new MKortexView(leaf, this)
+      VIEW_TYPE_MESA_ACP,
+      (leaf) => new MesaView(leaf, this)
     );
-    this.addRibbonIcon("bot", t10("commands.openMkortex"), () => {
+    this.addRibbonIcon("bot", t10("commands.openMesa"), () => {
       void this.activateView();
     });
     this.addCommand({
@@ -59959,7 +59959,7 @@ var MKortexPlugin = class extends import_obsidian33.Plugin {
         return true;
       }
     });
-    this.addSettingTab(new MKortexSettingTab(this.app, this));
+    this.addSettingTab(new MesaSettingTab(this.app, this));
   }
   onunload() {
     void this.persistOpenSessionStates();
@@ -59976,12 +59976,12 @@ var MKortexPlugin = class extends import_obsidian33.Plugin {
   }
   async activateView() {
     const { workspace } = this.app;
-    let leaf = workspace.getLeavesOfType(VIEW_TYPE_MKORTEX)[0];
+    let leaf = workspace.getLeavesOfType(VIEW_TYPE_MESA_ACP)[0];
     if (!leaf) {
       const newLeaf = this.app.workspace.getRightLeaf(false);
       if (newLeaf) {
         await newLeaf.setViewState({
-          type: VIEW_TYPE_MKORTEX,
+          type: VIEW_TYPE_MESA_ACP,
           active: true
         });
         leaf = newLeaf;
@@ -59994,10 +59994,10 @@ var MKortexPlugin = class extends import_obsidian33.Plugin {
   async loadSettings() {
     var _a3;
     this.storage = new SharedStorageService(this);
-    const { mkortex } = await this.storage.initialize();
+    const { mesa } = await this.storage.initialize();
     this.settings = {
-      ...DEFAULT_MKORTEX_SETTINGS,
-      ...mkortex
+      ...DEFAULT_MESA_SETTINGS,
+      ...mesa
     };
     if (this.settings.permissionMode === "plan") {
       this.settings.permissionMode = "normal";
@@ -60088,7 +60088,7 @@ var MKortexPlugin = class extends import_obsidian33.Plugin {
     ProviderSettingsCoordinator.persistProjectedProviderState(
       this.settings
     );
-    await this.storage.saveMKortexSettings(this.settings);
+    await this.storage.saveMesaSettings(this.settings);
   }
   /** Updates and persists environment variables, restarting processes to apply changes. */
   async applyEnvironmentVariables(scope, envText) {
@@ -60340,12 +60340,12 @@ var MKortexPlugin = class extends import_obsidian33.Plugin {
   }
   getView() {
     var _a3;
-    const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_MKORTEX);
-    return (_a3 = leaves.map((leaf) => leaf.view).find(isMKortexView)) != null ? _a3 : null;
+    const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_MESA_ACP);
+    return (_a3 = leaves.map((leaf) => leaf.view).find(isMesaView)) != null ? _a3 : null;
   }
   getAllViews() {
-    const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_MKORTEX);
-    return leaves.map((leaf) => leaf.view).filter(isMKortexView);
+    const leaves = this.app.workspace.getLeavesOfType(VIEW_TYPE_MESA_ACP);
+    return leaves.map((leaf) => leaf.view).filter(isMesaView);
   }
   findConversationAcrossViews(conversationId) {
     var _a3;

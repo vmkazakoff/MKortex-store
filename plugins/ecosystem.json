@@ -2,26 +2,26 @@
   "schemaVersion": 1,
   "plugins": [
     {
-      "id": "mkortex-store",
-      "name": "MKortex Store",
+      "id": "mesa-store",
+      "name": "Mesa Store",
       "version": "0.3.3",
-      "path": "plugins/mkortex-store",
+      "path": "plugins/mesa-store",
       "minAppVersion": "1.0.0",
-      "description": "Магазин плагинов экосистемы MKortex: установка и обновления"
+      "description": "Магазин плагинов экосистемы Mesa: установка и обновления"
     },
     {
-      "id": "mkortex-editor",
-      "name": "MKortex Editor",
+      "id": "mesa-editor",
+      "name": "Mesa Editor",
       "version": "0.1.1",
-      "path": "plugins/mkortex-editor",
+      "path": "plugins/mesa-editor",
       "minAppVersion": "1.0.0",
-      "description": "Блочный редактор экосистемы MKortex"
+      "description": "Блочный редактор экосистемы Mesa"
     },
     {
-      "id": "mkortex",
-      "name": "MKortex ACP",
+      "id": "mesa-acp",
+      "name": "Mesa ACP",
       "version": "1.0.0",
-      "path": "plugins/mkortex",
+      "path": "plugins/mesa-acp",
       "minAppVersion": "1.7.2",
       "description": "AI-агент в сайдбаре Obsidian через Agent Client Protocol"
     }

@@ -1,6 +1,6 @@
-/* MKortex Store */
+/* Mesa Store */
 
-.mkortex-store-settings .mkortex-plugin-row {
+.mesa-store-settings .mesa-plugin-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-store-settings .mkortex-plugin-meta {
+.mesa-store-settings .mesa-plugin-meta {
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -17,18 +17,18 @@
   flex: 1;
 }
 
-.mkortex-store-settings .mkortex-plugin-title-line {
+.mesa-store-settings .mesa-plugin-title-line {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
 }
 
-.mkortex-store-settings .mkortex-plugin-name {
+.mesa-store-settings .mesa-plugin-name {
   font-weight: 600;
 }
 
-.mkortex-store-settings .mkortex-badge {
+.mesa-store-settings .mesa-badge {
   display: inline-flex;
   align-items: center;
   padding: 1px 8px;
@@ -39,38 +39,38 @@
   white-space: nowrap;
 }
 
-.mkortex-store-settings .mkortex-badge-ok {
+.mesa-store-settings .mesa-badge-ok {
   color: var(--text-success);
   background-color: rgba(var(--color-green-rgb, 68, 207, 110), 0.15);
 }
 
-.mkortex-store-settings .mkortex-badge-update {
+.mesa-store-settings .mesa-badge-update {
   color: var(--text-warning);
   background-color: rgba(var(--color-orange-rgb, 233, 151, 63), 0.18);
 }
 
-.mkortex-store-settings .mkortex-badge-missing {
+.mesa-store-settings .mesa-badge-missing {
   color: var(--text-muted);
   background-color: var(--background-modifier-hover);
 }
 
-.mkortex-store-settings .mkortex-badge-local {
+.mesa-store-settings .mesa-badge-local {
   color: var(--text-accent);
   background-color: rgba(var(--color-accent-rgb, 120, 120, 255), 0.15);
 }
 
-.mkortex-store-settings .mkortex-plugin-version {
+.mesa-store-settings .mesa-plugin-version {
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
   font-variant-numeric: tabular-nums;
 }
 
-.mkortex-store-settings .mkortex-plugin-desc {
+.mesa-store-settings .mesa-plugin-desc {
   color: var(--text-muted);
   font-size: var(--font-ui-smaller);
 }
 
-.mkortex-store-settings .mkortex-plugin-actions {
+.mesa-store-settings .mesa-plugin-actions {
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -80,11 +80,11 @@
   min-width: 140px;
 }
 
-.mkortex-store-settings .mkortex-plugin-actions button {
+.mesa-store-settings .mesa-plugin-actions button {
   width: 100%;
 }
 
-.mkortex-store-settings .mkortex-btn-ghost {
+.mesa-store-settings .mesa-btn-ghost {
   background: transparent;
   box-shadow: none;
   border: none;
@@ -94,7 +94,7 @@
   cursor: pointer;
 }
 
-.mkortex-store-settings .mkortex-btn-ghost:hover {
+.mesa-store-settings .mesa-btn-ghost:hover {
   color: var(--text-normal);
   background: transparent;
   box-shadow: none;

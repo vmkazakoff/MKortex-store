@@ -1,0 +1,9 @@
+{
+  "id": "mesa-store",
+  "name": "Mesa Store",
+  "version": "0.3.3",
+  "minAppVersion": "1.0.0",
+  "description": "Магазин плагинов экосистемы Mesa: установка и обновления",
+  "author": "MKRobotsAI",
+  "isDesktopOnly": true
+}

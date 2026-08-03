@@ -1,4 +1,4 @@
-/* MKortex Plugin Styles */
+/* Mesa Plugin Styles */
 /* Built from src/style/ modules */
 
 
@@ -6,48 +6,48 @@
    base/variables.css
    ============================================ */
 /* Brand & semantic color tokens */
-.mkortex-container {
-  --mkortex-brand: #D97757;
-  --mkortex-brand-rgb: 217, 119, 87;
-  --mkortex-brand-claude: #D97757;
-  --mkortex-brand-claude-rgb: 217, 119, 87;
-  --mkortex-brand-codex: #d0d0d0;
-  --mkortex-brand-codex-rgb: 208, 208, 208;
-  --mkortex-brand-opencode: #B8B8B8;
-  --mkortex-brand-opencode-rgb: 184, 184, 184;
-  --mkortex-error: #dc3545;
-  --mkortex-error-rgb: 220, 53, 69;
-  --mkortex-compact: #5bc0de;
+.mesa-container {
+  --mesa-brand: #D97757;
+  --mesa-brand-rgb: 217, 119, 87;
+  --mesa-brand-claude: #D97757;
+  --mesa-brand-claude-rgb: 217, 119, 87;
+  --mesa-brand-codex: #d0d0d0;
+  --mesa-brand-codex-rgb: 208, 208, 208;
+  --mesa-brand-opencode: #B8B8B8;
+  --mesa-brand-opencode-rgb: 184, 184, 184;
+  --mesa-error: #dc3545;
+  --mesa-error-rgb: 220, 53, 69;
+  --mesa-compact: #5bc0de;
 }
 
-body.theme-light .mkortex-container {
-  --mkortex-brand-codex: #000000;
-  --mkortex-brand-codex-rgb: 0, 0, 0;
-  --mkortex-brand-opencode: #707070;
-  --mkortex-brand-opencode-rgb: 112, 112, 112;
+body.theme-light .mesa-container {
+  --mesa-brand-codex: #000000;
+  --mesa-brand-codex-rgb: 0, 0, 0;
+  --mesa-brand-opencode: #707070;
+  --mesa-brand-opencode-rgb: 112, 112, 112;
 }
 
 /* Active-provider alias for single-provider surfaces. */
-.mkortex-container[data-provider="claude"] {
-  --mkortex-brand: var(--mkortex-brand-claude);
-  --mkortex-brand-rgb: var(--mkortex-brand-claude-rgb);
+.mesa-container[data-provider="claude"] {
+  --mesa-brand: var(--mesa-brand-claude);
+  --mesa-brand-rgb: var(--mesa-brand-claude-rgb);
 }
 
-.mkortex-container[data-provider="codex"] {
-  --mkortex-brand: var(--mkortex-brand-codex);
-  --mkortex-brand-rgb: var(--mkortex-brand-codex-rgb);
+.mesa-container[data-provider="codex"] {
+  --mesa-brand: var(--mesa-brand-codex);
+  --mesa-brand-rgb: var(--mesa-brand-codex-rgb);
 }
 
-.mkortex-container[data-provider="opencode"] {
-  --mkortex-brand: var(--mkortex-brand-opencode);
-  --mkortex-brand-rgb: var(--mkortex-brand-opencode-rgb);
+.mesa-container[data-provider="opencode"] {
+  --mesa-brand: var(--mesa-brand-opencode);
+  --mesa-brand-rgb: var(--mesa-brand-opencode-rgb);
 }
 
 
 /* ============================================
    base/container.css
    ============================================ */
-.mkortex-container {
+.mesa-container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -56,7 +56,7 @@ body.theme-light .mkortex-container {
   font-family: var(--font-text);
 }
 
-.mkortex-chat-header {
+.mesa-chat-header {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -67,11 +67,11 @@ body.theme-light .mkortex-container {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-chat-header[hidden] {
+.mesa-chat-header[hidden] {
   display: none;
 }
 
-.mkortex-chat-header-title {
+.mesa-chat-header-title {
   flex: 1 1 0;
   min-width: 0;
   font-size: var(--font-ui-medium);
@@ -83,7 +83,7 @@ body.theme-light .mkortex-container {
   text-overflow: ellipsis;
 }
 
-.mkortex-chat-header > .mkortex-input-nav-btn {
+.mesa-chat-header > .mesa-input-nav-btn {
   display: flex;
   flex: none;
   align-items: center;
@@ -92,7 +92,7 @@ body.theme-light .mkortex-container {
   height: 24px;
 }
 
-.mkortex-chat-header > .mkortex-history-container {
+.mesa-chat-header > .mesa-history-container {
   position: relative;
   flex: none;
   width: 24px;
@@ -100,20 +100,20 @@ body.theme-light .mkortex-container {
   overflow: visible;
 }
 
-.mkortex-chat-header > .mkortex-history-container > .mkortex-input-nav-btn {
+.mesa-chat-header > .mesa-history-container > .mesa-input-nav-btn {
   width: 100%;
   height: 100%;
 }
 
-.mkortex-provider-icon-variant--dark {
+.mesa-provider-icon-variant--dark {
   display: none;
 }
 
-body.theme-dark .mkortex-provider-icon-variant--light {
+body.theme-dark .mesa-provider-icon-variant--light {
   display: none;
 }
 
-body.theme-dark .mkortex-provider-icon-variant--dark {
+body.theme-dark .mesa-provider-icon-variant--dark {
   display: inline;
 }
 
@@ -141,11 +141,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 @keyframes external-context-glow {
   0%,
   100% {
-    filter: drop-shadow(0 0 2px rgba(var(--mkortex-brand-rgb), 0.4));
+    filter: drop-shadow(0 0 2px rgba(var(--mesa-brand-rgb), 0.4));
   }
 
   50% {
-    filter: drop-shadow(0 0 6px rgba(var(--mkortex-brand-rgb), 0.8));
+    filter: drop-shadow(0 0 6px rgba(var(--mesa-brand-rgb), 0.8));
   }
 }
 
@@ -160,7 +160,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   }
 }
 
-@keyframes mkortex-spin {
+@keyframes mesa-spin {
   to {
     transform: rotate(360deg);
   }
@@ -170,7 +170,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 /* ============================================
    components/chat-pane.css
    ============================================ */
-.mkortex-chat-pane {
+.mesa-chat-pane {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -178,7 +178,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.mkortex-chat-pane-content {
+.mesa-chat-pane-content {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -191,12 +191,12 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 /* ============================================
    components/history.css
    ============================================ */
-.mkortex-history-container {
+.mesa-history-container {
   position: relative;
 }
 
 /* History dropdown (opens downward from chat header) */
-.mkortex-history-menu {
+.mesa-history-menu {
   display: block;
   position: absolute;
   top: 100%;
@@ -216,11 +216,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   max-width: min(360px, 90vw);
 }
 
-.mkortex-history-menu[hidden] {
+.mesa-history-menu[hidden] {
   display: none;
 }
 
-.mkortex-history-header {
+.mesa-history-header {
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -230,19 +230,19 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-history-list {
+.mesa-history-list {
   max-height: 350px;
   overflow-y: auto;
 }
 
-.mkortex-history-empty {
+.mesa-history-empty {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
   font-size: 13px;
 }
 
-.mkortex-history-item {
+.mesa-history-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -251,86 +251,86 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.15s ease;
 }
 
-.mkortex-history-item-icon {
+.mesa-history-item-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.mkortex-history-item-icon svg {
+.mesa-history-item-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-history-item:last-child {
+.mesa-history-item:last-child {
   border-bottom: none;
 }
 
-.mkortex-history-item:hover {
+.mesa-history-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-history-item.active {
+.mesa-history-item.active {
   background: var(--background-modifier-hover);
   border-inline-start: 2px solid var(--interactive-accent);
   padding-inline-start: 10px;
 }
 
-.mkortex-history-item.active:hover {
+.mesa-history-item.active:hover {
   background: var(--background-modifier-active-hover, var(--background-modifier-hover));
 }
 
-.mkortex-history-item.active .mkortex-history-item-icon {
+.mesa-history-item.active .mesa-history-item-icon {
   color: var(--interactive-accent);
 }
 
-.mkortex-history-item.active .mkortex-history-item-content {
+.mesa-history-item.active .mesa-history-item-content {
   cursor: default;
 }
 
-.mkortex-history-item.active .mkortex-history-item-date {
+.mesa-history-item.active .mesa-history-item-date {
   color: var(--text-faint);
 }
 
-.mkortex-history-item.open {
+.mesa-history-item.open {
   background: var(--background-modifier-hover);
   border-inline-start: 2px solid var(--interactive-accent);
   padding-inline-start: 10px;
 }
 
-.mkortex-history-item.open:hover {
+.mesa-history-item.open:hover {
   background: var(--background-modifier-active-hover, var(--background-modifier-hover));
 }
 
-.mkortex-history-item.open .mkortex-history-item-icon {
+.mesa-history-item.open .mesa-history-item-icon {
   color: var(--interactive-accent);
 }
 
-.mkortex-history-item.open .mkortex-history-item-date {
+.mesa-history-item.open .mesa-history-item-date {
   color: var(--text-muted);
 }
 
-.mkortex-history-item.running .mkortex-history-item-icon {
+.mesa-history-item.running .mesa-history-item-icon {
   color: var(--interactive-accent);
 }
 
-.mkortex-history-item.running .mkortex-history-item-icon svg {
+.mesa-history-item.running .mesa-history-item-icon svg {
   animation: spin 1s linear infinite;
 }
 
-.mkortex-history-item.running .mkortex-history-item-date {
+.mesa-history-item.running .mesa-history-item-date {
   color: var(--interactive-accent);
   font-weight: 500;
 }
 
-.mkortex-history-item-content {
+.mesa-history-item-content {
   flex: 1;
   min-width: 0;
   cursor: pointer;
 }
 
-.mkortex-history-item-title {
+.mesa-history-item-title {
   font-size: 13px;
   font-weight: 500;
   color: var(--text-normal);
@@ -339,13 +339,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   text-overflow: ellipsis;
 }
 
-.mkortex-history-item-date {
+.mesa-history-item-date {
   font-size: 11px;
   color: var(--text-faint);
   margin-top: 2px;
 }
 
-.mkortex-history-item-actions {
+.mesa-history-item-actions {
   display: flex;
   gap: 4px;
   margin-inline-start: 8px;
@@ -353,15 +353,15 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: opacity 0.15s ease;
 }
 
-.mkortex-history-item:hover .mkortex-history-item-actions {
+.mesa-history-item:hover .mesa-history-item-actions {
   opacity: 1;
 }
 
-.mkortex-history-item:focus-within .mkortex-history-item-actions {
+.mesa-history-item:focus-within .mesa-history-item-actions {
   opacity: 1;
 }
 
-.mkortex-action-btn {
+.mesa-action-btn {
   background: transparent;
   border: none;
   cursor: pointer;
@@ -371,21 +371,21 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.mkortex-action-btn:hover {
+.mesa-action-btn:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.mkortex-action-btn svg {
+.mesa-action-btn svg {
   width: 14px;
   height: 14px;
 }
 
-.mkortex-delete-btn:hover {
+.mesa-delete-btn:hover {
   color: var(--color-red);
 }
 
-.mkortex-rename-input {
+.mesa-rename-input {
   width: 100%;
   padding: 2px 4px;
   font-size: 13px;
@@ -396,13 +396,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   color: var(--text-normal);
 }
 
-.mkortex-rename-input:focus {
+.mesa-rename-input:focus {
   outline: none;
   box-shadow: 0 0 0 2px var(--interactive-accent-hover);
 }
 
 /* Loading indicator for title generation */
-.mkortex-action-loading {
+.mesa-action-loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -416,7 +416,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    components/messages.css
    ============================================ */
 /* Messages wrapper (for scroll-to-bottom button positioning) */
-.mkortex-messages-wrapper {
+.mesa-messages-wrapper {
   position: relative;
   flex: 1;
   min-height: 0;
@@ -425,7 +425,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.mkortex-messages {
+.mesa-messages {
   flex: 1;
   overflow-y: auto;
   padding: 12px 0;
@@ -435,12 +435,12 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Focusable messages panel for w/s/i keyboard scrolling */
-.mkortex-messages-focusable:focus {
+.mesa-messages-focusable:focus {
   outline: none;
 }
 
 /* Welcome greeting */
-.mkortex-welcome {
+.mesa-welcome {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -451,7 +451,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   min-height: 200px;
 }
 
-.mkortex-welcome-greeting {
+.mesa-welcome-greeting {
   margin: 0;
   font-size: var(--h2-size);
   font-weight: var(--h2-weight, var(--font-semibold));
@@ -460,14 +460,14 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   letter-spacing: -0.015em;
 }
 
-.mkortex-message {
+.mesa-message {
   padding: 10px 14px;
   border-radius: 8px;
   max-width: 95%;
   word-wrap: break-word;
 }
 
-.mkortex-message-user {
+.mesa-message-user {
   position: relative;
   background: var(--background-secondary);
   align-self: flex-end;
@@ -475,12 +475,12 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Text selection in user messages */
-.mkortex-message-user ::selection {
+.mesa-message-user ::selection {
   background: var(--text-selection);
   color: inherit;
 }
 
-.mkortex-message-assistant {
+.mesa-message-assistant {
   background: transparent;
   align-self: stretch;
   width: 100%;
@@ -489,27 +489,27 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   text-align: start;
 }
 
-.mkortex-message-content {
+.mesa-message-content {
   line-height: 1.5;
   user-select: text;
   -webkit-user-select: text;
   unicode-bidi: plaintext; /* Proper BiDi text handling for mixed RTL/LTR */
 }
 
-.mkortex-interrupted {
+.mesa-interrupted {
   color: var(--text-error);
 }
 
-.mkortex-interrupted-hint {
+.mesa-interrupted-hint {
   color: var(--text-muted);
 }
 
-.mkortex-text-block {
+.mesa-text-block {
   position: relative;
   margin: 0;
 }
 
-.mkortex-text-copy-btn {
+.mesa-text-copy-btn {
   position: absolute;
   bottom: 0;
   inset-inline-end: 0;
@@ -524,93 +524,93 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   gap: 4px;
 }
 
-.mkortex-text-copy-btn svg {
+.mesa-text-copy-btn svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-text-block:hover .mkortex-text-copy-btn {
+.mesa-text-block:hover .mesa-text-copy-btn {
   opacity: 1;
 }
 
-.mkortex-text-copy-btn:hover {
+.mesa-text-copy-btn:hover {
   color: var(--text-normal);
 }
 
-.mkortex-text-copy-btn.copied {
+.mesa-text-copy-btn.copied {
   color: var(--text-accent);
   font-size: 11px;
   font-family: var(--font-monospace);
 }
 
-.mkortex-text-block+.mkortex-tool-call {
+.mesa-text-block+.mesa-tool-call {
   margin-top: 8px;
 }
 
-.mkortex-tool-call+.mkortex-text-block {
+.mesa-tool-call+.mesa-text-block {
   margin-top: 8px;
 }
 
-.mkortex-message-content p {
+.mesa-message-content p {
   margin: 0 0 8px 0;
 }
 
-.mkortex-message-content p:last-child {
+.mesa-message-content p:last-child {
   margin-bottom: 0;
 }
 
-.mkortex-message-content ul,
-.mkortex-message-content ol {
+.mesa-message-content ul,
+.mesa-message-content ol {
   margin: 8px 0;
   padding-inline-start: 20px;
 }
 
 /* Full-width tables */
-.mkortex-message-content table {
+.mesa-message-content table {
   width: 100%;
   border-collapse: collapse;
   margin: 8px 0;
 }
 
-.mkortex-message-content th,
-.mkortex-message-content td {
+.mesa-message-content th,
+.mesa-message-content td {
   border: 1px solid var(--background-modifier-border);
   padding: 6px 10px;
   text-align: start;
 }
 
-.mkortex-message-content th {
+.mesa-message-content th {
   background: var(--background-secondary);
   font-weight: 600;
 }
 
-.mkortex-message-content tr:hover {
+.mesa-message-content tr:hover {
   background: var(--background-secondary-alt);
 }
 
-.mkortex-messages::-webkit-scrollbar {
+.mesa-messages::-webkit-scrollbar {
   width: 6px;
 }
 
-.mkortex-messages::-webkit-scrollbar-track {
+.mesa-messages::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.mkortex-messages::-webkit-scrollbar-thumb {
+.mesa-messages::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 3px;
 }
 
-.mkortex-messages::-webkit-scrollbar-thumb:hover {
+.mesa-messages::-webkit-scrollbar-thumb:hover {
   background: var(--background-modifier-border-hover);
 }
 
 /* Response duration footer - styled as another line of content */
-.mkortex-response-footer {
+.mesa-response-footer {
   margin-top: 8px;
 }
 
-.mkortex-baked-duration {
+.mesa-baked-duration {
   color: var(--text-muted);
   font-size: 12px;
   font-weight: 500;
@@ -618,7 +618,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Action buttons toolbar below user messages */
-.mkortex-user-msg-actions {
+.mesa-user-msg-actions {
   position: absolute;
   bottom: -20px;
   right: 0;
@@ -629,11 +629,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   z-index: 1;
 }
 
-.mkortex-message-user:hover .mkortex-user-msg-actions {
+.mesa-message-user:hover .mesa-user-msg-actions {
   opacity: 1;
 }
 
-.mkortex-user-msg-actions span {
+.mesa-user-msg-actions span {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -642,38 +642,38 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.15s;
 }
 
-.mkortex-user-msg-actions span svg {
+.mesa-user-msg-actions span svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-user-msg-actions span:hover {
+.mesa-user-msg-actions span:hover {
   color: var(--text-normal);
 }
 
-.mkortex-user-msg-actions span.copied {
+.mesa-user-msg-actions span.copied {
   color: var(--text-accent);
   font-size: 11px;
   font-family: var(--font-monospace);
 }
 
 /* Compact boundary indicator */
-.mkortex-compact-boundary {
+.mesa-compact-boundary {
   display: flex;
   align-items: center;
   gap: 10px;
   margin: 12px 0;
 }
 
-.mkortex-compact-boundary::before,
-.mkortex-compact-boundary::after {
+.mesa-compact-boundary::before,
+.mesa-compact-boundary::after {
   content: '';
   flex: 1;
   height: 1px;
   background: var(--background-modifier-border);
 }
 
-.mkortex-compact-boundary-label {
+.mesa-compact-boundary-label {
   color: var(--text-muted);
   font-size: 11px;
   white-space: nowrap;
@@ -684,14 +684,14 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    components/code.css
    ============================================ */
 /* Code block wrapper - contains pre + button outside scroll area */
-.mkortex-code-wrapper {
+.mesa-code-wrapper {
   position: relative;
   margin: 8px 0;
 }
 
 /* Code blocks in chat messages */
-.mkortex-code-wrapper pre,
-.mkortex-message-content pre {
+.mesa-code-wrapper pre,
+.mesa-message-content pre {
   background: var(--code-background, var(--background-secondary));
   padding: 8px 12px;
   border-radius: 6px;
@@ -700,24 +700,24 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Code blocks without language - wrap content */
-.mkortex-code-wrapper:not(.has-language) pre {
+.mesa-code-wrapper:not(.has-language) pre {
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow-x: hidden;
 }
 
 /* Unwrapped pre still needs margin */
-.mkortex-message-content>pre {
+.mesa-message-content>pre {
   margin: 8px 0;
 }
 
-.mkortex-message-content code {
+.mesa-message-content code {
   font-family: var(--font-monospace);
   font-size: 13px;
 }
 
 /* Clickable language label - positioned outside scroll area */
-.mkortex-code-wrapper .mkortex-code-lang-label {
+.mesa-code-wrapper .mesa-code-lang-label {
   position: absolute;
   top: 6px;
   inset-inline-end: 6px;
@@ -732,18 +732,18 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.15s ease, background 0.15s ease;
 }
 
-.mkortex-code-wrapper .mkortex-code-lang-label:hover {
+.mesa-code-wrapper .mesa-code-lang-label:hover {
   color: var(--text-normal);
   background: var(--background-modifier-hover);
 }
 
 /* Hide default copy button when language label exists */
-.mkortex-code-wrapper.has-language .copy-code-button {
+.mesa-code-wrapper.has-language .copy-code-button {
   display: none;
 }
 
 /* Copy button - positioned outside scroll area */
-.mkortex-code-wrapper .copy-code-button {
+.mesa-code-wrapper .copy-code-button {
   position: absolute;
   top: 6px;
   inset-inline-end: 6px;
@@ -760,17 +760,17 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* If copy button uses an icon (svg) */
-.mkortex-code-wrapper .copy-code-button svg {
+.mesa-code-wrapper .copy-code-button svg {
   width: 14px;
   height: 14px;
 }
 
 /* Show copy button on hover */
-.mkortex-code-wrapper:not(.has-language):hover .copy-code-button {
+.mesa-code-wrapper:not(.has-language):hover .copy-code-button {
   opacity: 1;
 }
 
-.mkortex-code-wrapper .copy-code-button:hover {
+.mesa-code-wrapper .copy-code-button:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
@@ -778,8 +778,8 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 /* ============================================
    components/thinking.css
    ============================================ */
-.mkortex-thinking {
-  color: var(--mkortex-brand);
+.mesa-thinking {
+  color: var(--mesa-brand);
   font-size: 13px;
   font-weight: 500;
   font-style: italic;
@@ -788,11 +788,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   animation: thinking-pulse 1.5s ease-in-out infinite;
 }
 
-.mkortex-thinking.mkortex-thinking--compact {
-  color: var(--mkortex-compact);
+.mesa-thinking.mesa-thinking--compact {
+  color: var(--mesa-compact);
 }
 
-.mkortex-thinking-hint {
+.mesa-thinking-hint {
   color: var(--text-muted);
   font-size: 13px;
   font-weight: 500;
@@ -800,46 +800,46 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   font-variant-numeric: tabular-nums;
 }
 
-.mkortex-thinking-block {
+.mesa-thinking-block {
   margin: 8px 0;
 }
 
 /* No footprint when thinking finished with no content */
-.mkortex-thinking-block--done:has(.mkortex-thinking-content:empty) {
+.mesa-thinking-block--done:has(.mesa-thinking-content:empty) {
   display: none;
 }
 
-.mkortex-thinking-block:not(.expanded) .mkortex-thinking-content {
-  display: none;
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-.mkortex-thinking-block.expanded .mkortex-thinking-content:empty {
+.mesa-thinking-block:not(.expanded) .mesa-thinking-content {
   display: none;
   padding: 0;
   margin: 0;
   border: none;
 }
 
-.mkortex-text-block+.mkortex-thinking-block {
+.mesa-thinking-block.expanded .mesa-thinking-content:empty {
+  display: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.mesa-text-block+.mesa-thinking-block {
   margin-top: 8px;
 }
 
-.mkortex-thinking-block+.mkortex-text-block {
+.mesa-thinking-block+.mesa-text-block {
   margin-top: 8px;
 }
 
-.mkortex-thinking-block+.mkortex-tool-call {
+.mesa-thinking-block+.mesa-tool-call {
   margin-top: 8px;
 }
 
-.mkortex-tool-call+.mkortex-thinking-block {
+.mesa-tool-call+.mesa-thinking-block {
   margin-top: 8px;
 }
 
-.mkortex-thinking-header {
+.mesa-thinking-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -848,21 +848,21 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.mkortex-thinking-label {
+.mesa-thinking-label {
   flex: 1;
   font-size: 13px;
   font-weight: 500;
-  color: var(--mkortex-brand);
+  color: var(--mesa-brand);
   font-variant-numeric: tabular-nums;
 }
 
-.mkortex-thinking-block:not(.mkortex-thinking-block--done) .mkortex-thinking-label::after {
+.mesa-thinking-block:not(.mesa-thinking-block--done) .mesa-thinking-label::after {
   content: '...';
   display: inline-block;
   width: 1.1em;
 }
 
-.mkortex-thinking-content {
+.mesa-thinking-content {
   padding: 4px 0;
   padding-inline-start: 24px;
   font-size: 13px;
@@ -874,24 +874,24 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   margin-inline-start: 7px;
 }
 
-.mkortex-thinking-content p {
+.mesa-thinking-content p {
   margin: 0 0 8px 0;
 }
 
-.mkortex-thinking-content p:last-child {
+.mesa-thinking-content p:last-child {
   margin-bottom: 0;
 }
 
-.mkortex-thinking-content .mkortex-code-wrapper {
+.mesa-thinking-content .mesa-code-wrapper {
   margin: 8px 0;
 }
 
-.mkortex-thinking-content .mkortex-code-wrapper pre {
+.mesa-thinking-content .mesa-code-wrapper pre {
   padding: 8px 10px;
   border-radius: 4px;
 }
 
-.mkortex-thinking-content code {
+.mesa-thinking-content code {
   font-family: var(--font-monospace);
   font-size: 12px;
 }
@@ -900,11 +900,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 /* ============================================
    components/toolcalls.css
    ============================================ */
-.mkortex-tool-call {
+.mesa-tool-call {
   margin: 8px 0;
 }
 
-.mkortex-tool-header {
+.mesa-tool-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -913,23 +913,23 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.mkortex-tool-header:hover {
+.mesa-tool-header:hover {
   opacity: 0.85;
 }
 
-.mkortex-tool-icon {
+.mesa-tool-icon {
   display: flex;
   align-items: center;
   color: var(--text-accent);
   flex-shrink: 0;
 }
 
-.mkortex-tool-icon svg {
+.mesa-tool-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-tool-name {
+.mesa-tool-name {
   font-family: var(--font-monospace);
   font-size: 13px;
   font-weight: 400;
@@ -938,7 +938,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   flex-shrink: 0;
 }
 
-.mkortex-tool-summary {
+.mesa-tool-summary {
   font-family: var(--font-monospace);
   font-size: 13px;
   color: var(--text-muted);
@@ -949,15 +949,15 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   min-width: 0;
 }
 
-.mkortex-tool-summary:empty {
+.mesa-tool-summary:empty {
   display: none;
 }
 
-.mkortex-tool-call-bash.expanded .mkortex-tool-summary {
+.mesa-tool-call-bash.expanded .mesa-tool-summary {
   display: none;
 }
 
-.mkortex-tool-bash-command {
+.mesa-tool-bash-command {
   font-family: var(--font-monospace);
   font-size: 12px;
   line-height: 1.4;
@@ -967,8 +967,8 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   padding: 2px 0 4px;
 }
 
-/* Legacy: StatusPanel bash entries still use mkortex-tool-label */
-.mkortex-tool-label {
+/* Legacy: StatusPanel bash entries still use mesa-tool-label */
+.mesa-tool-label {
   font-family: var(--font-monospace);
   font-size: 13px;
   font-weight: 400;
@@ -978,47 +978,47 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   text-overflow: ellipsis;
 }
 
-.mkortex-tool-current {
+.mesa-tool-current {
   font-family: var(--font-monospace);
   font-size: 13px;
   color: var(--text-muted);
   white-space: nowrap;
 }
 
-.mkortex-tool-current:empty {
+.mesa-tool-current:empty {
   display: none;
 }
 
-.mkortex-tool-status {
+.mesa-tool-status {
   display: flex;
   align-items: center;
   flex-shrink: 0;
   margin-left: auto;
 }
 
-.mkortex-tool-status svg {
+.mesa-tool-status svg {
   width: 14px;
   height: 14px;
 }
 
-.mkortex-tool-status.status-running {
+.mesa-tool-status.status-running {
   color: var(--text-accent);
 }
 
-.mkortex-tool-status.status-completed {
+.mesa-tool-status.status-completed {
   color: var(--color-green);
 }
 
-.mkortex-tool-status.status-error {
+.mesa-tool-status.status-error {
   color: var(--color-red);
 }
 
-.mkortex-tool-status.status-blocked {
+.mesa-tool-status.status-blocked {
   color: var(--color-orange);
 }
 
 /* Tool call content - border style (like thinking block) */
-.mkortex-tool-content {
+.mesa-tool-content {
   padding: 4px 0;
   padding-inline-start: 16px;
   margin-inline-start: 7px;
@@ -1026,39 +1026,39 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Tool content variants that render inline widgets instead of bordered results */
-.mkortex-tool-content-todo,
-.mkortex-tool-content-ask {
+.mesa-tool-content-todo,
+.mesa-tool-content-ask {
   border-inline-start: none;
   margin-inline-start: 0;
   padding-inline-start: 0;
 }
 
 /* Expanded content: per-line rendering */
-.mkortex-tool-lines {
+.mesa-tool-lines {
   font-family: var(--font-monospace);
   font-size: 12px;
   line-height: 1.4;
   overflow-x: auto;
 }
 
-.mkortex-tool-line {
+.mesa-tool-line {
   padding: 1px 0;
   color: var(--text-muted);
   white-space: pre;
 }
 
-.mkortex-tool-line-wrap {
+.mesa-tool-line-wrap {
   white-space: pre-wrap;
   word-break: break-word;
 }
 
 /* Hover highlight for file search results */
-.mkortex-tool-line.hoverable:hover {
+.mesa-tool-line.hoverable:hover {
   background: var(--background-modifier-hover);
 }
 
 /* Truncation indicator: "... N more lines" */
-.mkortex-tool-truncated {
+.mesa-tool-truncated {
   color: var(--text-faint);
   font-style: italic;
   padding: 4px 0;
@@ -1067,7 +1067,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* ToolSearch expanded: icon + tool name rows */
-.mkortex-tool-search-item {
+.mesa-tool-search-item {
   display: flex;
   align-items: center;
   gap: 4px;
@@ -1077,7 +1077,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   color: var(--text-muted);
 }
 
-.mkortex-tool-search-icon {
+.mesa-tool-search-icon {
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -1086,13 +1086,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   color: var(--text-faint);
 }
 
-.mkortex-tool-search-icon svg {
+.mesa-tool-search-icon svg {
   width: 14px;
   height: 14px;
 }
 
 /* Web search links */
-.mkortex-tool-link {
+.mesa-tool-link {
   display: flex;
   align-items: flex-start;
   gap: 6px;
@@ -1105,11 +1105,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   line-height: 1.4;
 }
 
-.mkortex-tool-link:hover {
+.mesa-tool-link:hover {
   color: var(--text-accent);
 }
 
-.mkortex-tool-link-icon {
+.mesa-tool-link-icon {
   flex-shrink: 0;
   width: 12px;
   height: 12px;
@@ -1117,19 +1117,19 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   color: var(--text-faint);
 }
 
-.mkortex-tool-link-icon svg {
+.mesa-tool-link-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.mkortex-tool-link-title {
+.mesa-tool-link-title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 /* Web search summary section */
-.mkortex-tool-web-summary {
+.mesa-tool-web-summary {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-muted);
@@ -1143,7 +1143,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Empty state for file search */
-.mkortex-tool-empty {
+.mesa-tool-empty {
   color: var(--text-faint);
   font-style: italic;
   font-family: var(--font-monospace);
@@ -1151,12 +1151,12 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   padding: 4px 0;
 }
 
-.mkortex-tool-result-row {
+.mesa-tool-result-row {
   display: flex;
   align-items: flex-start;
 }
 
-.mkortex-tool-result-text {
+.mesa-tool-result-text {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-muted);
@@ -1166,16 +1166,16 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   flex: 1;
 }
 
-.mkortex-tool-result-item {
+.mesa-tool-result-item {
   display: block;
   margin-bottom: 2px;
 }
 
-.mkortex-tool-patch-section + .mkortex-tool-patch-section {
+.mesa-tool-patch-section + .mesa-tool-patch-section {
   margin-top: 10px;
 }
 
-.mkortex-tool-result-item:last-child {
+.mesa-tool-result-item:last-child {
   margin-bottom: 0;
 }
 
@@ -1185,23 +1185,23 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    ============================================ */
 /* Status Panel - persistent bottom panel for todos and command output */
 
-.mkortex-status-panel-container {
+.mesa-status-panel-container {
   flex-shrink: 0;
   padding: 0 14px;
 }
 
 /* Spacing only when a section is visible — empty panel has zero height */
-.mkortex-status-panel > :not(.mkortex-hidden) {
+.mesa-status-panel > :not(.mesa-hidden) {
   margin-top: 12px;
 }
 
-.mkortex-status-panel > :not(.mkortex-hidden) ~ :not(.mkortex-hidden) {
+.mesa-status-panel > :not(.mesa-hidden) ~ :not(.mesa-hidden) {
   margin-top: 4px;
 }
 
 /* Todo Section */
 
-.mkortex-status-panel-header {
+.mesa-status-panel-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1212,35 +1212,35 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.mkortex-status-panel-header:hover {
+.mesa-status-panel-header:hover {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-status-panel-header:focus-visible {
+.mesa-status-panel-header:focus-visible {
   outline: 2px solid var(--interactive-accent);
   outline-offset: 2px;
 }
 
-.mkortex-status-panel-icon {
+.mesa-status-panel-icon {
   display: flex;
   align-items: center;
   color: var(--text-accent);
   flex-shrink: 0;
 }
 
-.mkortex-status-panel-icon svg {
+.mesa-status-panel-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-status-panel-label {
+.mesa-status-panel-label {
   font-family: var(--font-monospace);
   font-size: 13px;
   font-weight: 500;
   color: var(--text-normal);
 }
 
-.mkortex-status-panel-current {
+.mesa-status-panel-current {
   flex: 1;
   font-family: var(--font-monospace);
   font-size: 13px;
@@ -1250,44 +1250,44 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-status-panel-status {
+.mesa-status-panel-status {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.mkortex-status-panel-status svg {
+.mesa-status-panel-status svg {
   width: 14px;
   height: 14px;
 }
 
-.mkortex-status-panel-status.status-completed {
+.mesa-status-panel-status.status-completed {
   color: var(--color-green);
 }
 
-.mkortex-status-panel-content {
+.mesa-status-panel-content {
   padding: 2px 0;
 }
 
-/* Individual todo item - shared by status panel and inline tool via .mkortex-todo-list-container */
-.mkortex-todo-list-container .mkortex-todo-item {
+/* Individual todo item - shared by status panel and inline tool via .mesa-todo-list-container */
+.mesa-todo-list-container .mesa-todo-item {
   display: flex;
   align-items: flex-start;
   padding: 1px 0;
 }
 
-.mkortex-todo-list-container .mkortex-todo-status-icon {
+.mesa-todo-list-container .mesa-todo-status-icon {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.mkortex-todo-list-container .mkortex-todo-status-icon svg {
+.mesa-todo-list-container .mesa-todo-status-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.mkortex-todo-list-container .mkortex-todo-text {
+.mesa-todo-list-container .mesa-todo-text {
   font-family: var(--font-monospace);
   font-size: 12px;
   line-height: 1.4;
@@ -1295,55 +1295,55 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   padding-left: 12px;
 }
 
-.mkortex-todo-list-container .mkortex-todo-pending .mkortex-todo-status-icon {
+.mesa-todo-list-container .mesa-todo-pending .mesa-todo-status-icon {
   color: var(--text-normal);
 }
 
-.mkortex-todo-list-container .mkortex-todo-pending .mkortex-todo-status-icon svg {
+.mesa-todo-list-container .mesa-todo-pending .mesa-todo-status-icon svg {
   transform: scale(2);
 }
 
-.mkortex-todo-list-container .mkortex-todo-pending .mkortex-todo-text {
+.mesa-todo-list-container .mesa-todo-pending .mesa-todo-text {
   color: var(--text-normal);
 }
 
-.mkortex-todo-list-container .mkortex-todo-in_progress .mkortex-todo-status-icon {
+.mesa-todo-list-container .mesa-todo-in_progress .mesa-todo-status-icon {
   color: var(--interactive-accent);
 }
 
-.mkortex-todo-list-container .mkortex-todo-in_progress .mkortex-todo-status-icon svg {
+.mesa-todo-list-container .mesa-todo-in_progress .mesa-todo-status-icon svg {
   transform: scale(2);
 }
 
-.mkortex-todo-list-container .mkortex-todo-in_progress .mkortex-todo-text {
+.mesa-todo-list-container .mesa-todo-in_progress .mesa-todo-text {
   color: var(--text-normal);
 }
 
-.mkortex-todo-list-container .mkortex-todo-completed .mkortex-todo-status-icon {
+.mesa-todo-list-container .mesa-todo-completed .mesa-todo-status-icon {
   color: var(--color-green);
 }
 
-.mkortex-todo-list-container .mkortex-todo-completed .mkortex-todo-text {
+.mesa-todo-list-container .mesa-todo-completed .mesa-todo-text {
   color: var(--text-muted);
 }
 
 /* Bash Output Section */
 
-.mkortex-status-panel-bash {
+.mesa-status-panel-bash {
   margin-bottom: 4px;
 }
 
-.mkortex-status-panel-bash-header {
+.mesa-status-panel-bash-header {
   padding: 4px 0;
 }
 
-.mkortex-status-panel-bash-actions {
+.mesa-status-panel-bash-actions {
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
-.mkortex-status-panel-bash-action {
+.mesa-status-panel-bash-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1353,35 +1353,35 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   color: var(--text-muted);
 }
 
-.mkortex-status-panel-bash-action:hover {
+.mesa-status-panel-bash-action:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.mkortex-status-panel-bash-content {
+.mesa-status-panel-bash-content {
   padding-top: 2px;
   max-height: min(40vh, 320px);
   overflow-y: auto;
   overscroll-behavior: contain;
 }
 
-.mkortex-status-panel-bash-entry {
+.mesa-status-panel-bash-entry {
   margin: 4px 0;
 }
 
-.mkortex-status-panel-bash-entry .mkortex-tool-icon svg {
+.mesa-status-panel-bash-entry .mesa-tool-icon svg {
   width: 14px;
   height: 14px;
   position: relative;
   top: -1px;
 }
 
-.mkortex-status-panel-bash-entry .mkortex-tool-call {
+.mesa-status-panel-bash-entry .mesa-tool-call {
   margin: 0;
 }
 
 /* Keep bash output blocks from growing without bound */
-.mkortex-status-panel-bash-entry .mkortex-tool-result-text {
+.mesa-status-panel-bash-entry .mesa-tool-result-text {
   max-height: 200px;
   overflow-y: auto;
   word-break: break-word;
@@ -1391,27 +1391,27 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 /* ============================================
    components/subagent.css
    ============================================ */
-.mkortex-subagent-list {
+.mesa-subagent-list {
   margin: 8px 0;
 }
 
-.mkortex-text-block+.mkortex-subagent-list {
+.mesa-text-block+.mesa-subagent-list {
   margin-top: 8px;
 }
 
-.mkortex-subagent-list+.mkortex-text-block {
+.mesa-subagent-list+.mesa-text-block {
   margin-top: 8px;
 }
 
-.mkortex-tool-call+.mkortex-subagent-list {
+.mesa-tool-call+.mesa-subagent-list {
   margin-top: 8px;
 }
 
-.mkortex-subagent-list+.mkortex-tool-call {
+.mesa-subagent-list+.mesa-tool-call {
   margin-top: 8px;
 }
 
-.mkortex-subagent-header {
+.mesa-subagent-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1420,19 +1420,19 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.mkortex-subagent-icon {
+.mesa-subagent-icon {
   display: flex;
   align-items: center;
   color: var(--interactive-accent);
   flex-shrink: 0;
 }
 
-.mkortex-subagent-icon svg {
+.mesa-subagent-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-subagent-label {
+.mesa-subagent-label {
   flex: 1;
   font-family: var(--font-monospace);
   font-size: 13px;
@@ -1440,41 +1440,41 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   color: var(--text-normal);
 }
 
-.mkortex-subagent-status {
+.mesa-subagent-status {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.mkortex-subagent-status svg {
+.mesa-subagent-status svg {
   width: 14px;
   height: 14px;
 }
 
-.mkortex-subagent-status.status-running {
+.mesa-subagent-status.status-running {
   color: var(--text-accent);
 }
 
-.mkortex-subagent-status.status-completed {
+.mesa-subagent-status.status-completed {
   color: var(--color-green);
 }
 
-.mkortex-subagent-status.status-error {
+.mesa-subagent-status.status-error {
   color: var(--color-red);
 }
 
-.mkortex-subagent-content {
+.mesa-subagent-content {
   padding: 4px 0;
   padding-inline-start: 16px;
   margin-inline-start: 7px;
   border-inline-start: 2px solid var(--background-modifier-border);
 }
 
-.mkortex-subagent-section {
+.mesa-subagent-section {
   margin: 2px 0 6px;
 }
 
-.mkortex-subagent-section-header {
+.mesa-subagent-section-header {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1486,21 +1486,21 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   padding: 2px 0;
 }
 
-.mkortex-subagent-section-header:hover {
+.mesa-subagent-section-header:hover {
   color: var(--text-normal);
 }
 
-.mkortex-subagent-section-title {
+.mesa-subagent-section-title {
   flex: 1;
   min-width: 0;
 }
 
-.mkortex-subagent-section-body {
+.mesa-subagent-section-body {
   padding-inline-start: 6px;
 }
 
-.mkortex-subagent-prompt-text,
-.mkortex-subagent-result-output {
+.mesa-subagent-prompt-text,
+.mesa-subagent-result-output {
   font-family: var(--font-monospace);
   font-size: 12px;
   line-height: 1.4;
@@ -1509,22 +1509,22 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   word-break: break-word;
 }
 
-.mkortex-subagent-result-output {
+.mesa-subagent-result-output {
   max-height: 220px;
   overflow-y: auto;
 }
 
-.mkortex-subagent-tools {
+.mesa-subagent-tools {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.mkortex-subagent-tool-item {
+.mesa-subagent-tool-item {
   display: block;
 }
 
-.mkortex-subagent-tool-header {
+.mesa-subagent-tool-header {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -1533,23 +1533,23 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   padding: 2px 0;
 }
 
-.mkortex-subagent-tool-header:hover {
+.mesa-subagent-tool-header:hover {
   opacity: 0.85;
 }
 
-.mkortex-subagent-tool-icon {
+.mesa-subagent-tool-icon {
   display: flex;
   align-items: center;
   color: var(--text-accent);
   flex-shrink: 0;
 }
 
-.mkortex-subagent-tool-icon svg {
+.mesa-subagent-tool-icon svg {
   width: 13px;
   height: 13px;
 }
 
-.mkortex-subagent-tool-name {
+.mesa-subagent-tool-name {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-normal);
@@ -1557,7 +1557,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   flex-shrink: 0;
 }
 
-.mkortex-subagent-tool-summary {
+.mesa-subagent-tool-summary {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-muted);
@@ -1568,35 +1568,35 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   min-width: 0;
 }
 
-.mkortex-subagent-tool-status {
+.mesa-subagent-tool-status {
   display: flex;
   align-items: center;
   flex-shrink: 0;
 }
 
-.mkortex-subagent-tool-status svg {
+.mesa-subagent-tool-status svg {
   width: 12px;
   height: 12px;
 }
 
-.mkortex-subagent-tool-status.status-running {
+.mesa-subagent-tool-status.status-running {
   color: var(--text-accent);
 }
 
-.mkortex-subagent-tool-status.status-completed {
+.mesa-subagent-tool-status.status-completed {
   color: var(--color-green);
 }
 
-.mkortex-subagent-tool-status.status-error,
-.mkortex-subagent-tool-status.status-blocked {
+.mesa-subagent-tool-status.status-error,
+.mesa-subagent-tool-status.status-blocked {
   color: var(--color-red);
 }
 
-.mkortex-subagent-tool-content {
+.mesa-subagent-tool-content {
   padding: 2px 0 2px 16px;
 }
 
-.mkortex-subagent-tool-empty {
+.mesa-subagent-tool-empty {
   color: var(--text-faint);
   font-style: italic;
   font-family: var(--font-monospace);
@@ -1604,7 +1604,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   padding: 2px 0;
 }
 
-.mkortex-subagent-status-text {
+.mesa-subagent-status-text {
   font-size: 11px;
   font-family: var(--font-monospace);
   color: var(--text-muted);
@@ -1612,31 +1612,31 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   padding-inline-start: 8px;
 }
 
-.mkortex-subagent-list.async .mkortex-subagent-icon {
+.mesa-subagent-list.async .mesa-subagent-icon {
   color: var(--interactive-accent);
 }
 
-.mkortex-subagent-list.async.pending .mkortex-subagent-status-text {
+.mesa-subagent-list.async.pending .mesa-subagent-status-text {
   color: var(--text-muted);
 }
 
-.mkortex-subagent-list.async.running .mkortex-subagent-status-text {
+.mesa-subagent-list.async.running .mesa-subagent-status-text {
   color: var(--text-accent);
 }
 
-.mkortex-subagent-list.async.awaiting .mkortex-subagent-status-text {
+.mesa-subagent-list.async.awaiting .mesa-subagent-status-text {
   color: var(--color-yellow);
 }
 
-.mkortex-subagent-list.async.completed .mkortex-subagent-status-text {
+.mesa-subagent-list.async.completed .mesa-subagent-status-text {
   color: var(--color-green);
 }
 
-.mkortex-subagent-list.async.error .mkortex-subagent-status-text {
+.mesa-subagent-list.async.error .mesa-subagent-status-text {
   color: var(--color-red);
 }
 
-.mkortex-subagent-list.async.orphaned .mkortex-subagent-status-text {
+.mesa-subagent-list.async.orphaned .mesa-subagent-status-text {
   color: var(--color-orange);
 }
 
@@ -1645,39 +1645,39 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    components/input.css
    ============================================ */
 /* Input area */
-.mkortex-input-container {
+.mesa-input-container {
   position: relative;
   padding: 12px 0 0 0;
 }
 
-.mkortex-input-footer {
+.mesa-input-footer {
   position: relative;
   flex-shrink: 0;
   padding: 12px 0 0 0;
 }
 
-.mkortex-active-input-slot > .mkortex-input-composer > .mkortex-input-container {
+.mesa-active-input-slot > .mesa-input-composer > .mesa-input-container {
   padding-top: 0;
 }
 
 /* Input wrapper (border container) - flex column so textarea expands when no chips */
 /* Height calculation: context row (36px) + textarea min (60px) + toolbar (38px) + border (2px) = 136px */
-.mkortex-input-wrapper {
-  --mkortex-input-wrapper-border-color: var(--background-modifier-border);
-  --mkortex-input-wrapper-box-shadow: none;
+.mesa-input-wrapper {
+  --mesa-input-wrapper-border-color: var(--background-modifier-border);
+  --mesa-input-wrapper-box-shadow: none;
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 140px;
-  border: 1px solid var(--mkortex-input-wrapper-border-color);
+  border: 1px solid var(--mesa-input-wrapper-border-color);
   border-radius: 6px;
   background: var(--background-primary);
-  box-shadow: var(--mkortex-input-wrapper-box-shadow);
+  box-shadow: var(--mesa-input-wrapper-box-shadow);
 }
 
 /* Context row (file chip start, selection indicator end) - inside input wrapper at top */
 /* Collapsed by default; expanded via .has-content class; textarea fills remaining space */
-.mkortex-context-row {
+.mesa-context-row {
   display: none;
   align-items: flex-start;
   justify-content: flex-start;
@@ -1687,11 +1687,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Show context row when it has visible content */
-.mkortex-context-row.has-content {
+.mesa-context-row.has-content {
   display: flex;
 }
 
-.mkortex-input-nav-btn {
+.mesa-input-nav-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1700,11 +1700,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.15s ease;
 }
 
-.mkortex-input-nav-btn:hover {
+.mesa-input-nav-btn:hover {
   color: var(--text-normal);
 }
 
-.mkortex-input-nav-btn svg {
+.mesa-input-nav-btn svg {
   width: 16px;
   height: 16px;
 }
@@ -1712,9 +1712,9 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 /* Selection indicator (shown when text is selected in editor) */
 /* Match file chip height (24px): chip has 16px remove button + 6px padding + 2px border */
 /* Indicator: 12px text + 10px padding (5+5) + 2px border = 24px */
-.mkortex-selection-indicator,
-.mkortex-browser-selection-indicator,
-.mkortex-canvas-indicator {
+.mesa-selection-indicator,
+.mesa-browser-selection-indicator,
+.mesa-canvas-indicator {
   color: #7abaff;
   font-size: 12px;
   line-height: 1;
@@ -1732,11 +1732,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   text-overflow: ellipsis;
 }
 
-.mkortex-input-wrapper textarea.mkortex-input {
+.mesa-input-wrapper textarea.mesa-input {
   width: 100%;
   flex: 1 1 0;
-  min-height: var(--mkortex-textarea-min-height, 60px);
-  max-height: var(--mkortex-textarea-max-height, none);
+  min-height: var(--mesa-textarea-min-height, 60px);
+  max-height: var(--mesa-textarea-max-height, none);
   resize: none;
   padding: 8px 10px 10px 10px;
   border: none;
@@ -1751,28 +1751,28 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   unicode-bidi: plaintext; /* Proper BiDi text handling for mixed RTL/LTR */
 }
 
-.mkortex-input-wrapper textarea.mkortex-input:hover,
-.mkortex-input-wrapper textarea.mkortex-input:focus {
+.mesa-input-wrapper textarea.mesa-input:hover,
+.mesa-input-wrapper textarea.mesa-input:focus {
   outline: none;
   border: none;
   background: transparent;
   box-shadow: none;
 }
 
-.mkortex-input-wrapper textarea.mkortex-input::placeholder {
+.mesa-input-wrapper textarea.mesa-input::placeholder {
   color: var(--text-muted);
 }
 
 /* Input toolbar layout lives in toolbar/composer-bar.css */
 
 /* File indicator (attached files) */
-.mkortex-file-indicator {
+.mesa-file-indicator {
   display: none;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.mkortex-file-chip {
+.mesa-file-chip {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1786,26 +1786,26 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   cursor: pointer;
 }
 
-.mkortex-file-chip-icon {
+.mesa-file-chip-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.mkortex-file-chip-icon svg {
+.mesa-file-chip-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.mkortex-file-chip-name {
+.mesa-file-chip-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--text-normal);
 }
 
-.mkortex-file-chip-remove {
+.mesa-file-chip-remove {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1819,17 +1819,17 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.mkortex-file-chip-remove:hover {
+.mesa-file-chip-remove:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.mkortex-file-chip:hover {
+.mesa-file-chip:hover {
   background: var(--background-modifier-hover);
 }
 
 /* Composer queue status row (queued follow-up preview + steer action) */
-.mkortex-input-queue-row {
+.mesa-input-queue-row {
   display: none;
   font-size: 12px;
   color: var(--text-muted);
@@ -1839,7 +1839,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   padding: 0 2px 8px 2px;
 }
 
-.mkortex-queue-indicator-text {
+.mesa-queue-indicator-text {
   min-width: 0;
   flex: 1 1 auto;
   white-space: nowrap;
@@ -1847,14 +1847,14 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   text-overflow: ellipsis;
 }
 
-.mkortex-queue-indicator-actions {
+.mesa-queue-indicator-actions {
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.mkortex-queue-indicator-action {
+.mesa-queue-indicator-action {
   flex: 0 0 auto;
   padding: 1px 8px;
   border: 0;
@@ -1864,17 +1864,17 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   cursor: pointer;
 }
 
-.mkortex-queue-indicator-action:hover {
+.mesa-queue-indicator-action:hover {
   text-decoration: underline;
 }
 
-.mkortex-queue-indicator-action[disabled] {
+.mesa-queue-indicator-action[disabled] {
   color: var(--text-faint);
   cursor: default;
   text-decoration: none;
 }
 
-.mkortex-queue-indicator-icon-action {
+.mesa-queue-indicator-icon-action {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1889,30 +1889,30 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   cursor: pointer;
 }
 
-.mkortex-queue-indicator-icon-action:hover {
+.mesa-queue-indicator-icon-action:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.mkortex-queue-indicator-icon-action svg {
+.mesa-queue-indicator-icon-action svg {
   width: 14px;
   height: 14px;
 }
 
 /* Light blue border when instruction mode is active */
-.mkortex-input-wrapper.mkortex-input-instruction-mode {
-  --mkortex-input-wrapper-border-color: #60a5fa;
-  --mkortex-input-wrapper-box-shadow: 0 0 0 1px #60a5fa;
+.mesa-input-wrapper.mesa-input-instruction-mode {
+  --mesa-input-wrapper-border-color: #60a5fa;
+  --mesa-input-wrapper-box-shadow: 0 0 0 1px #60a5fa;
 }
 
 /* Pink border when bash mode is active */
-.mkortex-input-wrapper.mkortex-input-bang-bash-mode {
-  --mkortex-input-wrapper-border-color: #f472b6;
-  --mkortex-input-wrapper-box-shadow: 0 0 0 1px #f472b6;
+.mesa-input-wrapper.mesa-input-bang-bash-mode {
+  --mesa-input-wrapper-border-color: #f472b6;
+  --mesa-input-wrapper-box-shadow: 0 0 0 1px #f472b6;
 }
 
 /* Monospace input while in bash mode */
-.mkortex-input-wrapper.mkortex-input-bang-bash-mode .mkortex-input {
+.mesa-input-wrapper.mesa-input-bang-bash-mode .mesa-input {
   font-family: var(--font-monospace);
 }
 
@@ -1922,7 +1922,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    ============================================ */
 /* Context usage meter (inline in toolbar) */
 
-.mkortex-context-meter {
+.mesa-context-meter {
   position: relative;
   display: flex;
   align-items: center;
@@ -1932,7 +1932,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Custom tooltip */
-.mkortex-context-meter::after {
+.mesa-context-meter::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: 100%;
@@ -1953,12 +1953,12 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   z-index: 100;
 }
 
-.mkortex-context-meter:hover::after {
+.mesa-context-meter:hover::after {
   opacity: 1;
   visibility: visible;
 }
 
-.mkortex-context-meter-gauge {
+.mesa-context-meter-gauge {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1966,30 +1966,30 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   height: 24px;
 }
 
-.mkortex-context-meter-gauge svg {
+.mesa-context-meter-gauge svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-meter-bg {
+.mesa-meter-bg {
   stroke: var(--background-modifier-border);
 }
 
-.mkortex-meter-fill {
-  stroke: var(--mkortex-brand);
+.mesa-meter-fill {
+  stroke: var(--mesa-brand);
   transition: stroke-dashoffset 0.3s ease, stroke 0.3s ease;
 }
 
-.mkortex-context-meter-percent {
+.mesa-context-meter-percent {
   display: none;
 }
 
 /* Warning state (> 80%) - pale red */
-.mkortex-context-meter.warning .mkortex-meter-fill {
+.mesa-context-meter.warning .mesa-meter-fill {
   stroke: #E57373;
 }
 
-.mkortex-context-meter.warning .mkortex-context-meter-percent {
+.mesa-context-meter.warning .mesa-context-meter-percent {
   color: #E57373;
 }
 
@@ -1999,7 +1999,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    ============================================ */
 /* Composer toolbar — Cursor-style single row */
 
-.mkortex-input-toolbar {
+.mesa-input-toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2009,22 +2009,22 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   gap: 8px;
 }
 
-.mkortex-composer-bar-left,
-.mkortex-composer-bar-right {
+.mesa-composer-bar-left,
+.mesa-composer-bar-right {
   display: flex;
   align-items: center;
   gap: 4px;
   min-width: 0;
 }
 
-.mkortex-composer-bar-right {
+.mesa-composer-bar-right {
   flex-shrink: 0;
   margin-left: auto;
 }
 
 /* Left zone: ghost text controls — no fill, faint like toolbar icons */
-.mkortex-composer-bar-left .mkortex-composer-pill-btn,
-.mkortex-composer-bar-left .mkortex-model-btn {
+.mesa-composer-bar-left .mesa-composer-pill-btn,
+.mesa-composer-bar-left .mesa-model-btn {
   appearance: none;
   -webkit-appearance: none;
   color: var(--text-faint);
@@ -2037,27 +2037,27 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   box-shadow: none;
 }
 
-.mkortex-composer-bar-left .mkortex-composer-pill-btn:hover,
-.mkortex-composer-bar-left .mkortex-composer-pill-btn:focus,
-.mkortex-composer-bar-left .mkortex-composer-pill-btn:active,
-.mkortex-composer-bar-left .mkortex-model-btn:hover,
-.mkortex-composer-bar-left .mkortex-model-btn:focus,
-.mkortex-composer-bar-left .mkortex-model-btn:active,
-.mkortex-composer-bar-left .mkortex-composer-pill.open .mkortex-composer-pill-btn,
-.mkortex-composer-bar-left .mkortex-model-selector.open .mkortex-model-btn {
+.mesa-composer-bar-left .mesa-composer-pill-btn:hover,
+.mesa-composer-bar-left .mesa-composer-pill-btn:focus,
+.mesa-composer-bar-left .mesa-composer-pill-btn:active,
+.mesa-composer-bar-left .mesa-model-btn:hover,
+.mesa-composer-bar-left .mesa-model-btn:focus,
+.mesa-composer-bar-left .mesa-model-btn:active,
+.mesa-composer-bar-left .mesa-composer-pill.open .mesa-composer-pill-btn,
+.mesa-composer-bar-left .mesa-model-selector.open .mesa-model-btn {
   background: none;
   background-color: transparent;
   box-shadow: none;
   color: var(--text-normal);
 }
 
-.mkortex-composer-bar-left .mkortex-composer-pill-label,
-.mkortex-composer-bar-left .mkortex-model-label {
+.mesa-composer-bar-left .mesa-composer-pill-label,
+.mesa-composer-bar-left .mesa-model-label {
   font-weight: normal;
 }
 
 /* Shared pill control (mode + model) */
-.mkortex-composer-pill {
+.mesa-composer-pill {
   position: relative;
   display: flex;
   align-items: center;
@@ -2065,7 +2065,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   flex: 0 1 auto;
 }
 
-.mkortex-composer-pill-btn {
+.mesa-composer-pill-btn {
   display: inline-flex;
   align-items: center;
   gap: 2px;
@@ -2084,15 +2084,15 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.12s ease;
 }
 
-.mkortex-composer-pill-btn:hover {
+.mesa-composer-pill-btn:hover {
   color: var(--text-normal);
 }
 
-.mkortex-composer-pill.open .mkortex-composer-pill-btn {
+.mesa-composer-pill.open .mesa-composer-pill-btn {
   color: var(--text-normal);
 }
 
-.mkortex-composer-pill-label {
+.mesa-composer-pill-label {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2100,7 +2100,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Popover dropdown (opens upward) */
-.mkortex-composer-popover {
+.mesa-composer-popover {
   position: absolute;
   bottom: 100%;
   left: 0;
@@ -2123,14 +2123,14 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: opacity 0.12s ease, visibility 0.12s ease;
 }
 
-.mkortex-composer-pill.open .mkortex-composer-popover,
-.mkortex-model-selector.open .mkortex-composer-popover {
+.mesa-composer-pill.open .mesa-composer-popover,
+.mesa-model-selector.open .mesa-composer-popover {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
-.mkortex-composer-popover-option {
+.mesa-composer-popover-option {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -2140,39 +2140,39 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.1s ease;
 }
 
-.mkortex-mode-dropdown {
+.mesa-mode-dropdown {
   gap: 4px;
 }
 
-.mkortex-mode-dropdown .mkortex-composer-popover-option {
+.mesa-mode-dropdown .mesa-composer-popover-option {
   margin: 1px 0;
 }
 
-.mkortex-composer-popover-option:hover {
+.mesa-composer-popover-option:hover {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-composer-popover-option.selected {
-  background: rgba(var(--mkortex-brand-rgb), 0.12);
+.mesa-composer-popover-option.selected {
+  background: rgba(var(--mesa-brand-rgb), 0.12);
 }
 
-.mkortex-composer-popover-option-title {
+.mesa-composer-popover-option-title {
   font-size: 12px;
   font-weight: 500;
   color: var(--text-normal);
 }
 
-.mkortex-composer-popover-option.selected .mkortex-composer-popover-option-title {
-  color: var(--mkortex-brand);
+.mesa-composer-popover-option.selected .mesa-composer-popover-option-title {
+  color: var(--mesa-brand);
 }
 
-.mkortex-composer-popover-option-desc {
+.mesa-composer-popover-option-desc {
   font-size: 11px;
   line-height: 1.35;
   color: var(--text-faint);
 }
 
-.mkortex-composer-popover-section {
+.mesa-composer-popover-section {
   padding: 6px 8px 4px;
   font-size: 10px;
   font-weight: 600;
@@ -2182,13 +2182,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   pointer-events: none;
 }
 
-.mkortex-composer-popover-section:not(:first-child) {
+.mesa-composer-popover-section:not(:first-child) {
   margin-top: 4px;
   border-top: 1px solid var(--background-modifier-border);
   padding-top: 8px;
 }
 
-.mkortex-composer-popover-row {
+.mesa-composer-popover-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2199,23 +2199,23 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   color: var(--text-muted);
 }
 
-.mkortex-composer-popover-row:hover {
+.mesa-composer-popover-row:hover {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-composer-popover-row-label {
+.mesa-composer-popover-row-label {
   flex: 1;
   min-width: 0;
 }
 
-.mkortex-composer-popover-chips {
+.mesa-composer-popover-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   justify-content: flex-end;
 }
 
-.mkortex-composer-popover-chip {
+.mesa-composer-popover-chip {
   padding: 2px 7px;
   border-radius: 4px;
   font-size: 11px;
@@ -2226,19 +2226,19 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.1s ease, color 0.1s ease, border-color 0.1s ease;
 }
 
-.mkortex-composer-popover-chip:hover {
+.mesa-composer-popover-chip:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.mkortex-composer-popover-chip.selected {
-  background: rgba(var(--mkortex-brand-rgb), 0.15);
-  color: var(--mkortex-brand);
-  border-color: rgba(var(--mkortex-brand-rgb), 0.25);
+.mesa-composer-popover-chip.selected {
+  background: rgba(var(--mesa-brand-rgb), 0.15);
+  color: var(--mesa-brand);
+  border-color: rgba(var(--mesa-brand-rgb), 0.25);
   font-weight: 500;
 }
 
-.mkortex-composer-popover-tier {
+.mesa-composer-popover-tier {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2250,23 +2250,23 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.1s ease, color 0.1s ease;
 }
 
-.mkortex-composer-popover-tier:hover {
+.mesa-composer-popover-tier:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.mkortex-composer-popover-tier.active {
-  color: var(--mkortex-brand);
-  background: rgba(var(--mkortex-brand-rgb), 0.12);
+.mesa-composer-popover-tier.active {
+  color: var(--mesa-brand);
+  background: rgba(var(--mesa-brand-rgb), 0.12);
 }
 
-.mkortex-composer-popover-tier svg {
+.mesa-composer-popover-tier svg {
   width: 14px;
   height: 14px;
 }
 
 /* MCP items inside model dropdown */
-.mkortex-composer-popover-mcp-item {
+.mesa-composer-popover-mcp-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2277,30 +2277,30 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   color: var(--text-muted);
 }
 
-.mkortex-composer-popover-mcp-item:hover {
+.mesa-composer-popover-mcp-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-composer-popover-mcp-item.enabled {
+.mesa-composer-popover-mcp-item.enabled {
   color: var(--text-normal);
 }
 
-.mkortex-composer-popover-mcp-check {
+.mesa-composer-popover-mcp-check {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 14px;
   height: 14px;
   flex-shrink: 0;
-  color: var(--mkortex-brand);
+  color: var(--mesa-brand);
 }
 
-.mkortex-composer-popover-mcp-check svg {
+.mesa-composer-popover-mcp-check svg {
   width: 12px;
   height: 12px;
 }
 
-.mkortex-composer-popover-empty {
+.mesa-composer-popover-empty {
   padding: 8px 10px;
   font-size: 11px;
   color: var(--text-faint);
@@ -2308,7 +2308,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Extra controls inside model dropdown (effort row + nested select) */
-.mkortex-composer-extra-row {
+.mesa-composer-extra-row {
   display: flex;
   align-items: baseline;
   flex-wrap: nowrap;
@@ -2318,14 +2318,14 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-composer-extra-label {
+.mesa-composer-extra-label {
   flex: 0 0 auto;
   font-size: 12px;
   color: var(--text-muted);
   line-height: 1.4;
 }
 
-.mkortex-composer-extra-select {
+.mesa-composer-extra-select {
   position: relative;
   display: inline-flex;
   align-items: baseline;
@@ -2333,7 +2333,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   min-width: 0;
 }
 
-.mkortex-composer-extra-select-value {
+.mesa-composer-extra-select-value {
   flex: 0 1 auto;
   min-width: 0;
   color: var(--text-faint);
@@ -2343,12 +2343,12 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.12s ease;
 }
 
-.mkortex-composer-extra-select-value:hover,
-.mkortex-composer-extra-select.open .mkortex-composer-extra-select-value {
+.mesa-composer-extra-select-value:hover,
+.mesa-composer-extra-select.open .mesa-composer-extra-select-value {
   color: var(--text-normal);
 }
 
-.mkortex-composer-extra-select-menu {
+.mesa-composer-extra-select-menu {
   position: absolute;
   bottom: 100%;
   left: 0;
@@ -2367,11 +2367,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   z-index: 1001;
 }
 
-.mkortex-composer-extra-select.open .mkortex-composer-extra-select-menu {
+.mesa-composer-extra-select.open .mesa-composer-extra-select-menu {
   display: flex;
 }
 
-.mkortex-composer-extra-select-option {
+.mesa-composer-extra-select-option {
   padding: 5px 8px;
   border-radius: 4px;
   font-size: 12px;
@@ -2380,26 +2380,26 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-composer-extra-select-option:hover {
+.mesa-composer-extra-select-option:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.mkortex-composer-extra-select-option.selected {
-  background: rgba(var(--mkortex-brand-rgb), 0.12);
-  color: var(--mkortex-brand);
+.mesa-composer-extra-select-option.selected {
+  background: rgba(var(--mesa-brand-rgb), 0.12);
+  color: var(--mesa-brand);
   font-weight: 500;
 }
 
 /* Model selector in composer bar */
-.mkortex-model-selector {
+.mesa-model-selector {
   position: relative;
   min-width: 0;
   max-width: 11rem;
   flex: 0 1 auto;
 }
 
-.mkortex-model-btn {
+.mesa-model-btn {
   display: inline-flex;
   align-items: center;
   gap: 2px;
@@ -2418,17 +2418,17 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.12s ease;
 }
 
-.mkortex-model-btn:hover,
-.mkortex-model-btn:focus,
-.mkortex-model-btn:active,
-.mkortex-model-selector.open .mkortex-model-btn {
+.mesa-model-btn:hover,
+.mesa-model-btn:focus,
+.mesa-model-btn:active,
+.mesa-model-selector.open .mesa-model-btn {
   background: none;
   background-color: transparent;
   box-shadow: none;
   color: var(--text-normal);
 }
 
-.mkortex-model-label {
+.mesa-model-label {
   flex: 1;
   min-width: 0;
   overflow: hidden;
@@ -2436,13 +2436,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-model-dropdown {
+.mesa-model-dropdown {
   left: 0;
   width: max-content;
   max-width: min(280px, 90vw);
 }
 
-.mkortex-model-group {
+.mesa-model-group {
   padding: 3px 8px;
   font-size: 8px;
   font-weight: 600;
@@ -2452,18 +2452,18 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   pointer-events: none;
 }
 
-.mkortex-model-group:not(:first-child) {
+.mesa-model-group:not(:first-child) {
   margin-top: 4px;
   border-top: 1px solid var(--background-modifier-border);
   padding-top: 6px;
 }
 
-.mkortex-model-provider-icon {
+.mesa-model-provider-icon {
   flex-shrink: 0;
   opacity: 0.7;
 }
 
-.mkortex-model-option {
+.mesa-model-option {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -2476,60 +2476,60 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-model-option:hover {
+.mesa-model-option:hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-.mkortex-model-option.selected {
-  background: rgba(var(--mkortex-brand-rgb), 0.15);
-  color: var(--mkortex-brand);
+.mesa-model-option.selected {
+  background: rgba(var(--mesa-brand-rgb), 0.15);
+  color: var(--mesa-brand);
   font-weight: 500;
 }
 
 /* Context meter in right zone */
-.mkortex-composer-bar-right .mkortex-context-meter {
+.mesa-composer-bar-right .mesa-context-meter {
   margin-inline-start: 0;
 }
 
-.mkortex-composer-bar-right .mkortex-context-meter::after {
+.mesa-composer-bar-right .mesa-context-meter::after {
   left: auto;
   right: 0;
   transform: none;
 }
 
-.mkortex-context-meter-percent {
+.mesa-context-meter-percent {
   display: none;
 }
 
-.mkortex-composer-bar-right .mkortex-context-meter-gauge {
+.mesa-composer-bar-right .mesa-context-meter-gauge {
   width: 28px;
   height: 28px;
 }
 
-.mkortex-composer-bar-right .mkortex-context-meter-gauge svg {
+.mesa-composer-bar-right .mesa-context-meter-gauge svg {
   width: 18px;
   height: 18px;
 }
 
 /* External context in right zone */
-.mkortex-composer-bar-right .mkortex-external-context-selector {
+.mesa-composer-bar-right .mesa-external-context-selector {
   margin-left: 0;
 }
 
-.mkortex-composer-bar-right .mkortex-external-context-icon {
+.mesa-composer-bar-right .mesa-external-context-icon {
   width: 28px;
   height: 28px;
 }
 
-.mkortex-composer-bar-right .mkortex-external-context-dropdown {
+.mesa-composer-bar-right .mesa-external-context-dropdown {
   left: auto;
   right: 0;
   transform: none;
 }
 
 /* Send / Stop capsule button */
-.mkortex-send-stop-btn {
+.mesa-send-stop-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2545,34 +2545,34 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
 }
 
-.mkortex-send-stop-btn.ready {
-  background: var(--mkortex-brand);
+.mesa-send-stop-btn.ready {
+  background: var(--mesa-brand);
   color: var(--text-on-accent, #fff);
   cursor: pointer;
 }
 
-.mkortex-send-stop-btn.ready:hover {
+.mesa-send-stop-btn.ready:hover {
   filter: brightness(1.08);
 }
 
-.mkortex-send-stop-btn.streaming {
+.mesa-send-stop-btn.streaming {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
   cursor: pointer;
 }
 
-.mkortex-send-stop-btn.streaming:hover {
-  background: rgba(var(--mkortex-error-rgb, 229, 115, 115), 0.15);
-  color: var(--mkortex-error, #e57373);
+.mesa-send-stop-btn.streaming:hover {
+  background: rgba(var(--mesa-error-rgb, 229, 115, 115), 0.15);
+  color: var(--mesa-error, #e57373);
 }
 
-.mkortex-send-stop-btn svg {
+.mesa-send-stop-btn svg {
   width: 16px;
   height: 16px;
 }
 
 /* Hidden toolbar hosts (MCP state holder) */
-.mkortex-composer-hidden-host {
+.mesa-composer-hidden-host {
   display: none !important;
 }
 
@@ -2581,14 +2581,14 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    toolbar/external-context.css
    ============================================ */
 /* External Context Selector */
-.mkortex-external-context-selector {
+.mesa-external-context-selector {
   position: relative;
   display: flex;
   align-items: center;
   margin-left: 8px;
 }
 
-.mkortex-external-context-icon-wrapper {
+.mesa-external-context-icon-wrapper {
   position: relative;
   display: flex;
   align-items: center;
@@ -2596,7 +2596,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   cursor: pointer;
 }
 
-.mkortex-external-context-icon {
+.mesa-external-context-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2606,37 +2606,37 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.15s ease;
 }
 
-.mkortex-external-context-icon-wrapper:hover .mkortex-external-context-icon {
+.mesa-external-context-icon-wrapper:hover .mesa-external-context-icon {
   color: var(--text-normal);
 }
 
-.mkortex-external-context-icon.active {
-  color: var(--mkortex-brand);
+.mesa-external-context-icon.active {
+  color: var(--mesa-brand);
   animation: external-context-glow 2s ease-in-out infinite;
 }
 
-.mkortex-external-context-icon svg {
+.mesa-external-context-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-external-context-badge {
+.mesa-external-context-badge {
   position: absolute;
   top: 0;
   right: 0;
   font-size: 9px;
   font-weight: 600;
-  color: var(--mkortex-brand);
+  color: var(--mesa-brand);
   opacity: 0;
   transition: opacity 0.15s ease;
   pointer-events: none;
 }
 
-.mkortex-external-context-badge.visible {
+.mesa-external-context-badge.visible {
   opacity: 1;
 }
 
-.mkortex-external-context-dropdown {
+.mesa-external-context-dropdown {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -2654,19 +2654,19 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   z-index: 100;
 }
 
-.mkortex-external-context-selector:hover .mkortex-external-context-dropdown {
+.mesa-external-context-selector:hover .mesa-external-context-dropdown {
   opacity: 1;
   visibility: visible;
 }
 
-.mkortex-external-context-header {
+.mesa-external-context-header {
   padding: 10px 12px 4px;
   font-size: 12px;
   font-weight: 600;
   color: var(--text-muted);
 }
 
-.mkortex-external-context-hint {
+.mesa-external-context-hint {
   padding: 0 12px 8px;
   font-size: 11px;
   line-height: 1.35;
@@ -2674,12 +2674,12 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-external-context-list {
+.mesa-external-context-list {
   max-height: 200px;
   overflow-y: auto;
 }
 
-.mkortex-external-context-empty {
+.mesa-external-context-empty {
   padding: 16px 12px;
   text-align: center;
   color: var(--text-muted);
@@ -2687,7 +2687,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   font-style: italic;
 }
 
-.mkortex-external-context-item {
+.mesa-external-context-item {
   display: flex;
   align-items: center;
   padding: 8px 12px;
@@ -2695,11 +2695,11 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   border-bottom: 1px solid var(--background-modifier-border-focus);
 }
 
-.mkortex-external-context-item:last-child {
+.mesa-external-context-item:last-child {
   border-bottom: none;
 }
 
-.mkortex-external-context-text {
+.mesa-external-context-text {
   flex: 1;
   font-size: 12px;
   font-family: var(--font-monospace);
@@ -2709,7 +2709,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-external-context-lock {
+.mesa-external-context-lock {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2722,26 +2722,26 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: all 0.15s ease;
 }
 
-.mkortex-external-context-lock:hover {
+.mesa-external-context-lock:hover {
   background: var(--background-modifier-hover);
   opacity: 0.8;
 }
 
-.mkortex-external-context-lock.locked {
-  color: var(--mkortex-brand);
+.mesa-external-context-lock.locked {
+  color: var(--mesa-brand);
   opacity: 0.9;
 }
 
-.mkortex-external-context-lock.locked:hover {
+.mesa-external-context-lock.locked:hover {
   opacity: 1;
 }
 
-.mkortex-external-context-lock svg {
+.mesa-external-context-lock svg {
   width: 12px;
   height: 12px;
 }
 
-.mkortex-external-context-remove {
+.mesa-external-context-remove {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2754,13 +2754,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: all 0.15s ease;
 }
 
-.mkortex-external-context-remove:hover {
-  background: rgba(var(--mkortex-error-rgb), 0.15);
-  color: var(--mkortex-error);
+.mesa-external-context-remove:hover {
+  background: rgba(var(--mesa-error-rgb), 0.15);
+  color: var(--mesa-error);
   opacity: 1;
 }
 
-.mkortex-external-context-remove svg {
+.mesa-external-context-remove svg {
   width: 14px;
   height: 14px;
 }
@@ -2770,14 +2770,14 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    toolbar/mcp-selector.css
    ============================================ */
 /* MCP Server Selector */
-.mkortex-mcp-selector {
+.mesa-mcp-selector {
   position: relative;
   display: flex;
   align-items: center;
   margin-left: 8px;
 }
 
-.mkortex-mcp-selector-icon-wrapper {
+.mesa-mcp-selector-icon-wrapper {
   position: relative;
   display: flex;
   align-items: center;
@@ -2785,7 +2785,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   cursor: pointer;
 }
 
-.mkortex-mcp-selector-icon {
+.mesa-mcp-selector-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2795,37 +2795,37 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.15s ease;
 }
 
-.mkortex-mcp-selector-icon-wrapper:hover .mkortex-mcp-selector-icon {
+.mesa-mcp-selector-icon-wrapper:hover .mesa-mcp-selector-icon {
   color: var(--text-normal);
 }
 
-.mkortex-mcp-selector-icon.active {
-  color: var(--mkortex-brand);
+.mesa-mcp-selector-icon.active {
+  color: var(--mesa-brand);
   animation: mcp-glow 2s ease-in-out infinite;
 }
 
-.mkortex-mcp-selector-icon svg {
+.mesa-mcp-selector-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-mcp-selector-badge {
+.mesa-mcp-selector-badge {
   position: absolute;
   top: 0;
   right: 0;
   font-size: 9px;
   font-weight: 600;
-  color: var(--mkortex-brand);
+  color: var(--mesa-brand);
   opacity: 0;
   transition: opacity 0.15s ease;
   pointer-events: none;
 }
 
-.mkortex-mcp-selector-badge.visible {
+.mesa-mcp-selector-badge.visible {
   opacity: 1;
 }
 
-.mkortex-mcp-selector-dropdown {
+.mesa-mcp-selector-dropdown {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -2844,7 +2844,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Bridge the gap between icon and dropdown to prevent hover breaks */
-.mkortex-mcp-selector-dropdown::after {
+.mesa-mcp-selector-dropdown::after {
   content: '';
   position: absolute;
   left: 0;
@@ -2853,13 +2853,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   height: 8px;
 }
 
-.mkortex-mcp-selector-dropdown.visible,
-.mkortex-mcp-selector:hover .mkortex-mcp-selector-dropdown {
+.mesa-mcp-selector-dropdown.visible,
+.mesa-mcp-selector:hover .mesa-mcp-selector-dropdown {
   opacity: 1;
   visibility: visible;
 }
 
-.mkortex-mcp-selector-header {
+.mesa-mcp-selector-header {
   padding: 10px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -2867,12 +2867,12 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-mcp-selector-list {
+.mesa-mcp-selector-list {
   max-height: 200px;
   overflow-y: auto;
 }
 
-.mkortex-mcp-selector-empty {
+.mesa-mcp-selector-empty {
   padding: 16px 12px;
   text-align: center;
   color: var(--text-muted);
@@ -2880,7 +2880,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   font-style: italic;
 }
 
-.mkortex-mcp-selector-item {
+.mesa-mcp-selector-item {
   display: flex;
   align-items: center;
   padding: 8px 12px;
@@ -2889,15 +2889,15 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.15s ease;
 }
 
-.mkortex-mcp-selector-item:hover {
+.mesa-mcp-selector-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-mcp-selector-item.enabled {
-  background: rgba(var(--mkortex-brand-rgb), 0.1);
+.mesa-mcp-selector-item.enabled {
+  background: rgba(var(--mesa-brand-rgb), 0.1);
 }
 
-.mkortex-mcp-selector-check {
+.mesa-mcp-selector-check {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2905,20 +2905,20 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   height: 16px;
   border: 1px solid var(--background-modifier-border);
   border-radius: 3px;
-  color: var(--mkortex-brand);
+  color: var(--mesa-brand);
 }
 
-.mkortex-mcp-selector-item.enabled .mkortex-mcp-selector-check {
-  background: rgba(var(--mkortex-brand-rgb), 0.2);
-  border-color: var(--mkortex-brand);
+.mesa-mcp-selector-item.enabled .mesa-mcp-selector-check {
+  background: rgba(var(--mesa-brand-rgb), 0.2);
+  border-color: var(--mesa-brand);
 }
 
-.mkortex-mcp-selector-check svg {
+.mesa-mcp-selector-check svg {
   width: 12px;
   height: 12px;
 }
 
-.mkortex-mcp-selector-item-info {
+.mesa-mcp-selector-item-info {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2927,7 +2927,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   overflow: hidden;
 }
 
-.mkortex-mcp-selector-item-name {
+.mesa-mcp-selector-item-name {
   font-size: 12px;
   color: var(--text-normal);
   overflow: hidden;
@@ -2935,13 +2935,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-mcp-selector-cs-badge {
+.mesa-mcp-selector-cs-badge {
   font-size: 10px;
   font-weight: 600;
   padding: 1px 4px;
   border-radius: 3px;
-  background: rgba(var(--mkortex-brand-rgb), 0.2);
-  color: var(--mkortex-brand);
+  background: rgba(var(--mesa-brand-rgb), 0.2);
+  color: var(--mesa-brand);
   flex-shrink: 0;
   margin-left: auto;
 }
@@ -2951,7 +2951,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    features/file-context.css
    ============================================ */
 /* @ Mention dropdown */
-.mkortex-mention-dropdown {
+.mesa-mention-dropdown {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -2969,21 +2969,21 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   overflow-y: auto;
 }
 
-.mkortex-mention-dropdown.visible {
+.mesa-mention-dropdown.visible {
   display: block;
 }
 
 /* Fixed positioning for inline editor */
-.mkortex-mention-dropdown-fixed {
+.mesa-mention-dropdown-fixed {
   position: fixed;
-  bottom: var(--mkortex-fixed-dropdown-bottom);
-  left: var(--mkortex-fixed-dropdown-left);
+  bottom: var(--mesa-fixed-dropdown-bottom);
+  left: var(--mesa-fixed-dropdown-left);
   right: auto;
-  width: var(--mkortex-fixed-dropdown-width);
+  width: var(--mesa-fixed-dropdown-width);
   z-index: 10001;
 }
 
-.mkortex-mention-item {
+.mesa-mention-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -2992,24 +2992,24 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: background 0.1s ease;
 }
 
-.mkortex-mention-item:hover,
-.mkortex-mention-item.selected {
+.mesa-mention-item:hover,
+.mesa-mention-item.selected {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-mention-icon {
+.mesa-mention-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.mkortex-mention-icon svg {
+.mesa-mention-icon svg {
   width: 14px;
   height: 14px;
 }
 
-.mkortex-mention-path {
+.mesa-mention-path {
   font-size: 13px;
   color: var(--text-normal);
   overflow: hidden;
@@ -3017,7 +3017,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-mention-empty {
+.mesa-mention-empty {
   padding: 12px;
   text-align: center;
   color: var(--text-muted);
@@ -3025,29 +3025,29 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Scrollbar for mention dropdown */
-.mkortex-mention-dropdown::-webkit-scrollbar {
+.mesa-mention-dropdown::-webkit-scrollbar {
   width: 6px;
 }
 
-.mkortex-mention-dropdown::-webkit-scrollbar-track {
+.mesa-mention-dropdown::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.mkortex-mention-dropdown::-webkit-scrollbar-thumb {
+.mesa-mention-dropdown::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 3px;
 }
 
 /* MCP items in @-mention dropdown */
-.mkortex-mention-item.mcp-server .mkortex-mention-icon {
+.mesa-mention-item.mcp-server .mesa-mention-icon {
   color: var(--interactive-accent);
 }
 
-.mkortex-mention-item.vault-folder .mkortex-mention-icon {
+.mesa-mention-item.vault-folder .mesa-mention-icon {
   color: var(--text-muted);
 }
 
-.mkortex-mention-text {
+.mesa-mention-text {
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -3055,13 +3055,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   flex: 1;
 }
 
-.mkortex-mention-name {
+.mesa-mention-name {
   font-size: 13px;
   font-weight: 500;
   color: var(--interactive-accent);
 }
 
-.mkortex-mention-desc {
+.mesa-mention-desc {
   font-size: 11px;
   color: var(--text-muted);
   overflow: hidden;
@@ -3070,17 +3070,17 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Context file items in @-mention dropdown */
-.mkortex-mention-item.context-file .mkortex-mention-icon {
-  color: var(--mkortex-brand);
+.mesa-mention-item.context-file .mesa-mention-icon {
+  color: var(--mesa-brand);
 }
 
-.mkortex-mention-item.context-file .mkortex-mention-text {
+.mesa-mention-item.context-file .mesa-mention-text {
   flex-direction: row;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.mkortex-mention-item.context-file .mkortex-mention-name-context {
+.mesa-mention-item.context-file .mesa-mention-name-context {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -3088,35 +3088,35 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
 }
 
 /* Context folder filter items in @-mention dropdown */
-.mkortex-mention-item.context-folder .mkortex-mention-icon {
+.mesa-mention-item.context-folder .mesa-mention-icon {
   color: var(--text-muted);
 }
 
-.mkortex-mention-name-folder {
+.mesa-mention-name-folder {
   color: var(--text-normal);
   font-weight: 500;
 }
 
-.mkortex-mention-name-context {
+.mesa-mention-name-context {
   color: var(--text-normal);
 }
 
 /* Agent folder items in @-mention dropdown */
-.mkortex-mention-item.agent-folder .mkortex-mention-icon {
+.mesa-mention-item.agent-folder .mesa-mention-icon {
   color: var(--link-color);
 }
 
-.mkortex-mention-name-agent-folder {
+.mesa-mention-name-agent-folder {
   color: var(--link-color);
   font-weight: 600;
 }
 
 /* Agent items in @-mention dropdown (inside @Agents/) */
-.mkortex-mention-item.agent .mkortex-mention-icon {
+.mesa-mention-item.agent .mesa-mention-icon {
   color: var(--link-color);
 }
 
-.mkortex-mention-item.agent .mkortex-mention-text {
+.mesa-mention-item.agent .mesa-mention-text {
   flex-direction: row;
   align-items: baseline;
   gap: 6px;
@@ -3124,13 +3124,13 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   white-space: nowrap;
 }
 
-.mkortex-mention-item.agent .mkortex-mention-name-agent {
+.mesa-mention-item.agent .mesa-mention-name-agent {
   color: var(--text-normal);
   font-size: 13px;
   flex-shrink: 0;
 }
 
-.mkortex-mention-item.agent .mkortex-mention-agent-desc {
+.mesa-mention-item.agent .mesa-mention-agent-desc {
   font-size: 11px;
   color: var(--text-muted);
   overflow: hidden;
@@ -3144,7 +3144,7 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
    features/file-link.css
    ============================================ */
 /* Clickable file links that open files in Obsidian */
-.mkortex-file-link {
+.mesa-file-link {
   color: var(--text-accent);
   text-decoration: none;
   cursor: pointer;
@@ -3152,17 +3152,17 @@ body.theme-dark .mkortex-provider-icon-variant--dark {
   transition: color 0.15s ease;
 }
 
-.mkortex-file-link:hover {
+.mesa-file-link:hover {
   color: var(--text-accent-hover);
   text-decoration: underline;
 }
 
 /* File link inside inline code */
-code .mkortex-file-link {
+code .mesa-file-link {
   color: var(--text-accent);
 }
 
-code .mkortex-file-link:hover {
+code .mesa-file-link:hover {
   color: var(--text-accent-hover);
 }
 
@@ -3173,7 +3173,7 @@ code .mkortex-file-link:hover {
 /* Image Context - Preview & Attachments */
 
 /* Image preview container (in input area) */
-.mkortex-image-preview {
+.mesa-image-preview {
   display: none;
   flex-wrap: wrap;
   gap: 8px;
@@ -3182,7 +3182,7 @@ code .mkortex-file-link:hover {
 }
 
 /* Individual image preview chip */
-.mkortex-image-chip {
+.mesa-image-chip {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -3193,12 +3193,12 @@ code .mkortex-file-link:hover {
   max-width: 200px;
 }
 
-.mkortex-image-chip:hover {
+.mesa-image-chip:hover {
   border-color: var(--interactive-accent);
 }
 
 /* Image thumbnail */
-.mkortex-image-thumb {
+.mesa-image-thumb {
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -3207,21 +3207,21 @@ code .mkortex-file-link:hover {
   cursor: pointer;
 }
 
-.mkortex-image-thumb img {
+.mesa-image-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 /* Image info */
-.mkortex-image-info {
+.mesa-image-info {
   display: flex;
   flex-direction: column;
   min-width: 0;
   flex: 1;
 }
 
-.mkortex-image-name {
+.mesa-image-name {
   font-size: 12px;
   color: var(--text-normal);
   overflow: hidden;
@@ -3229,13 +3229,13 @@ code .mkortex-file-link:hover {
   white-space: nowrap;
 }
 
-.mkortex-image-size {
+.mesa-image-size {
   font-size: 10px;
   color: var(--text-muted);
 }
 
 /* Remove button */
-.mkortex-image-remove {
+.mesa-image-remove {
   position: relative;
   width: 20px;
   height: 20px;
@@ -3246,8 +3246,8 @@ code .mkortex-file-link:hover {
   font-size: 0; /* Hide text character */
 }
 
-.mkortex-image-remove::before,
-.mkortex-image-remove::after {
+.mesa-image-remove::before,
+.mesa-image-remove::after {
   content: '';
   position: absolute;
   top: 50%;
@@ -3259,32 +3259,32 @@ code .mkortex-file-link:hover {
   transition: background 0.15s ease;
 }
 
-.mkortex-image-remove::before {
+.mesa-image-remove::before {
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.mkortex-image-remove::after {
+.mesa-image-remove::after {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.mkortex-image-remove:hover {
+.mesa-image-remove:hover {
   background: var(--background-modifier-error);
 }
 
-.mkortex-image-remove:hover::before,
-.mkortex-image-remove:hover::after {
+.mesa-image-remove:hover::before,
+.mesa-image-remove:hover::after {
   background: var(--text-on-accent);
 }
 
 /* Drop overlay - inside input wrapper */
-.mkortex-drop-overlay {
+.mesa-drop-overlay {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(var(--mkortex-brand-rgb), 0.08);
-  border: 2px dashed var(--mkortex-brand);
+  background: rgba(var(--mesa-brand-rgb), 0.08);
+  border: 2px dashed var(--mesa-brand);
   border-radius: 6px;
   display: none;
   align-items: center;
@@ -3293,23 +3293,23 @@ code .mkortex-file-link:hover {
   pointer-events: none;
 }
 
-.mkortex-drop-overlay.visible {
+.mesa-drop-overlay.visible {
   display: flex;
 }
 
-.mkortex-drop-content {
+.mesa-drop-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  color: var(--mkortex-brand);
+  color: var(--mesa-brand);
 }
 
-.mkortex-drop-content svg {
+.mesa-drop-content svg {
   opacity: 0.7;
 }
 
-.mkortex-drop-content span {
+.mesa-drop-content span {
   font-size: 12px;
   font-weight: 500;
 }
@@ -3317,7 +3317,7 @@ code .mkortex-file-link:hover {
 /* Images in Messages (displayed above user bubble) */
 
 /* Images container - right-aligned above user message */
-.mkortex-message-images {
+.mesa-message-images {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -3327,7 +3327,7 @@ code .mkortex-file-link:hover {
 }
 
 /* Individual image in message - standardized size */
-.mkortex-message-image {
+.mesa-message-image {
   width: 120px;
   height: 120px;
   border-radius: 8px;
@@ -3338,12 +3338,12 @@ code .mkortex-file-link:hover {
   border: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-message-image:hover {
+.mesa-message-image:hover {
   transform: scale(1.03);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.mkortex-message-image img {
+.mesa-message-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -3356,14 +3356,14 @@ code .mkortex-file-link:hover {
    ============================================ */
 /* Image embed styles - displays ![[image.png]] wikilinks as actual images */
 
-.mkortex-embedded-image {
+.mesa-embedded-image {
   display: inline-block;
   max-width: 100%;
   margin: 0.5em 0;
   vertical-align: middle;
 }
 
-.mkortex-embedded-image img {
+.mesa-embedded-image img {
   max-width: 100%;
   height: auto;
   border-radius: var(--radius-s);
@@ -3371,23 +3371,23 @@ code .mkortex-file-link:hover {
   transition: opacity 0.2s ease;
 }
 
-.mkortex-embedded-image img:hover {
+.mesa-embedded-image img:hover {
   opacity: 0.9;
 }
 
 /* When image is inline with text */
-.mkortex-text-block p .mkortex-embedded-image {
+.mesa-text-block p .mesa-embedded-image {
   margin: 0.25em 0;
 }
 
 /* Block-level image (standalone on its own line) */
-.mkortex-text-block p > .mkortex-embedded-image:only-child {
+.mesa-text-block p > .mesa-embedded-image:only-child {
   display: block;
   margin: 0.75em 0;
 }
 
 /* Fallback when image file not found */
-.mkortex-embedded-image-fallback {
+.mesa-embedded-image-fallback {
   color: var(--text-muted);
   font-style: italic;
   background: var(--background-modifier-hover);
@@ -3400,7 +3400,7 @@ code .mkortex-file-link:hover {
    features/image-modal.css
    ============================================ */
 /* Full-size Image Modal */
-.mkortex-image-modal-overlay {
+.mesa-image-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -3414,14 +3414,14 @@ code .mkortex-file-link:hover {
   cursor: pointer;
 }
 
-.mkortex-image-modal {
+.mesa-image-modal {
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
   cursor: default;
 }
 
-.mkortex-image-modal img {
+.mesa-image-modal img {
   max-width: 90vw;
   max-height: 90vh;
   object-fit: contain;
@@ -3429,7 +3429,7 @@ code .mkortex-file-link:hover {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
-.mkortex-image-modal-close {
+.mesa-image-modal-close {
   position: absolute;
   top: -12px;
   right: -12px;
@@ -3447,7 +3447,7 @@ code .mkortex-file-link:hover {
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.mkortex-image-modal-close:hover {
+.mesa-image-modal-close:hover {
   background: var(--background-modifier-error);
   color: var(--text-on-accent);
 }
@@ -3459,8 +3459,8 @@ code .mkortex-file-link:hover {
 /* Inline Edit (CM6 decorations) */
 
 /* Selection highlight (shared by inline edit and chat) */
-.cm-line .mkortex-selection-highlight,
-.mkortex-selection-highlight.mkortex-selection-highlight {
+.cm-line .mesa-selection-highlight,
+.mesa-selection-highlight.mesa-selection-highlight {
   background: var(--text-selection);
   border-radius: 2px;
   padding: 3px 0;
@@ -3468,18 +3468,18 @@ code .mkortex-file-link:hover {
 }
 
 /* Preview mode selection highlight via CSS Custom Highlight API */
-::highlight(mkortex-selection) {
+::highlight(mesa-selection) {
   background: var(--text-selection);
 }
 
 /* CM6 widget container - ensure transparent background */
 .markdown-source-view.mod-cm6 .cm-widgetBuffer,
-.markdown-source-view.mod-cm6 .cm-line.mkortex-inline-input-line {
+.markdown-source-view.mod-cm6 .cm-line.mesa-inline-input-line {
   background: transparent;
 }
 
 /* Input container - fully transparent */
-.mkortex-inline-input-container {
+.mesa-inline-input-container {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -3488,7 +3488,7 @@ code .mkortex-file-link:hover {
 }
 
 /* Input wrapper - contains input and spinner */
-.mkortex-inline-input-wrap {
+.mesa-inline-input-wrap {
   flex: 1;
   position: relative;
   background: transparent;
@@ -3496,7 +3496,7 @@ code .mkortex-file-link:hover {
 }
 
 /* Input - fully transparent */
-.mkortex-inline-input-wrap input.mkortex-inline-input {
+.mesa-inline-input-wrap input.mesa-inline-input {
   width: 100%;
   padding: 4px 8px;
   padding-inline-end: 30px;
@@ -3510,22 +3510,22 @@ code .mkortex-file-link:hover {
   font-size: var(--font-ui-small, 13px);
 }
 
-.mkortex-inline-input-wrap input.mkortex-inline-input:focus,
-.mkortex-inline-input-wrap input.mkortex-inline-input:focus-visible {
+.mesa-inline-input-wrap input.mesa-inline-input:focus,
+.mesa-inline-input-wrap input.mesa-inline-input:focus-visible {
   outline: none;
   box-shadow: none;
 }
 
-.mkortex-inline-input-wrap input.mkortex-inline-input::placeholder {
+.mesa-inline-input-wrap input.mesa-inline-input::placeholder {
   color: var(--text-faint);
 }
 
-.mkortex-inline-input-wrap input.mkortex-inline-input:disabled {
+.mesa-inline-input-wrap input.mesa-inline-input:disabled {
   opacity: 0.6;
 }
 
 /* Spinner - inside input box on end side */
-.mkortex-inline-spinner {
+.mesa-inline-spinner {
   position: absolute;
   inset-inline-end: 8px;
   top: 50%;
@@ -3533,14 +3533,14 @@ code .mkortex-file-link:hover {
   height: 14px;
   margin-top: -7px;
   border: 2px solid var(--background-modifier-border);
-  border-top-color: var(--mkortex-brand);
+  border-top-color: var(--mesa-brand);
   border-radius: 50%;
   box-sizing: border-box;
-  animation: mkortex-spin 0.8s linear infinite;
+  animation: mesa-spin 0.8s linear infinite;
 }
 
 /* Agent reply - shown when agent asks clarifying question */
-.mkortex-inline-agent-reply {
+.mesa-inline-agent-reply {
   padding: 8px;
   margin-bottom: 4px;
   background: transparent;
@@ -3556,17 +3556,17 @@ code .mkortex-file-link:hover {
   word-wrap: break-word;
 }
 
-.mkortex-inline-agent-reply > :first-child,
-.mkortex-inline-diff-preview-body > :first-child {
+.mesa-inline-agent-reply > :first-child,
+.mesa-inline-diff-preview-body > :first-child {
   margin-top: 0;
 }
 
-.mkortex-inline-agent-reply > :last-child,
-.mkortex-inline-diff-preview-body > :last-child {
+.mesa-inline-agent-reply > :last-child,
+.mesa-inline-diff-preview-body > :last-child {
   margin-bottom: 0;
 }
 
-.mkortex-inline-diff-preview {
+.mesa-inline-diff-preview {
   margin: 4px 0 6px;
   padding: 8px 10px;
   border: 1px solid var(--background-modifier-border);
@@ -3576,7 +3576,7 @@ code .mkortex-file-link:hover {
   overflow: hidden;
 }
 
-.mkortex-inline-diff-preview-body {
+.mesa-inline-diff-preview-body {
   font-family: var(--font-text);
   font-size: var(--font-text-size);
   line-height: var(--line-height-normal);
@@ -3585,116 +3585,116 @@ code .mkortex-file-link:hover {
   --heading-spacing: 0.5rem;
 }
 
-.mkortex-inline-diff-preview img {
+.mesa-inline-diff-preview img {
   max-width: 100%;
   height: auto;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered p {
+.mesa-inline-diff-preview .markdown-rendered p {
   margin: 0 0 6px;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered p:last-child {
+.mesa-inline-diff-preview .markdown-rendered p:last-child {
   margin-bottom: 0;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered h1,
-.mkortex-inline-diff-preview .markdown-rendered h2,
-.mkortex-inline-diff-preview .markdown-rendered h3,
-.mkortex-inline-diff-preview .markdown-rendered h4,
-.mkortex-inline-diff-preview .markdown-rendered h5,
-.mkortex-inline-diff-preview .markdown-rendered h6 {
+.mesa-inline-diff-preview .markdown-rendered h1,
+.mesa-inline-diff-preview .markdown-rendered h2,
+.mesa-inline-diff-preview .markdown-rendered h3,
+.mesa-inline-diff-preview .markdown-rendered h4,
+.mesa-inline-diff-preview .markdown-rendered h5,
+.mesa-inline-diff-preview .markdown-rendered h6 {
   margin: 0 0 6px;
   line-height: 1.25;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered h1:first-child,
-.mkortex-inline-diff-preview .markdown-rendered h2:first-child,
-.mkortex-inline-diff-preview .markdown-rendered h3:first-child,
-.mkortex-inline-diff-preview .markdown-rendered h4:first-child,
-.mkortex-inline-diff-preview .markdown-rendered h5:first-child,
-.mkortex-inline-diff-preview .markdown-rendered h6:first-child {
+.mesa-inline-diff-preview .markdown-rendered h1:first-child,
+.mesa-inline-diff-preview .markdown-rendered h2:first-child,
+.mesa-inline-diff-preview .markdown-rendered h3:first-child,
+.mesa-inline-diff-preview .markdown-rendered h4:first-child,
+.mesa-inline-diff-preview .markdown-rendered h5:first-child,
+.mesa-inline-diff-preview .markdown-rendered h6:first-child {
   margin-top: 0;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered ul,
-.mkortex-inline-diff-preview .markdown-rendered ol {
+.mesa-inline-diff-preview .markdown-rendered ul,
+.mesa-inline-diff-preview .markdown-rendered ol {
   margin: 2px 0 8px;
   padding-inline-start: 1.5em;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered li {
+.mesa-inline-diff-preview .markdown-rendered li {
   margin: 2px 0;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered li > p {
+.mesa-inline-diff-preview .markdown-rendered li > p {
   margin: 0;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered pre,
-.mkortex-inline-diff-preview .markdown-rendered table,
-.mkortex-inline-diff-preview .markdown-rendered blockquote {
+.mesa-inline-diff-preview .markdown-rendered pre,
+.mesa-inline-diff-preview .markdown-rendered table,
+.mesa-inline-diff-preview .markdown-rendered blockquote {
   margin: 2px 0 8px;
 }
 
-.mkortex-inline-diff-preview .markdown-rendered .el-h1,
-.mkortex-inline-diff-preview .markdown-rendered .el-h2,
-.mkortex-inline-diff-preview .markdown-rendered .el-h3,
-.mkortex-inline-diff-preview .markdown-rendered .el-h4,
-.mkortex-inline-diff-preview .markdown-rendered .el-h5,
-.mkortex-inline-diff-preview .markdown-rendered .el-h6,
-.mkortex-inline-diff-preview .markdown-rendered .el-p,
-.mkortex-inline-diff-preview .markdown-rendered .el-ul,
-.mkortex-inline-diff-preview .markdown-rendered .el-ol,
-.mkortex-inline-diff-preview .markdown-rendered .el-pre,
-.mkortex-inline-diff-preview .markdown-rendered .el-table,
-.mkortex-inline-diff-preview .markdown-rendered .el-blockquote {
+.mesa-inline-diff-preview .markdown-rendered .el-h1,
+.mesa-inline-diff-preview .markdown-rendered .el-h2,
+.mesa-inline-diff-preview .markdown-rendered .el-h3,
+.mesa-inline-diff-preview .markdown-rendered .el-h4,
+.mesa-inline-diff-preview .markdown-rendered .el-h5,
+.mesa-inline-diff-preview .markdown-rendered .el-h6,
+.mesa-inline-diff-preview .markdown-rendered .el-p,
+.mesa-inline-diff-preview .markdown-rendered .el-ul,
+.mesa-inline-diff-preview .markdown-rendered .el-ol,
+.mesa-inline-diff-preview .markdown-rendered .el-pre,
+.mesa-inline-diff-preview .markdown-rendered .el-table,
+.mesa-inline-diff-preview .markdown-rendered .el-blockquote {
   margin-block-start: 0;
   margin-block-end: 6px;
 }
 
-.mkortex-inline-markdown-fallback {
+.mesa-inline-markdown-fallback {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
 
-.mkortex-diff-block {
+.mesa-diff-block {
   border-radius: 4px;
   padding: 2px 4px;
 }
 
-.mkortex-diff-block + .mkortex-diff-block {
+.mesa-diff-block + .mesa-diff-block {
   margin-top: 2px;
 }
 
-.mkortex-diff-block > :first-child {
+.mesa-diff-block > :first-child {
   margin-top: 0;
 }
 
-.mkortex-diff-block > :last-child {
+.mesa-diff-block > :last-child {
   margin-bottom: 0;
 }
 
-.mkortex-diff-del:not(.mkortex-diff-block) {
+.mesa-diff-del:not(.mesa-diff-block) {
   background: rgba(255, 80, 80, 0.2);
   text-decoration: line-through;
   color: var(--text-muted);
 }
 
-.mkortex-diff-ins:not(.mkortex-diff-block) {
+.mesa-diff-ins:not(.mesa-diff-block) {
   background: rgba(80, 200, 80, 0.2);
 }
 
-.mkortex-diff-block.mkortex-diff-del {
+.mesa-diff-block.mesa-diff-del {
   background: rgba(255, 80, 80, 0.14);
   color: var(--text-muted);
 }
 
-.mkortex-diff-block.mkortex-diff-ins {
+.mesa-diff-block.mesa-diff-ins {
   background: rgba(80, 200, 80, 0.14);
 }
 
-.mkortex-inline-preview-actions {
+.mesa-inline-preview-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
@@ -3703,7 +3703,7 @@ code .mkortex-file-link:hover {
   border-top: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-inline-preview-actions button.mkortex-inline-preview-action {
+.mesa-inline-preview-actions button.mesa-inline-preview-action {
   min-height: 28px;
   padding: 4px 10px;
   border: 1px solid var(--background-modifier-border);
@@ -3717,21 +3717,21 @@ code .mkortex-file-link:hover {
   cursor: pointer;
 }
 
-.mkortex-inline-preview-actions button.mkortex-inline-preview-action:hover {
+.mesa-inline-preview-actions button.mesa-inline-preview-action:hover {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-inline-preview-actions button.mkortex-inline-preview-action.reject {
+.mesa-inline-preview-actions button.mesa-inline-preview-action.reject {
   color: var(--color-red);
 }
 
-.mkortex-inline-preview-actions button.mkortex-inline-preview-action.accept {
+.mesa-inline-preview-actions button.mesa-inline-preview-action.accept {
   border-color: var(--interactive-accent);
   background: var(--interactive-accent);
   color: var(--text-on-accent);
 }
 
-.mkortex-inline-preview-actions button.mkortex-inline-preview-action.accept:hover {
+.mesa-inline-preview-actions button.mesa-inline-preview-action.accept:hover {
   background: var(--interactive-accent-hover);
 }
 
@@ -3740,21 +3740,21 @@ code .mkortex-file-link:hover {
    features/diff.css
    ============================================ */
 /* Write/Edit Diff Block - Subagent style */
-.mkortex-write-edit-block {
+.mesa-write-edit-block {
   margin: 4px 0;
   background: transparent;
   overflow: hidden;
 }
 
-.mkortex-text-block+.mkortex-write-edit-block {
+.mesa-text-block+.mesa-write-edit-block {
   margin-top: 8px;
 }
 
-.mkortex-write-edit-block+.mkortex-text-block {
+.mesa-write-edit-block+.mesa-text-block {
   margin-top: 8px;
 }
 
-.mkortex-write-edit-header {
+.mesa-write-edit-header {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -3765,20 +3765,20 @@ code .mkortex-file-link:hover {
   overflow: hidden;
 }
 
-.mkortex-write-edit-icon {
+.mesa-write-edit-icon {
   width: 16px;
   height: 16px;
   color: var(--text-accent);
   flex-shrink: 0;
 }
 
-.mkortex-write-edit-icon svg {
+.mesa-write-edit-icon svg {
   width: 16px;
   height: 16px;
 }
 
 /* Two-part header: name (fixed) + summary (flexible) */
-.mkortex-write-edit-name {
+.mesa-write-edit-name {
   font-family: var(--font-monospace);
   font-size: 13px;
   font-weight: 400;
@@ -3787,7 +3787,7 @@ code .mkortex-file-link:hover {
   flex-shrink: 0;
 }
 
-.mkortex-write-edit-summary {
+.mesa-write-edit-summary {
   font-family: var(--font-monospace);
   font-size: 13px;
   color: var(--text-muted);
@@ -3798,57 +3798,57 @@ code .mkortex-file-link:hover {
   min-width: 0;
 }
 
-.mkortex-write-edit-stats {
+.mesa-write-edit-stats {
   font-family: var(--font-monospace);
   font-size: 11px;
   flex-shrink: 0;
 }
 
-.mkortex-write-edit-stats .added {
+.mesa-write-edit-stats .added {
   color: var(--color-green);
 }
 
-.mkortex-write-edit-stats .removed {
+.mesa-write-edit-stats .removed {
   color: var(--color-red);
   margin-left: 4px;
 }
 
-.mkortex-write-edit-status {
+.mesa-write-edit-status {
   width: 16px;
   height: 16px;
   flex-shrink: 0;
 }
 
 /* Hide empty status on successful completion so stats align to right edge */
-.mkortex-write-edit-block.done .mkortex-write-edit-status:empty {
+.mesa-write-edit-block.done .mesa-write-edit-status:empty {
   display: none;
 }
 
-.mkortex-write-edit-status svg {
+.mesa-write-edit-status svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-write-edit-status.status-completed {
+.mesa-write-edit-status.status-completed {
   color: var(--color-green);
 }
 
-.mkortex-write-edit-status.status-error,
-.mkortex-write-edit-status.status-blocked {
+.mesa-write-edit-status.status-error,
+.mesa-write-edit-status.status-blocked {
   color: var(--color-red);
 }
 
-.mkortex-write-edit-content {
+.mesa-write-edit-content {
   padding: 0;
   background: transparent;
   overflow: hidden;
 }
 
-.mkortex-write-edit-diff-row {
+.mesa-write-edit-diff-row {
   display: flex;
 }
 
-.mkortex-write-edit-diff {
+.mesa-write-edit-diff {
   flex: 1;
   font-family: var(--font-monospace);
   font-size: 12px;
@@ -3859,31 +3859,31 @@ code .mkortex-file-link:hover {
   overflow-x: auto;
 }
 
-.mkortex-write-edit-loading,
-.mkortex-write-edit-binary,
-.mkortex-write-edit-error,
-.mkortex-write-edit-done-text {
+.mesa-write-edit-loading,
+.mesa-write-edit-binary,
+.mesa-write-edit-error,
+.mesa-write-edit-done-text {
   font-family: var(--font-monospace);
   font-size: 12px;
   color: var(--text-muted);
 }
 
-.mkortex-write-edit-error {
+.mesa-write-edit-error {
   color: var(--color-red);
 }
 
 /* Diff line styling */
-.mkortex-diff-hunk {
+.mesa-diff-hunk {
   margin-bottom: 4px;
 }
 
-.mkortex-diff-line {
+.mesa-diff-line {
   display: flex;
   white-space: pre-wrap;
   word-break: break-all;
 }
 
-.mkortex-diff-prefix {
+.mesa-diff-prefix {
   flex-shrink: 0;
   width: 16px;
   text-align: center;
@@ -3891,36 +3891,36 @@ code .mkortex-file-link:hover {
   user-select: none;
 }
 
-.mkortex-diff-text {
+.mesa-diff-text {
   flex: 1;
   min-width: 0;
 }
 
 /* Diff colors - NO strikethrough for Write/Edit blocks */
-.mkortex-diff-equal {
+.mesa-diff-equal {
   color: var(--text-muted);
 }
 
-.mkortex-diff-delete {
+.mesa-diff-delete {
   background: rgba(255, 80, 80, 0.25);
   color: var(--text-normal);
 }
 
-.mkortex-diff-delete .mkortex-diff-prefix {
+.mesa-diff-delete .mesa-diff-prefix {
   color: var(--color-red);
 }
 
-.mkortex-diff-insert {
+.mesa-diff-insert {
   background: rgba(80, 200, 80, 0.25);
   color: var(--text-normal);
 }
 
-.mkortex-diff-insert .mkortex-diff-prefix {
+.mesa-diff-insert .mesa-diff-prefix {
   color: var(--color-green);
 }
 
 /* Hunk separator */
-.mkortex-diff-separator {
+.mesa-diff-separator {
   color: var(--text-muted);
   text-align: center;
   padding: 4px 0;
@@ -3931,7 +3931,7 @@ code .mkortex-file-link:hover {
   font-size: 11px;
 }
 
-.mkortex-diff-no-changes {
+.mesa-diff-no-changes {
   color: var(--text-muted);
   font-style: italic;
   padding: 8px;
@@ -3942,7 +3942,7 @@ code .mkortex-file-link:hover {
    features/slash-commands.css
    ============================================ */
 /* Slash Command Dropdown */
-.mkortex-slash-dropdown {
+.mesa-slash-dropdown {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -3960,50 +3960,50 @@ code .mkortex-file-link:hover {
   overflow-y: auto;
 }
 
-.mkortex-slash-dropdown.visible {
+.mesa-slash-dropdown.visible {
   display: block;
 }
 
 /* Fixed positioning for inline editor */
-.mkortex-slash-dropdown-fixed {
+.mesa-slash-dropdown-fixed {
   position: fixed;
-  bottom: var(--mkortex-fixed-dropdown-bottom);
-  left: var(--mkortex-fixed-dropdown-left);
+  bottom: var(--mesa-fixed-dropdown-bottom);
+  left: var(--mesa-fixed-dropdown-left);
   right: auto;
-  width: var(--mkortex-fixed-dropdown-width);
+  width: var(--mesa-fixed-dropdown-width);
   z-index: 10001;
 }
 
-.mkortex-slash-item {
+.mesa-slash-item {
   padding: 8px 12px;
   cursor: pointer;
   transition: background 0.1s ease;
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-slash-item:last-child {
+.mesa-slash-item:last-child {
   border-bottom: none;
 }
 
-.mkortex-slash-item:hover,
-.mkortex-slash-item.selected {
+.mesa-slash-item:hover,
+.mesa-slash-item.selected {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-slash-name {
+.mesa-slash-name {
   font-size: 12px;
   font-weight: 500;
   color: var(--text-normal);
   font-family: var(--font-monospace);
 }
 
-.mkortex-slash-hint {
+.mesa-slash-hint {
   font-size: 12px;
   color: var(--text-muted);
   margin-left: 8px;
 }
 
-.mkortex-slash-desc {
+.mesa-slash-desc {
   font-size: 11px;
   color: var(--text-muted);
   margin-top: 2px;
@@ -4012,7 +4012,7 @@ code .mkortex-file-link:hover {
   white-space: nowrap;
 }
 
-.mkortex-slash-empty {
+.mesa-slash-empty {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
@@ -4020,15 +4020,15 @@ code .mkortex-file-link:hover {
 }
 
 /* Scrollbar */
-.mkortex-slash-dropdown::-webkit-scrollbar {
+.mesa-slash-dropdown::-webkit-scrollbar {
   width: 6px;
 }
 
-.mkortex-slash-dropdown::-webkit-scrollbar-track {
+.mesa-slash-dropdown::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.mkortex-slash-dropdown::-webkit-scrollbar-thumb {
+.mesa-slash-dropdown::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 3px;
 }
@@ -4038,7 +4038,7 @@ code .mkortex-file-link:hover {
    features/resume-session.css
    ============================================ */
 /* Resume Session Dropdown */
-.mkortex-resume-dropdown {
+.mesa-resume-dropdown {
   display: none;
   position: absolute;
   bottom: 100%;
@@ -4056,11 +4056,11 @@ code .mkortex-file-link:hover {
   overflow: hidden;
 }
 
-.mkortex-resume-dropdown.visible {
+.mesa-resume-dropdown.visible {
   display: block;
 }
 
-.mkortex-resume-header {
+.mesa-resume-header {
   padding: 8px 12px;
   font-size: 12px;
   font-weight: 600;
@@ -4070,19 +4070,19 @@ code .mkortex-file-link:hover {
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-resume-list {
+.mesa-resume-list {
   max-height: 350px;
   overflow-y: auto;
 }
 
-.mkortex-resume-empty {
+.mesa-resume-empty {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
   font-size: 13px;
 }
 
-.mkortex-resume-item {
+.mesa-resume-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -4092,43 +4092,43 @@ code .mkortex-file-link:hover {
   transition: background 0.1s ease;
 }
 
-.mkortex-resume-item:last-child {
+.mesa-resume-item:last-child {
   border-bottom: none;
 }
 
-.mkortex-resume-item:hover,
-.mkortex-resume-item.selected {
+.mesa-resume-item:hover,
+.mesa-resume-item.selected {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-resume-item.current {
+.mesa-resume-item.current {
   background: var(--background-secondary);
   border-inline-start: 2px solid var(--interactive-accent);
   padding-inline-start: 10px;
 }
 
-.mkortex-resume-item-icon {
+.mesa-resume-item-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.mkortex-resume-item-icon svg {
+.mesa-resume-item-icon svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-resume-item.current .mkortex-resume-item-icon {
+.mesa-resume-item.current .mesa-resume-item-icon {
   color: var(--interactive-accent);
 }
 
-.mkortex-resume-item-content {
+.mesa-resume-item-content {
   flex: 1;
   min-width: 0;
 }
 
-.mkortex-resume-item-title {
+.mesa-resume-item-title {
   font-size: 13px;
   font-weight: 500;
   color: var(--text-normal);
@@ -4137,22 +4137,22 @@ code .mkortex-file-link:hover {
   text-overflow: ellipsis;
 }
 
-.mkortex-resume-item-date {
+.mesa-resume-item-date {
   font-size: 11px;
   color: var(--text-faint);
   margin-top: 2px;
 }
 
 /* Scrollbar */
-.mkortex-resume-list::-webkit-scrollbar {
+.mesa-resume-list::-webkit-scrollbar {
   width: 6px;
 }
 
-.mkortex-resume-list::-webkit-scrollbar-track {
+.mesa-resume-list::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.mkortex-resume-list::-webkit-scrollbar-thumb {
+.mesa-resume-list::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 3px;
 }
@@ -4163,13 +4163,13 @@ code .mkortex-file-link:hover {
    ============================================ */
 /* AskUserQuestion - inline widget rendered in chat panel */
 
-.mkortex-ask-question-inline {
+.mesa-ask-question-inline {
   font-family: var(--font-monospace);
   font-size: 12px;
   outline: none;
 }
 
-.mkortex-ask-inline-title {
+.mesa-ask-inline-title {
   font-weight: 700;
   color: var(--text-muted);
   padding: 6px 10px 0;
@@ -4177,7 +4177,7 @@ code .mkortex-file-link:hover {
 
 /* ── Tab bar ─────────────────────────────────── */
 
-.mkortex-ask-tab-bar {
+.mesa-ask-tab-bar {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -4186,7 +4186,7 @@ code .mkortex-file-link:hover {
   line-height: 1.4;
 }
 
-.mkortex-ask-tab {
+.mesa-ask-tab {
   display: inline-flex;
   align-items: center;
   padding: 2px 10px;
@@ -4199,16 +4199,16 @@ code .mkortex-file-link:hover {
     color 0.15s ease;
 }
 
-.mkortex-ask-tab:hover {
+.mesa-ask-tab:hover {
   color: var(--text-normal);
 }
 
-.mkortex-ask-tab.is-active {
+.mesa-ask-tab.is-active {
   background: hsla(55, 30%, 50%, 0.18);
   color: var(--text-normal);
 }
 
-.mkortex-ask-tab-label {
+.mesa-ask-tab-label {
   font-weight: 600;
   max-width: 14ch;
   overflow: hidden;
@@ -4216,23 +4216,23 @@ code .mkortex-file-link:hover {
   white-space: nowrap;
 }
 
-.mkortex-ask-tab-tick {
+.mesa-ask-tab-tick {
   color: var(--color-green);
   font-weight: 700;
 }
 
-.mkortex-ask-tab-submit-check {
+.mesa-ask-tab-submit-check {
   color: var(--color-green);
   white-space: pre;
 }
 
 /* ── Content area ────────────────────────────── */
 
-.mkortex-ask-content {
+.mesa-ask-content {
   padding: 8px 10px;
 }
 
-.mkortex-ask-question-text {
+.mesa-ask-question-text {
   font-weight: 700;
   color: var(--text-normal);
   margin-bottom: 8px;
@@ -4241,14 +4241,14 @@ code .mkortex-file-link:hover {
 
 /* ── Item list ───────────────────────────────── */
 
-.mkortex-ask-list {
+.mesa-ask-list {
   display: flex;
   flex-direction: column;
   gap: 2px;
   margin-bottom: 8px;
 }
 
-.mkortex-ask-item {
+.mesa-ask-item {
   display: flex;
   align-items: flex-start;
   padding: 3px 4px;
@@ -4258,11 +4258,11 @@ code .mkortex-file-link:hover {
   border-radius: 3px;
 }
 
-.mkortex-ask-item:hover {
+.mesa-ask-item:hover {
   background: var(--background-modifier-hover);
 }
 
-.mkortex-ask-cursor {
+.mesa-ask-cursor {
   display: inline-block;
   width: 2ch;
   flex-shrink: 0;
@@ -4270,28 +4270,28 @@ code .mkortex-file-link:hover {
   font-weight: 700;
 }
 
-.mkortex-ask-item-num {
+.mesa-ask-item-num {
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.mkortex-ask-item-content {
+.mesa-ask-item-content {
   display: flex;
   flex-direction: column;
   flex: 1;
   min-width: 0;
 }
 
-.mkortex-ask-label-row {
+.mesa-ask-label-row {
   display: flex;
   align-items: baseline;
 }
 
-.mkortex-ask-item-label {
+.mesa-ask-item-label {
   font-weight: 600;
 }
 
-.mkortex-ask-item-desc {
+.mesa-ask-item-desc {
   color: var(--text-muted);
   font-weight: 400;
   line-height: 1.4;
@@ -4299,39 +4299,39 @@ code .mkortex-file-link:hover {
 }
 
 /* Selected items: green text */
-.mkortex-ask-item.is-selected .mkortex-ask-item-label {
+.mesa-ask-item.is-selected .mesa-ask-item-label {
   color: var(--color-green);
 }
 
 /* Disabled items: muted text */
-.mkortex-ask-item.is-disabled .mkortex-ask-item-label {
+.mesa-ask-item.is-disabled .mesa-ask-item-label {
   color: var(--text-faint);
 }
 
 /* ── Multi-select brackets ───────────────────── */
 
-.mkortex-ask-check {
+.mesa-ask-check {
   color: var(--text-faint);
   flex-shrink: 0;
   white-space: pre;
 }
 
-.mkortex-ask-check.is-checked {
+.mesa-ask-check.is-checked {
   color: var(--color-green);
 }
 
 /* ── Single-select check mark ────────────────── */
 
-.mkortex-ask-check-mark {
+.mesa-ask-check-mark {
   color: var(--color-green);
   font-weight: 700;
 }
 
 /* ── Custom input ────────────────────────────── */
 
-.mkortex-ask-item input.mkortex-ask-custom-text,
-.mkortex-ask-item input.mkortex-ask-custom-text:hover,
-.mkortex-ask-item input.mkortex-ask-custom-text:focus {
+.mesa-ask-item input.mesa-ask-custom-text,
+.mesa-ask-item input.mesa-ask-custom-text:hover,
+.mesa-ask-item input.mesa-ask-custom-text:focus {
   border: none;
   border-radius: 0;
   background: transparent;
@@ -4349,71 +4349,71 @@ code .mkortex-file-link:hover {
   min-width: 0;
 }
 
-.mkortex-ask-custom-text::placeholder {
+.mesa-ask-custom-text::placeholder {
   color: var(--text-faint);
 }
 
 /* ── Submit review tab ───────────────────────── */
 
-.mkortex-ask-review-title {
+.mesa-ask-review-title {
   font-weight: 700;
   color: var(--text-normal);
   margin-bottom: 6px;
 }
 
-.mkortex-ask-review {
+.mesa-ask-review {
   font-family: var(--font-monospace);
   margin-bottom: 16px;
 }
 
-.mkortex-tool-content .mkortex-ask-review {
+.mesa-tool-content .mesa-ask-review {
   font-size: 12px;
 }
 
-.mkortex-ask-review:last-child {
+.mesa-ask-review:last-child {
   margin-bottom: 0;
 }
 
-.mkortex-ask-review-pair {
+.mesa-ask-review-pair {
   display: flex;
   gap: 6px;
   margin-bottom: 4px;
 }
 
-.mkortex-ask-review-pair:last-child {
+.mesa-ask-review-pair:last-child {
   margin-bottom: 0;
 }
 
-.mkortex-ask-review-num {
+.mesa-ask-review-num {
   color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.mkortex-ask-review-body {
+.mesa-ask-review-body {
   min-width: 0;
 }
 
-.mkortex-ask-review-q-text {
+.mesa-ask-review-q-text {
   color: var(--text-muted);
 }
 
-.mkortex-ask-review-a-text {
+.mesa-ask-review-a-text {
   color: var(--text-normal);
 }
 
-.mkortex-ask-review-empty {
+.mesa-ask-review-empty {
   color: var(--text-faint);
   font-style: italic;
 }
 
-.mkortex-ask-review-prompt {
+.mesa-ask-review-prompt {
   color: var(--text-muted);
   margin-bottom: 6px;
 }
 
 /* ── Hints ───────────────────────────────────── */
 
-.mkortex-ask-hints {
+.mesa-ask-hints {
   color: var(--text-faint);
   padding-top: 6px;
   border-top: 1px solid var(--background-modifier-border);
@@ -4421,11 +4421,11 @@ code .mkortex-file-link:hover {
 
 /* ── Approval header (inline permission request) ── */
 
-.mkortex-ask-approval-info {
+.mesa-ask-approval-info {
   padding: 8px 10px;
 }
 
-.mkortex-ask-approval-tool {
+.mesa-ask-approval-tool {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -4435,22 +4435,22 @@ code .mkortex-file-link:hover {
   margin-bottom: 8px;
 }
 
-.mkortex-ask-approval-icon {
-  color: var(--mkortex-brand);
+.mesa-ask-approval-icon {
+  color: var(--mesa-brand);
 }
 
-.mkortex-ask-approval-tool-name {
+.mesa-ask-approval-tool-name {
   font-weight: 600;
   color: var(--text-normal);
 }
 
-.mkortex-ask-approval-reason {
+.mesa-ask-approval-reason {
   color: var(--text-muted);
   font-size: 12px;
   margin-bottom: 6px;
 }
 
-.mkortex-ask-approval-blocked-path {
+.mesa-ask-approval-blocked-path {
   font-family: var(--font-monospace);
   font-size: 11px;
   color: var(--text-muted);
@@ -4461,13 +4461,13 @@ code .mkortex-file-link:hover {
   word-break: break-all;
 }
 
-.mkortex-ask-approval-agent {
+.mesa-ask-approval-agent {
   color: var(--text-muted);
   font-size: 12px;
   margin-bottom: 6px;
 }
 
-.mkortex-ask-approval-desc {
+.mesa-ask-approval-desc {
   padding: 8px 10px;
   background: var(--background-primary-alt);
   border-radius: 6px;
@@ -4483,13 +4483,13 @@ code .mkortex-file-link:hover {
    ============================================ */
 /* Plan Mode - inline cards for EnterPlanMode / ExitPlanMode */
 
-.mkortex-plan-approval-inline {
+.mesa-plan-approval-inline {
   font-family: var(--font-monospace);
   font-size: 12px;
   outline: none;
 }
 
-.mkortex-plan-inline-title {
+.mesa-plan-inline-title {
   font-weight: 700;
   color: var(--text-muted);
   padding: 6px 10px 0;
@@ -4497,7 +4497,7 @@ code .mkortex-file-link:hover {
 
 /* ── Plan content preview ────────────────────────── */
 
-.mkortex-plan-content-preview {
+.mesa-plan-content-preview {
   max-height: 300px;
   overflow-y: auto;
   margin: 6px 10px 8px;
@@ -4510,46 +4510,46 @@ code .mkortex-file-link:hover {
   color: var(--text-normal);
 }
 
-.mkortex-plan-content-preview::-webkit-scrollbar {
+.mesa-plan-content-preview::-webkit-scrollbar {
   width: 4px;
 }
 
-.mkortex-plan-content-preview::-webkit-scrollbar-thumb {
+.mesa-plan-content-preview::-webkit-scrollbar-thumb {
   background: var(--background-modifier-border);
   border-radius: 2px;
 }
 
-.mkortex-plan-content-preview p {
+.mesa-plan-content-preview p {
   margin: 0 0 6px;
 }
 
-.mkortex-plan-content-preview p:last-child {
+.mesa-plan-content-preview p:last-child {
   margin-bottom: 0;
 }
 
-.mkortex-plan-content-preview h1,
-.mkortex-plan-content-preview h2,
-.mkortex-plan-content-preview h3,
-.mkortex-plan-content-preview h4 {
+.mesa-plan-content-preview h1,
+.mesa-plan-content-preview h2,
+.mesa-plan-content-preview h3,
+.mesa-plan-content-preview h4 {
   margin: 8px 0 4px;
   font-size: 13px;
 }
 
-.mkortex-plan-content-preview ul,
-.mkortex-plan-content-preview ol {
+.mesa-plan-content-preview ul,
+.mesa-plan-content-preview ol {
   margin: 2px 0 6px;
   padding-left: 18px;
 }
 
-.mkortex-plan-content-preview li {
+.mesa-plan-content-preview li {
   margin: 0;
 }
 
-.mkortex-plan-content-preview code {
+.mesa-plan-content-preview code {
   font-size: 11px;
 }
 
-.mkortex-plan-content-text {
+.mesa-plan-content-text {
   white-space: pre-wrap;
   word-break: break-word;
   font-family: var(--font-monospace);
@@ -4557,24 +4557,24 @@ code .mkortex-file-link:hover {
 
 /* ── Permissions list ──────────────────────────── */
 
-.mkortex-plan-permissions {
+.mesa-plan-permissions {
   padding: 4px 10px 8px;
 }
 
-.mkortex-plan-permissions-label {
+.mesa-plan-permissions-label {
   color: var(--text-muted);
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-.mkortex-plan-permissions-list {
+.mesa-plan-permissions-list {
   margin: 0;
   padding-left: 18px;
   color: var(--text-normal);
   line-height: 1.5;
 }
 
-.mkortex-plan-permissions-list li {
+.mesa-plan-permissions-list li {
   margin: 0;
 }
 
@@ -4587,22 +4587,22 @@ code .mkortex-file-link:hover {
 /* Instruction Mode */
 
 /* Instruction Confirm Modal */
-.mkortex-instruction-modal {
+.mesa-instruction-modal {
   max-width: 500px;
 }
 
-.mkortex-instruction-section {
+.mesa-instruction-section {
   margin-bottom: 16px;
 }
 
-.mkortex-instruction-label {
+.mesa-instruction-label {
   font-size: 12px;
   font-weight: 500;
   color: var(--text-muted);
   margin-bottom: 6px;
 }
 
-.mkortex-instruction-original {
+.mesa-instruction-original {
   padding: 10px 12px;
   background: var(--background-secondary);
   border-radius: 6px;
@@ -4612,7 +4612,7 @@ code .mkortex-file-link:hover {
   white-space: pre-wrap;
 }
 
-.mkortex-instruction-refined {
+.mesa-instruction-refined {
   padding: 12px;
   background: var(--background-primary-alt);
   border: 1px solid var(--background-modifier-border);
@@ -4623,7 +4623,7 @@ code .mkortex-file-link:hover {
   white-space: pre-wrap;
 }
 
-.mkortex-instruction-clarification {
+.mesa-instruction-clarification {
   padding: 12px;
   background: var(--background-primary-alt);
   border: 1px solid var(--background-modifier-border);
@@ -4634,11 +4634,11 @@ code .mkortex-file-link:hover {
   white-space: pre-wrap;
 }
 
-.mkortex-instruction-edit-container {
+.mesa-instruction-edit-container {
   margin-top: 6px;
 }
 
-.mkortex-instruction-edit-textarea {
+.mesa-instruction-edit-textarea {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
@@ -4651,12 +4651,12 @@ code .mkortex-file-link:hover {
   min-height: 80px;
 }
 
-.mkortex-instruction-edit-textarea:focus {
+.mesa-instruction-edit-textarea:focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-.mkortex-instruction-response-textarea {
+.mesa-instruction-response-textarea {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
@@ -4669,19 +4669,19 @@ code .mkortex-file-link:hover {
   min-height: 60px;
 }
 
-.mkortex-instruction-response-textarea:focus {
+.mesa-instruction-response-textarea:focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-.mkortex-instruction-buttons {
+.mesa-instruction-buttons {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
   margin-top: 16px;
 }
 
-.mkortex-instruction-btn {
+.mesa-instruction-btn {
   padding: 8px 16px;
   font-size: 13px;
   border: none;
@@ -4690,35 +4690,35 @@ code .mkortex-file-link:hover {
   font-weight: 500;
 }
 
-.mkortex-instruction-reject-btn {
+.mesa-instruction-reject-btn {
   background: var(--background-modifier-border);
   color: var(--text-normal);
 }
 
-.mkortex-instruction-reject-btn:hover {
+.mesa-instruction-reject-btn:hover {
   background: var(--background-modifier-border-hover);
 }
 
-.mkortex-instruction-edit-btn {
+.mesa-instruction-edit-btn {
   background: var(--background-modifier-border);
   color: var(--text-normal);
 }
 
-.mkortex-instruction-edit-btn:hover {
+.mesa-instruction-edit-btn:hover {
   background: var(--background-modifier-border-hover);
 }
 
-.mkortex-instruction-accept-btn {
+.mesa-instruction-accept-btn {
   background: var(--interactive-accent);
   color: var(--text-on-accent);
 }
 
-.mkortex-instruction-accept-btn:hover {
+.mesa-instruction-accept-btn:hover {
   opacity: 0.9;
 }
 
 /* Instruction loading state */
-.mkortex-instruction-loading {
+.mesa-instruction-loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4727,22 +4727,22 @@ code .mkortex-file-link:hover {
   color: var(--text-muted);
 }
 
-.mkortex-instruction-spinner {
+.mesa-instruction-spinner {
   width: 18px;
   height: 18px;
   border: 2px solid var(--background-modifier-border);
   border-top-color: var(--interactive-accent);
   border-radius: 50%;
-  animation: mkortex-spin 0.8s linear infinite;
+  animation: mesa-spin 0.8s linear infinite;
 }
 
 /* Instruction modal content sections */
-.mkortex-instruction-content-section {
+.mesa-instruction-content-section {
   margin: 8px 0;
 }
 
-.mkortex-instruction-clarification-section,
-.mkortex-instruction-confirmation-section {
+.mesa-instruction-clarification-section,
+.mesa-instruction-confirmation-section {
   margin-top: 8px;
 }
 
@@ -4751,41 +4751,41 @@ code .mkortex-file-link:hover {
    modals/mcp-modal.css
    ============================================ */
 /* MCP Server Modal */
-.mkortex-mcp-modal .modal-content {
+.mesa-mcp-modal .modal-content {
   width: 480px;
   max-width: 90vw;
 }
 
-.mkortex-mcp-type-fields {
+.mesa-mcp-type-fields {
   margin: 12px 0;
   padding: 12px;
   background: var(--background-secondary);
   border-radius: 6px;
 }
 
-.mkortex-mcp-type-fields .setting-item {
+.mesa-mcp-type-fields .setting-item {
   padding: 8px 0;
   border-top: none;
 }
 
-.mkortex-mcp-type-fields .setting-item:first-child {
+.mesa-mcp-type-fields .setting-item:first-child {
   padding-top: 0;
 }
 
-.mkortex-mcp-cmd-setting,
-.mkortex-mcp-env-setting {
+.mesa-mcp-cmd-setting,
+.mesa-mcp-env-setting {
   flex-direction: column;
   align-items: flex-start;
 }
 
-.mkortex-mcp-cmd-setting .setting-item-control,
-.mkortex-mcp-env-setting .setting-item-control {
+.mesa-mcp-cmd-setting .setting-item-control,
+.mesa-mcp-env-setting .setting-item-control {
   width: 100%;
   margin-top: 8px;
 }
 
-.mkortex-mcp-cmd-textarea,
-.mkortex-mcp-env-textarea {
+.mesa-mcp-cmd-textarea,
+.mesa-mcp-env-textarea {
   width: 100%;
   min-height: 50px;
   resize: vertical;
@@ -4797,13 +4797,13 @@ code .mkortex-file-link:hover {
   background: var(--background-primary);
 }
 
-.mkortex-mcp-cmd-textarea:focus,
-.mkortex-mcp-env-textarea:focus {
+.mesa-mcp-cmd-textarea:focus,
+.mesa-mcp-env-textarea:focus {
   border-color: var(--interactive-accent);
   outline: none;
 }
 
-.mkortex-mcp-buttons {
+.mesa-mcp-buttons {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
@@ -4811,21 +4811,21 @@ code .mkortex-file-link:hover {
 }
 
 /* MCP Test Modal */
-.mkortex-mcp-test-modal {
+.mesa-mcp-test-modal {
   width: 500px;
   max-width: 90vw;
 }
 
-.mkortex-mcp-test-modal .modal-content {
+.mesa-mcp-test-modal .modal-content {
   padding: 0 20px 20px 20px;
 }
 
-.mkortex-mcp-test-modal .modal-title {
+.mesa-mcp-test-modal .modal-title {
   padding: 20px 20px 12px 20px;
   margin: 0 -20px;
 }
 
-.mkortex-mcp-test-loading {
+.mesa-mcp-test-loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4834,18 +4834,18 @@ code .mkortex-file-link:hover {
   color: var(--text-muted);
 }
 
-.mkortex-mcp-test-spinner {
+.mesa-mcp-test-spinner {
   width: 20px;
   height: 20px;
-  animation: mkortex-spin 1s linear infinite;
+  animation: mesa-spin 1s linear infinite;
 }
 
-.mkortex-mcp-test-spinner svg {
+.mesa-mcp-test-spinner svg {
   width: 100%;
   height: 100%;
 }
 
-.mkortex-mcp-test-status {
+.mesa-mcp-test-status {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -4855,29 +4855,29 @@ code .mkortex-file-link:hover {
   margin-bottom: 12px;
 }
 
-.mkortex-mcp-test-icon {
+.mesa-mcp-test-icon {
   display: flex;
   align-items: center;
 }
 
-.mkortex-mcp-test-icon svg {
+.mesa-mcp-test-icon svg {
   width: 20px;
   height: 20px;
 }
 
-.mkortex-mcp-test-icon.success {
+.mesa-mcp-test-icon.success {
   color: var(--color-green);
 }
 
-.mkortex-mcp-test-icon.error {
+.mesa-mcp-test-icon.error {
   color: var(--text-error);
 }
 
-.mkortex-mcp-test-text {
+.mesa-mcp-test-text {
   font-weight: 500;
 }
 
-.mkortex-mcp-test-error {
+.mesa-mcp-test-error {
   padding: 10px 12px;
   background: rgba(var(--color-red-rgb), 0.1);
   border: 1px solid var(--text-error);
@@ -4887,18 +4887,18 @@ code .mkortex-file-link:hover {
   margin-bottom: 12px;
 }
 
-.mkortex-mcp-test-tools {
+.mesa-mcp-test-tools {
   margin-bottom: 16px;
 }
 
-.mkortex-mcp-test-tools-header {
+.mesa-mcp-test-tools-header {
   font-weight: 600;
   font-size: 13px;
   margin-bottom: 8px;
   color: var(--text-muted);
 }
 
-.mkortex-mcp-test-tools-list {
+.mesa-mcp-test-tools-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -4906,67 +4906,67 @@ code .mkortex-file-link:hover {
   overflow-y: auto;
 }
 
-.mkortex-mcp-test-tool {
+.mesa-mcp-test-tool {
   padding: 10px 12px;
   background: var(--background-secondary);
   border-radius: 6px;
 }
 
-.mkortex-mcp-test-tool-header {
+.mesa-mcp-test-tool-header {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.mkortex-mcp-test-tool-icon {
+.mesa-mcp-test-tool-icon {
   display: flex;
   align-items: center;
   color: var(--text-muted);
 }
 
-.mkortex-mcp-test-tool-icon svg {
+.mesa-mcp-test-tool-icon svg {
   width: 14px;
   height: 14px;
 }
 
-.mkortex-mcp-test-tool-name {
+.mesa-mcp-test-tool-name {
   font-weight: 500;
   font-size: 13px;
 }
 
-.mkortex-mcp-test-tool-toggle {
+.mesa-mcp-test-tool-toggle {
   margin-left: auto;
 }
 
-.mkortex-mcp-test-tool-toggle .checkbox-container {
+.mesa-mcp-test-tool-toggle .checkbox-container {
   display: flex;
   align-items: center;
 }
 
-.mkortex-mcp-test-tool-disabled {
+.mesa-mcp-test-tool-disabled {
   opacity: 0.75;
 }
 
-.mkortex-mcp-test-tool-disabled .mkortex-mcp-test-tool-name {
+.mesa-mcp-test-tool-disabled .mesa-mcp-test-tool-name {
   text-decoration: line-through;
   color: var(--text-muted);
 }
 
-.mkortex-mcp-toggle-all-btn {
+.mesa-mcp-toggle-all-btn {
   margin-right: 8px;
 }
 
-.mkortex-mcp-toggle-all-btn.is-destructive {
+.mesa-mcp-toggle-all-btn.is-destructive {
   background: rgba(var(--color-red-rgb), 0.1);
   border-color: rgba(var(--color-red-rgb), 0.3);
   color: var(--text-error);
 }
 
-.mkortex-mcp-toggle-all-btn.is-destructive:hover {
+.mesa-mcp-toggle-all-btn.is-destructive:hover {
   background: rgba(var(--color-red-rgb), 0.2);
 }
 
-.mkortex-mcp-test-tool-desc {
+.mesa-mcp-test-tool-desc {
   font-size: 12px;
   color: var(--text-muted);
   margin-top: 4px;
@@ -4976,7 +4976,7 @@ code .mkortex-file-link:hover {
   overflow: hidden;
 }
 
-.mkortex-mcp-test-no-tools {
+.mesa-mcp-test-no-tools {
   padding: 16px;
   text-align: center;
   color: var(--text-muted);
@@ -4986,7 +4986,7 @@ code .mkortex-file-link:hover {
   margin-bottom: 16px;
 }
 
-.mkortex-mcp-test-buttons {
+.mesa-mcp-test-buttons {
   display: flex;
   justify-content: center;
   margin-top: 16px;
@@ -4996,141 +4996,141 @@ code .mkortex-file-link:hover {
 /* ============================================
    settings/base.css
    ============================================ */
-.mkortex-settings-section-divider {
+.mesa-settings-section-divider {
   margin: 12px 0;
   border-top: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-settings-provider-panel {
+.mesa-settings-provider-panel {
   margin-bottom: 4px;
 }
 
-.mkortex-settings-provider-block > .setting-item-heading:first-child {
+.mesa-settings-provider-block > .setting-item-heading:first-child {
   padding-top: 0;
   margin-top: 0;
   border-top: none;
 }
 
-.mkortex-settings-provider-panel .setting-item-heading {
+.mesa-settings-provider-panel .setting-item-heading {
   padding-top: 4px;
   margin-top: 0;
   border-top: none;
 }
 
-.mkortex-settings-provider-hint {
+.mesa-settings-provider-hint {
   margin: 0 12px 12px;
   color: var(--text-muted);
   font-size: var(--font-ui-small);
   line-height: 1.5;
 }
 
-.mkortex-settings .setting-item {
+.mesa-settings .setting-item {
   border-top: none;
 }
 
-.mkortex-settings .setting-item-heading {
+.mesa-settings .setting-item-heading {
   padding-top: 18px;
   margin-top: 12px;
   border-top: 1px solid var(--background-modifier-border);
 }
 
-.mkortex-settings .setting-item-heading:first-child {
+.mesa-settings .setting-item-heading:first-child {
   padding-top: 0;
   margin-top: 0;
   border-top: none;
 }
 
-.mkortex-settings .setting-item-heading .setting-item-name {
+.mesa-settings .setting-item-heading .setting-item-name {
   font-size: var(--font-ui-medium);
   font-weight: var(--font-semibold);
   color: var(--text-normal);
 }
 
-.mkortex-setting-validation {
+.mesa-setting-validation {
   font-size: var(--font-ui-smaller);
   margin-top: -0.5em;
   margin-bottom: 0.5em;
 }
 
-.mkortex-setting-validation-error {
+.mesa-setting-validation-error {
   color: var(--text-error);
 }
 
-.mkortex-settings-cli-path {
+.mesa-settings-cli-path {
   align-items: flex-start;
 }
 
-.mkortex-settings-cli-path .setting-item-description {
+.mesa-settings-cli-path .setting-item-description {
   display: flex;
   flex-direction: column;
   gap: 0.4em;
   width: 100%;
 }
 
-.mkortex-cli-path-main-row {
+.mesa-cli-path-main-row {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   width: 100%;
 }
 
-.mkortex-cli-path-status {
+.mesa-cli-path-status {
   flex: 1 1 auto;
   min-width: 0;
   font-size: var(--font-ui-smaller);
 }
 
-.mkortex-cli-path-input-host {
+.mesa-cli-path-input-host {
   flex: 0 1 20rem;
   min-width: 12rem;
   max-width: 100%;
 }
 
-.mkortex-settings-cli-path-input {
+.mesa-settings-cli-path-input {
   width: 100%;
 }
 
-.mkortex-settings-cli-path-input.mkortex-input-error {
+.mesa-settings-cli-path-input.mesa-input-error {
   border-color: var(--text-error);
 }
 
-.mkortex-cli-path-status-ok {
+.mesa-cli-path-status-ok {
   color: var(--text-muted);
 }
 
-.mkortex-cli-path-status-miss {
+.mesa-cli-path-status-miss {
   color: var(--text-warning);
 }
 
-.mkortex-cli-path-validation {
+.mesa-cli-path-validation {
   font-size: var(--font-ui-smaller);
 }
 
-.mkortex-cli-path-manual {
+.mesa-cli-path-manual {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   line-height: 1.45;
 }
 
-.mkortex-cli-path-manual-title {
+.mesa-cli-path-manual-title {
   color: var(--text-normal);
   margin-bottom: 0.15em;
 }
 
-.mkortex-cli-path-manual-steps {
+.mesa-cli-path-manual-steps {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
 }
 
-.mkortex-cli-path-manual-command-row {
+.mesa-cli-path-manual-command-row {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.35em;
 }
 
-.mkortex-cli-path-manual-command {
+.mesa-cli-path-manual-command {
   margin: 0;
   padding: 0.05em 0.35em;
   border-radius: var(--radius-s);
@@ -5144,7 +5144,7 @@ code .mkortex-file-link:hover {
   cursor: pointer;
 }
 
-.mkortex-cli-path-manual-command:hover {
+.mesa-cli-path-manual-command:hover {
   color: var(--text-normal);
 }
 
@@ -5154,14 +5154,14 @@ code .mkortex-file-link:hover {
    ============================================ */
 /* Provider model picker */
 
-:is(.mkortex-provider-model-picker, .mkortex-opencode-model-picker) {
+:is(.mesa-provider-model-picker, .mesa-opencode-model-picker) {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-top: 8px;
 }
 
-:is(.mkortex-provider-model-picker-summary, .mkortex-opencode-model-picker-summary) {
+:is(.mesa-provider-model-picker-summary, .mesa-opencode-model-picker-summary) {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 12px;
@@ -5169,12 +5169,12 @@ code .mkortex-file-link:hover {
   color: var(--text-muted);
 }
 
-:is(.mkortex-provider-model-picker-summary-value, .mkortex-opencode-model-picker-summary-value) {
+:is(.mesa-provider-model-picker-summary-value, .mesa-opencode-model-picker-summary-value) {
   color: var(--text-normal);
   font-weight: var(--font-medium);
 }
 
-:is(.mkortex-provider-model-picker-selected, .mkortex-opencode-model-picker-selected) {
+:is(.mesa-provider-model-picker-selected, .mesa-opencode-model-picker-selected) {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -5183,21 +5183,21 @@ code .mkortex-file-link:hover {
   border-radius: 6px;
 }
 
-:is(.mkortex-provider-model-picker-selected-header, .mkortex-opencode-model-picker-selected-header) {
+:is(.mesa-provider-model-picker-selected-header, .mesa-opencode-model-picker-selected-header) {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
 
-:is(.mkortex-provider-model-picker-selected-label, .mkortex-opencode-model-picker-selected-label) {
+:is(.mesa-provider-model-picker-selected-label, .mesa-opencode-model-picker-selected-label) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-:is(.mkortex-provider-model-picker-selected-clear, .mkortex-opencode-model-picker-selected-clear) {
+:is(.mesa-provider-model-picker-selected-clear, .mesa-opencode-model-picker-selected-clear) {
   padding: 2px 8px;
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
@@ -5207,12 +5207,12 @@ code .mkortex-file-link:hover {
   cursor: pointer;
 }
 
-:is(.mkortex-provider-model-picker-selected-clear, .mkortex-opencode-model-picker-selected-clear):hover {
+:is(.mesa-provider-model-picker-selected-clear, .mesa-opencode-model-picker-selected-clear):hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-:is(.mkortex-provider-model-picker-action, .mkortex-opencode-model-picker-action) {
+:is(.mesa-provider-model-picker-action, .mesa-opencode-model-picker-action) {
   padding: 5px 10px;
   font-size: var(--font-ui-small);
   color: var(--text-muted);
@@ -5222,23 +5222,23 @@ code .mkortex-file-link:hover {
   cursor: pointer;
 }
 
-:is(.mkortex-provider-model-picker-action, .mkortex-opencode-model-picker-action):hover:not(:disabled) {
+:is(.mesa-provider-model-picker-action, .mesa-opencode-model-picker-action):hover:not(:disabled) {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-:is(.mkortex-provider-model-picker-action, .mkortex-opencode-model-picker-action):disabled {
+:is(.mesa-provider-model-picker-action, .mesa-opencode-model-picker-action):disabled {
   cursor: default;
   opacity: 0.6;
 }
 
-:is(.mkortex-provider-model-picker-selected-rows, .mkortex-opencode-model-picker-selected-rows) {
+:is(.mesa-provider-model-picker-selected-rows, .mesa-opencode-model-picker-selected-rows) {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-:is(.mkortex-provider-model-picker-selected-row, .mkortex-opencode-model-picker-selected-row) {
+:is(.mesa-provider-model-picker-selected-row, .mesa-opencode-model-picker-selected-row) {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -5248,11 +5248,11 @@ code .mkortex-file-link:hover {
   border-radius: 6px;
 }
 
-:is(.mkortex-provider-model-picker-selected-row--unavailable, .mkortex-opencode-model-picker-selected-row--unavailable) {
+:is(.mesa-provider-model-picker-selected-row--unavailable, .mesa-opencode-model-picker-selected-row--unavailable) {
   border-style: dashed;
 }
 
-:is(.mkortex-provider-model-picker-selected-info, .mkortex-opencode-model-picker-selected-info) {
+:is(.mesa-provider-model-picker-selected-info, .mesa-opencode-model-picker-selected-info) {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -5260,7 +5260,7 @@ code .mkortex-file-link:hover {
   gap: 2px;
 }
 
-:is(.mkortex-provider-model-picker-selected-title, .mkortex-opencode-model-picker-selected-title) {
+:is(.mesa-provider-model-picker-selected-title, .mesa-opencode-model-picker-selected-title) {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -5268,7 +5268,7 @@ code .mkortex-file-link:hover {
   min-width: 0;
 }
 
-:is(.mkortex-provider-model-picker-selected-badge, .mkortex-opencode-model-picker-selected-badge) {
+:is(.mesa-provider-model-picker-selected-badge, .mesa-opencode-model-picker-selected-badge) {
   font-size: var(--font-ui-smaller);
   padding: 1px 6px;
   border-radius: 999px;
@@ -5278,7 +5278,7 @@ code .mkortex-file-link:hover {
   letter-spacing: 0.04em;
 }
 
-:is(.mkortex-provider-model-picker-selected-name, .mkortex-opencode-model-picker-selected-name) {
+:is(.mesa-provider-model-picker-selected-name, .mesa-opencode-model-picker-selected-name) {
   color: var(--text-normal);
   font-weight: var(--font-medium);
   overflow: hidden;
@@ -5286,7 +5286,7 @@ code .mkortex-file-link:hover {
   white-space: nowrap;
 }
 
-:is(.mkortex-provider-model-picker-selected-id, .mkortex-opencode-model-picker-selected-id) {
+:is(.mesa-provider-model-picker-selected-id, .mesa-opencode-model-picker-selected-id) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   font-family: var(--font-monospace);
@@ -5295,20 +5295,20 @@ code .mkortex-file-link:hover {
   white-space: nowrap;
 }
 
-:is(.mkortex-provider-model-picker-selected-unavailable, .mkortex-opencode-model-picker-selected-unavailable) {
+:is(.mesa-provider-model-picker-selected-unavailable, .mesa-opencode-model-picker-selected-unavailable) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   font-style: italic;
 }
 
-:is(.mkortex-provider-model-picker-selected-controls, .mkortex-opencode-model-picker-selected-controls) {
+:is(.mesa-provider-model-picker-selected-controls, .mesa-opencode-model-picker-selected-controls) {
   display: flex;
   align-items: center;
   gap: 6px;
   flex-shrink: 0;
 }
 
-:is(.mkortex-provider-model-picker-selected-alias, .mkortex-opencode-model-picker-selected-alias) {
+:is(.mesa-provider-model-picker-selected-alias, .mesa-opencode-model-picker-selected-alias) {
   width: 180px;
   padding: 4px 8px;
   border: 1px solid var(--background-modifier-border);
@@ -5318,12 +5318,12 @@ code .mkortex-file-link:hover {
   font-size: var(--font-ui-small);
 }
 
-:is(.mkortex-provider-model-picker-selected-alias, .mkortex-opencode-model-picker-selected-alias):focus {
+:is(.mesa-provider-model-picker-selected-alias, .mesa-opencode-model-picker-selected-alias):focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-:is(.mkortex-provider-model-picker-selected-remove, .mkortex-opencode-model-picker-selected-remove) {
+:is(.mesa-provider-model-picker-selected-remove, .mesa-opencode-model-picker-selected-remove) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -5339,12 +5339,12 @@ code .mkortex-file-link:hover {
   font-size: 16px;
 }
 
-:is(.mkortex-provider-model-picker-selected-remove, .mkortex-opencode-model-picker-selected-remove):hover {
+:is(.mesa-provider-model-picker-selected-remove, .mesa-opencode-model-picker-selected-remove):hover {
   background: var(--background-modifier-hover);
   color: var(--text-normal);
 }
 
-:is(.mkortex-provider-model-picker-catalog, .mkortex-opencode-model-picker-catalog) {
+:is(.mesa-provider-model-picker-catalog, .mesa-opencode-model-picker-catalog) {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -5353,7 +5353,7 @@ code .mkortex-file-link:hover {
   border-radius: 6px;
 }
 
-:is(.mkortex-provider-model-picker-catalog-summary, .mkortex-opencode-model-picker-catalog-summary) {
+:is(.mesa-provider-model-picker-catalog-summary, .mesa-opencode-model-picker-catalog-summary) {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -5362,13 +5362,13 @@ code .mkortex-file-link:hover {
   list-style: none;
 }
 
-:is(.mkortex-provider-model-picker-catalog-summary, .mkortex-opencode-model-picker-catalog-summary)::-webkit-details-marker,
-:is(.mkortex-provider-model-picker-catalog-summary, .mkortex-opencode-model-picker-catalog-summary)::marker {
+:is(.mesa-provider-model-picker-catalog-summary, .mesa-opencode-model-picker-catalog-summary)::-webkit-details-marker,
+:is(.mesa-provider-model-picker-catalog-summary, .mesa-opencode-model-picker-catalog-summary)::marker {
   display: none;
   content: '';
 }
 
-:is(.mkortex-provider-model-picker-catalog-caret, .mkortex-opencode-model-picker-catalog-caret) {
+:is(.mesa-provider-model-picker-catalog-caret, .mesa-opencode-model-picker-catalog-caret) {
   color: var(--text-muted);
   transition: transform 0.12s ease;
   display: inline-flex;
@@ -5379,35 +5379,35 @@ code .mkortex-file-link:hover {
   flex-shrink: 0;
 }
 
-:is(.mkortex-provider-model-picker-catalog-caret, .mkortex-opencode-model-picker-catalog-caret) svg {
+:is(.mesa-provider-model-picker-catalog-caret, .mesa-opencode-model-picker-catalog-caret) svg {
   width: 18px;
   height: 18px;
 }
 
-:is(.mkortex-provider-model-picker-catalog, .mkortex-opencode-model-picker-catalog)[open] :is(.mkortex-provider-model-picker-catalog-caret, .mkortex-opencode-model-picker-catalog-caret) {
+:is(.mesa-provider-model-picker-catalog, .mesa-opencode-model-picker-catalog)[open] :is(.mesa-provider-model-picker-catalog-caret, .mesa-opencode-model-picker-catalog-caret) {
   transform: rotate(90deg);
 }
 
-:is(.mkortex-provider-model-picker-catalog-title, .mkortex-opencode-model-picker-catalog-title) {
+:is(.mesa-provider-model-picker-catalog-title, .mesa-opencode-model-picker-catalog-title) {
   color: var(--text-normal);
   font-weight: var(--font-medium);
   font-size: var(--font-ui-small);
 }
 
-:is(.mkortex-provider-model-picker-catalog-count, .mkortex-opencode-model-picker-catalog-count) {
+:is(.mesa-provider-model-picker-catalog-count, .mesa-opencode-model-picker-catalog-count) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   margin-left: auto;
 }
 
-:is(.mkortex-provider-model-picker-controls, .mkortex-opencode-model-picker-controls) {
+:is(.mesa-provider-model-picker-controls, .mesa-opencode-model-picker-controls) {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   align-items: center;
 }
 
-:is(.mkortex-provider-model-picker-search, .mkortex-opencode-model-picker-search) {
+:is(.mesa-provider-model-picker-search, .mesa-opencode-model-picker-search) {
   flex: 1 1 220px;
   min-width: 180px;
   padding: 6px 10px;
@@ -5418,12 +5418,12 @@ code .mkortex-file-link:hover {
   font-size: var(--font-ui-small);
 }
 
-:is(.mkortex-provider-model-picker-search, .mkortex-opencode-model-picker-search):focus {
+:is(.mesa-provider-model-picker-search, .mesa-opencode-model-picker-search):focus {
   outline: none;
   border-color: var(--interactive-accent);
 }
 
-:is(.mkortex-provider-model-picker-provider, .mkortex-opencode-model-picker-provider) {
+:is(.mesa-provider-model-picker-provider, .mesa-opencode-model-picker-provider) {
   padding: 6px 10px;
   border: 1px solid var(--background-modifier-border);
   border-radius: 6px;
@@ -5432,7 +5432,7 @@ code .mkortex-file-link:hover {
   font-size: var(--font-ui-small);
 }
 
-:is(.mkortex-provider-model-picker-list, .mkortex-opencode-model-picker-list) {
+:is(.mesa-provider-model-picker-list, .mesa-opencode-model-picker-list) {
   display: flex;
   flex-direction: column;
   margin-top: 8px;
@@ -5443,7 +5443,7 @@ code .mkortex-file-link:hover {
   overflow-y: auto;
 }
 
-:is(.mkortex-provider-model-picker-row, .mkortex-opencode-model-picker-row) {
+:is(.mesa-provider-model-picker-row, .mesa-opencode-model-picker-row) {
   display: flex;
   align-items: flex-start;
   gap: 10px;
@@ -5452,23 +5452,23 @@ code .mkortex-file-link:hover {
   cursor: pointer;
 }
 
-:is(.mkortex-provider-model-picker-row, .mkortex-opencode-model-picker-row):last-child {
+:is(.mesa-provider-model-picker-row, .mesa-opencode-model-picker-row):last-child {
   border-bottom: none;
 }
 
-:is(.mkortex-provider-model-picker-row, .mkortex-opencode-model-picker-row):hover {
+:is(.mesa-provider-model-picker-row, .mesa-opencode-model-picker-row):hover {
   background: var(--background-modifier-hover);
 }
 
-:is(.mkortex-provider-model-picker-row--selected, .mkortex-opencode-model-picker-row--selected) {
+:is(.mesa-provider-model-picker-row--selected, .mesa-opencode-model-picker-row--selected) {
   background: var(--background-modifier-hover);
 }
 
-:is(.mkortex-provider-model-picker-row, .mkortex-opencode-model-picker-row) input[type="checkbox"] {
+:is(.mesa-provider-model-picker-row, .mesa-opencode-model-picker-row) input[type="checkbox"] {
   margin-top: 3px;
 }
 
-:is(.mkortex-provider-model-picker-row-text, .mkortex-opencode-model-picker-row-text) {
+:is(.mesa-provider-model-picker-row-text, .mesa-opencode-model-picker-row-text) {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -5476,7 +5476,7 @@ code .mkortex-file-link:hover {
   gap: 2px;
 }
 
-:is(.mkortex-provider-model-picker-row-header, .mkortex-opencode-model-picker-row-header) {
+:is(.mesa-provider-model-picker-row-header, .mesa-opencode-model-picker-row-header) {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -5484,7 +5484,7 @@ code .mkortex-file-link:hover {
   min-width: 0;
 }
 
-:is(.mkortex-provider-model-picker-row-name, .mkortex-opencode-model-picker-row-name) {
+:is(.mesa-provider-model-picker-row-name, .mesa-opencode-model-picker-row-name) {
   color: var(--text-normal);
   font-weight: var(--font-medium);
   overflow: hidden;
@@ -5492,7 +5492,7 @@ code .mkortex-file-link:hover {
   white-space: nowrap;
 }
 
-:is(.mkortex-provider-model-picker-row-badge, .mkortex-opencode-model-picker-row-badge) {
+:is(.mesa-provider-model-picker-row-badge, .mesa-opencode-model-picker-row-badge) {
   font-size: var(--font-ui-smaller);
   padding: 1px 6px;
   border-radius: 999px;
@@ -5502,12 +5502,12 @@ code .mkortex-file-link:hover {
   letter-spacing: 0.04em;
 }
 
-:is(.mkortex-provider-model-picker-row-badge--unavailable, .mkortex-opencode-model-picker-row-badge--unavailable) {
+:is(.mesa-provider-model-picker-row-badge--unavailable, .mesa-opencode-model-picker-row-badge--unavailable) {
   background: var(--background-modifier-error);
   color: var(--text-on-accent);
 }
 
-:is(.mkortex-provider-model-picker-row-meta, .mkortex-opencode-model-picker-row-meta) {
+:is(.mesa-provider-model-picker-row-meta, .mesa-opencode-model-picker-row-meta) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
   font-family: var(--font-monospace);
@@ -5516,12 +5516,12 @@ code .mkortex-file-link:hover {
   white-space: nowrap;
 }
 
-:is(.mkortex-provider-model-picker-row-desc, .mkortex-opencode-model-picker-row-desc) {
+:is(.mesa-provider-model-picker-row-desc, .mesa-opencode-model-picker-row-desc) {
   font-size: var(--font-ui-smaller);
   color: var(--text-muted);
 }
 
-:is(.mkortex-provider-model-picker-empty, .mkortex-opencode-model-picker-empty) {
+:is(.mesa-provider-model-picker-empty, .mesa-opencode-model-picker-empty) {
   padding: 24px 16px;
   text-align: center;
   color: var(--text-muted);
@@ -5535,40 +5535,40 @@ code .mkortex-file-link:hover {
 /* Accessibility - Focus Visible Styles */
 
 /* outline + offset + border-radius */
-.mkortex-tool-header:focus-visible,
-.mkortex-thinking-header:focus-visible,
-.mkortex-subagent-header:focus-visible,
-.mkortex-input-nav-btn:focus-visible,
-.mkortex-composer-pill-btn:focus-visible,
-.mkortex-model-btn:focus-visible,
-.mkortex-thinking-current:focus-visible {
+.mesa-tool-header:focus-visible,
+.mesa-thinking-header:focus-visible,
+.mesa-subagent-header:focus-visible,
+.mesa-input-nav-btn:focus-visible,
+.mesa-composer-pill-btn:focus-visible,
+.mesa-model-btn:focus-visible,
+.mesa-thinking-current:focus-visible {
   outline: 2px solid var(--interactive-accent);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 /* outline + offset only */
-.mkortex-action-btn:focus-visible,
-.mkortex-toggle-switch:focus-visible,
-.mkortex-file-chip:focus-visible,
-.mkortex-image-chip:focus-visible,
-.mkortex-file-chip-remove:focus-visible,
-.mkortex-image-remove:focus-visible,
-.mkortex-image-modal-close:focus-visible,
-.mkortex-approved-remove-btn:focus-visible,
-.mkortex-save-env-btn:focus-visible,
-.mkortex-restore-snippet-btn:focus-visible,
-.mkortex-edit-snippet-btn:focus-visible,
-.mkortex-delete-snippet-btn:focus-visible,
-.mkortex-cancel-btn:focus-visible,
-.mkortex-save-btn:focus-visible,
-.mkortex-code-lang-label:focus-visible {
+.mesa-action-btn:focus-visible,
+.mesa-toggle-switch:focus-visible,
+.mesa-file-chip:focus-visible,
+.mesa-image-chip:focus-visible,
+.mesa-file-chip-remove:focus-visible,
+.mesa-image-remove:focus-visible,
+.mesa-image-modal-close:focus-visible,
+.mesa-approved-remove-btn:focus-visible,
+.mesa-save-env-btn:focus-visible,
+.mesa-restore-snippet-btn:focus-visible,
+.mesa-edit-snippet-btn:focus-visible,
+.mesa-delete-snippet-btn:focus-visible,
+.mesa-cancel-btn:focus-visible,
+.mesa-save-btn:focus-visible,
+.mesa-code-lang-label:focus-visible {
   outline: 2px solid var(--interactive-accent);
   outline-offset: 2px;
 }
 
 /* outline + negative offset + border-radius */
-.mkortex-history-item-content:focus-visible {
+.mesa-history-item-content:focus-visible {
   outline: 2px solid var(--interactive-accent);
   outline-offset: -2px;
   border-radius: 4px;
@@ -5582,14 +5582,14 @@ code .mkortex-file-link:hover {
  * Visibility utilities are imported late so they can override component display
  * defaults without importance flags.
  */
-.mkortex-hidden.mkortex-hidden {
+.mesa-hidden.mesa-hidden {
   display: none;
 }
 
-.mkortex-visible-block.mkortex-visible-block {
+.mesa-visible-block.mesa-visible-block {
   display: block;
 }
 
-.mkortex-visible-flex.mkortex-visible-flex {
+.mesa-visible-flex.mesa-visible-flex {
   display: flex;
 }

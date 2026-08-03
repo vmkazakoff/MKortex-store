@@ -1,6 +1,6 @@
 {
-  "id": "mkortex",
-  "name": "MKortex ACP (Agent Client Protocol)",
+  "id": "mesa-acp",
+  "name": "Mesa ACP (Agent Client Protocol)",
   "version": "1.0.0",
   "minAppVersion": "1.7.2",
   "description": "AI coding agent embedded in your Obsidian vault.",

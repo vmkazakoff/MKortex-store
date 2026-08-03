@@ -1,7 +1,7 @@
-/* MKortex Editor Styles */
+/* Mesa Editor Styles */
 
 /* Хост внутри .cm-sizer: бар едет со скроллом нативно (как bubble-menu) */
-.mkortex-editor-menu-host {
+.mesa-editor-menu-host {
   position: absolute;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   z-index: 50;
 }
 
-.mkortex-editor-floating-menu {
+.mesa-editor-floating-menu {
   position: absolute;
   display: flex;
   align-items: center;
@@ -30,13 +30,13 @@
   overflow: visible;
 }
 
-.mkortex-editor-floating-menu.visible {
+.mesa-editor-floating-menu.visible {
   opacity: 1;
   pointer-events: auto;
 }
 
-.mkortex-editor-floating-menu > button,
-.mkortex-editor-floating-menu .menu-dropdown > button {
+.mesa-editor-floating-menu > button,
+.mesa-editor-floating-menu .menu-dropdown > button {
   padding: 4px 6px;
   border: none;
   background: transparent;
@@ -54,24 +54,24 @@
   transition: background-color 0.15s ease;
 }
 
-.mkortex-editor-floating-menu > button.active,
-.mkortex-editor-floating-menu .menu-dropdown > button.active {
+.mesa-editor-floating-menu > button.active,
+.mesa-editor-floating-menu .menu-dropdown > button.active {
   background: var(--background-modifier-active-hover);
   color: var(--text-accent);
 }
 
-.mkortex-editor-floating-menu button svg {
+.mesa-editor-floating-menu button svg {
   width: 16px;
   height: 16px;
 }
 
-.mkortex-editor-floating-menu > button:hover,
-.mkortex-editor-floating-menu .menu-dropdown > button:hover {
+.mesa-editor-floating-menu > button:hover,
+.mesa-editor-floating-menu .menu-dropdown > button:hover {
   background: var(--background-modifier-hover);
 }
 
 /* Разделитель */
-.mkortex-editor-floating-menu .menu-separator {
+.mesa-editor-floating-menu .menu-separator {
   width: 1px;
   height: 20px;
   background: var(--background-modifier-border);
