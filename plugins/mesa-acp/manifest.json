@@ -1,6 +1,6 @@
 {
   "id": "mesa-acp",
-  "name": "Mesa ACP (Agent Client Protocol)",
+  "name": "Mesa | ACP",
   "version": "1.0.0",
   "minAppVersion": "1.7.2",
   "description": "AI coding agent embedded in your Obsidian vault.",
