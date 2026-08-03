@@ -1,7 +1,7 @@
 {
   "id": "mesa-editor",
   "name": "Mesa | Editor",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "minAppVersion": "1.0.0",
   "description": "Блочный редактор экосистемы Mesa",
   "author": "MKRobotsAI",
