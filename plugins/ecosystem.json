@@ -28,7 +28,7 @@
     {
       "id": "mesa-pdf-preview",
       "name": "Mesa | PDF Preview",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "path": "plugins/mesa-pdf-preview",
       "minAppVersion": "1.0.0",
       "description": "Live PDF preview и export рядом с заметкой"

@@ -1,7 +1,7 @@
 {
 	"id": "mesa-pdf-preview",
 	"name": "Mesa | PDF Preview",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"minAppVersion": "1.0.0",
 	"description": "Real-time PDF preview and export for Mesa",
 	"author": "MKRobotsAI",

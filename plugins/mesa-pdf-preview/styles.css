@@ -49,13 +49,14 @@
 	opacity: 0;
 	pointer-events: none;
 	z-index: -9999;
-}/* Master/render container (hidden from view but layouted offscreen for height measurement) */#pdf-preview-sandbox .pdf-preview-master {
+}/* Master/render container (hidden from view but layouted offscreen for height measurement).
+   Fixed page width — not % of the leaf — so pagination stays correct while the sidebar is collapsed. */
+#pdf-preview-sandbox .pdf-preview-master {
 	position: absolute;
 	left: -9999px;
 	top: -9999px;
-	width: 100%;
-	max-width: 210mm;
-	padding: 20mm;
+	width: var(--pdf-page-width, 210mm);
+	padding: var(--pdf-page-margin, 20mm);
 	box-sizing: border-box;
 }#pdf-preview-sandbox .pdf-preview-page {
 	/* Explicitly white background to simulate A4 paper */
