@@ -12,7 +12,7 @@
     {
       "id": "mesa-editor",
       "name": "Mesa | Editor",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "path": "plugins/mesa-editor",
       "minAppVersion": "1.0.0",
       "description": "Блочный редактор экосистемы Mesa"
