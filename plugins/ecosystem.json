@@ -36,7 +36,7 @@
     {
       "id": "mesa-tasks",
       "name": "Mesa | Tasks",
-      "version": "1.0.1",
+      "version": "1.0.4",
       "path": "plugins/mesa-tasks",
       "minAppVersion": "1.0.0",
       "description": "Приоритет, теги, ответственный и дедлайн на строке чеклиста"

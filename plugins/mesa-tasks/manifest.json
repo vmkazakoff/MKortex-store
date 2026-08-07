@@ -1,7 +1,7 @@
 {
 	"id": "mesa-tasks",
 	"name": "Mesa | Tasks",
-	"version": "1.0.1",
+	"version": "1.0.4",
 	"minAppVersion": "1.0.0",
 	"description": "Priority, tags, assignee and deadline on checklist lines",
 	"author": "MKRobotsAI",
