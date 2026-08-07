@@ -1,0 +1,9 @@
+{
+	"id": "mesa-skills",
+	"name": "Mesa | Skills",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "Канон AGENTS и синхронизация skills/agents/commands в папки агентов",
+	"author": "MKRobotsAI",
+	"isDesktopOnly": true
+}

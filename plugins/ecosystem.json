@@ -48,6 +48,14 @@
       "path": "plugins/mesa-mentions",
       "minAppVersion": "1.0.0",
       "description": "@имя как тег: обводка, клик → поиск, автокомплит"
+    },
+    {
+      "id": "mesa-skills",
+      "name": "Mesa | Skills",
+      "version": "1.0.0",
+      "path": "plugins/mesa-skills",
+      "minAppVersion": "1.0.0",
+      "description": "Канон AGENTS и синхронизация skills/agents/commands в папки агентов"
     }
   ]
 }
