@@ -52,10 +52,10 @@
     {
       "id": "mesa-skills",
       "name": "Mesa | Skills",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "path": "plugins/mesa-skills",
       "minAppVersion": "1.0.0",
-      "description": "Канон AGENTS и синхронизация skills/agents/commands в папки агентов"
+      "description": "Создаёт папку AGENTS, через которую синхронизируются навыки, правила и команды агентов"
     }
   ]
 }
