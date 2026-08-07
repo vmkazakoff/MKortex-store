@@ -1,0 +1,9 @@
+{
+	"id": "mesa-mentions",
+	"name": "Mesa | Mentions",
+	"version": "1.0.0",
+	"minAppVersion": "1.0.0",
+	"description": "@name like tags: outline, click to search, autocomplete",
+	"author": "MKRobotsAI",
+	"isDesktopOnly": false
+}

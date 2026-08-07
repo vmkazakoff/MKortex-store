@@ -32,6 +32,22 @@
       "path": "plugins/mesa-pdf-preview",
       "minAppVersion": "1.0.0",
       "description": "Live PDF preview и export рядом с заметкой"
+    },
+    {
+      "id": "mesa-tasks",
+      "name": "Mesa | Tasks",
+      "version": "1.0.1",
+      "path": "plugins/mesa-tasks",
+      "minAppVersion": "1.0.0",
+      "description": "Приоритет, теги, ответственный и дедлайн на строке чеклиста"
+    },
+    {
+      "id": "mesa-mentions",
+      "name": "Mesa | Mentions",
+      "version": "1.0.0",
+      "path": "plugins/mesa-mentions",
+      "minAppVersion": "1.0.0",
+      "description": "@имя как тег: обводка, клик → поиск, автокомплит"
     }
   ]
 }
