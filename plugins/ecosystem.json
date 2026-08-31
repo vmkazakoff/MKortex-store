@@ -4,7 +4,7 @@
     {
       "id": "mesa-store",
       "name": "Mesa | Store",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "path": "plugins/mesa-store",
       "minAppVersion": "1.0.0",
       "description": "Магазин плагинов экосистемы Mesa: установка и обновления"

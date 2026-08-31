@@ -2,19 +2,18 @@
 
 .mesa-store-settings .mesa-plugin-row {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  flex-direction: column;
+  gap: 4px;
   padding: 12px 0;
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.mesa-store-settings .mesa-plugin-meta {
+.mesa-store-settings .mesa-plugin-header {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
-  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
 }
 
 .mesa-store-settings .mesa-plugin-title-line {
@@ -22,6 +21,8 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  flex: 1;
 }
 
 .mesa-store-settings .mesa-plugin-name {
@@ -70,32 +71,25 @@
   font-size: var(--font-ui-smaller);
 }
 
-.mesa-store-settings .mesa-plugin-actions {
+.mesa-store-settings .mesa-plugin-controls {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 4px;
+  align-items: center;
+  gap: 2px;
   flex-shrink: 0;
-  padding-top: 2px;
-  min-width: 140px;
 }
 
-.mesa-store-settings .mesa-plugin-actions button {
-  width: 100%;
+.mesa-store-settings .mesa-plugin-cta {
+  margin-right: 4px;
 }
 
-.mesa-store-settings .mesa-btn-ghost {
-  background: transparent;
-  box-shadow: none;
-  border: none;
+.mesa-store-settings .mesa-plugin-controls .clickable-icon {
   color: var(--text-muted);
-  font-size: var(--font-ui-smaller);
-  padding: 2px 8px;
-  cursor: pointer;
 }
 
-.mesa-store-settings .mesa-btn-ghost:hover {
+.mesa-store-settings .mesa-plugin-controls .clickable-icon:hover {
   color: var(--text-normal);
-  background: transparent;
-  box-shadow: none;
+}
+
+.mesa-store-settings .mesa-plugin-controls .mesa-plugin-delete:hover {
+  color: var(--text-error);
 }
